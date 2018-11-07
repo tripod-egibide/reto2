@@ -23,3 +23,25 @@ img{
     background-color: #d64;
     text-align: center;
 }
+
+
+
+/*footer*/
+footer {
+    display: flex;
+    background-color: #d64;
+    justify-content: center;
+    height: 10%;
+}
+
+footer div, #email{
+    margin-top: .6%;
+}
+footer #logo{
+    width: 100px;
+    margin: 5px 1%;
+}
+
+footer img{
+    width: 105px;
+}

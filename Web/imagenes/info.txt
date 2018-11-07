@@ -1,0 +1,1 @@
+Se guardará todas las imágenes en esta carpeta.

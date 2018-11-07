@@ -2,15 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
-<?php
-    include "./partefija/header.html";
-?>
-
-<?php
-include "./partefija/footer.html";
-?>
+    <div class="gridContenedor">
+        <div class="cabecera">Header
+            <?php
+            include "./partefija/header.html";
+            ?>
+        </div>
+        <div class="margen">Gap</div>
+        <div class="main">Main</div>
+        <div class="margen2">Gap</div>
+        <div class="pie">Footer
+            <?php
+            include "./partefija/footer.html";
+            ?>
+        </div>
+    </div>
 </body>
 </html>

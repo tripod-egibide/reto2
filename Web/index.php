@@ -16,11 +16,9 @@
         <div class="margen">Gap</div>
         <div class="main">Main</div>
         <div class="margen2">Gap</div>
-        <div class="pie">Footer
             <?php
             include "./partefija/footer.html";
             ?>
-        </div>
     </div>
 </body>
 </html>

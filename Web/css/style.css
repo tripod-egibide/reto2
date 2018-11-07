@@ -1,0 +1,25 @@
+img{
+    width: 100%;
+    height: auto;
+}
+
+.cabecera { grid-area: header; }
+.margen { grid-area: gap; }
+.margen2 { grid-area: gap2; }
+.main { grid-area: main; }
+.pie { grid-area: footer; }
+
+.gridContenedor {
+    display: grid;
+    grid-template-areas:
+            'header header header header header'
+            'gap main main main gap2'
+            'footer footer footer footer footer';
+    grid-gap: 10px;
+    padding: 10px;
+    background-color: darkred;
+}
+.gridContenedor > div {
+    background-color: #d64;
+    text-align: center;
+}

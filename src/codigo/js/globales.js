@@ -1,1 +1,0 @@
-window.root = "http://localhost";

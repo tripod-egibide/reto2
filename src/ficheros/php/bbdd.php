@@ -1,4 +1,5 @@
 <?php
+//funciones universales:
 function abrirConexion(){
   $bd = "mysql:host=localhost;dbname=reto2;charset=utf8";
   $usuario = "root";
@@ -14,4 +15,12 @@ function realizarConsulta($query, $datos){
   return $consulta;
 }
 
+//funciones especificas:
+function encontrarUsuario($datos) {
+  return realizarConsulta("select idusuario from usuario where usuario=:usuario or email=:email", $datos);
+}
+
+function insertarUsuario($datos) {
+  return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
+}
 ?>

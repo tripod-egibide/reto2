@@ -6,7 +6,7 @@ if (isset($_POST)) {
     "usuario" => $_POST["usuario"],
     "email" => $_POST["email"]
   ];
-  $consulta = realizarConsulta("select idusuario from usuario where usuario=:usuario or email=:email", $datos);
+  $consulta = encontrarUsuario($datos);
   if (!$consulta->fetch()) {
     //si lo son, seguimos y verificamos que las contraseñas realmente coincidan
     if ($_POST["contra"] == $_POST["contra2"]) {
@@ -16,7 +16,7 @@ if (isset($_POST)) {
         "email" => $_POST["email"],
         "contrasenna" => password_hash($_POST["contra"], PASSWORD_DEFAULT)
       ];
-      realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
+      insertarUsuario($datos);
     }
     else {
       echo "Las contrase&ntilde;as no coinciden.";

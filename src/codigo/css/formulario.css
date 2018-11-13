@@ -1,0 +1,35 @@
+#formulario{
+    background-color: #ec9;
+    border: 1px solid black;
+}
+#formulario form{
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    margin: 1%;
+}
+#formulario form *{
+    margin:.5%;
+}
+
+#formulario form div {
+    display: flex;
+    flex-wrap: Wrap;
+}
+
+#formulario form div label{
+    width: 100%;
+    flex-grow: 1;
+}
+
+#formulario form div #publicarEtiqueta{
+    flex-grow: 1;
+}
+
+#formulario form #bEnviar{
+     flex-basis: auto;
+ }
+
+#formulario form #titulo{
+    font-size: 1.5em;
+}

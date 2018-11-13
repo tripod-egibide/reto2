@@ -1,3 +1,4 @@
+
 $("#signin").submit((event) => {
   let status;
   $.post(window.root + "/ficheros/php/cuenta/signin.php", $("#signin").serialize(), ((r) => {
@@ -11,3 +12,4 @@ $("#signin").submit((event) => {
     return false;
   }
 });
+

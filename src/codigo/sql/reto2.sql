@@ -49,7 +49,7 @@ CREATE TABLE `reto2`.`respuesta` (
   `idpregunta` INT NOT NULL,
   `usuario_idusuario` INT NOT NULL,
   `titulo` VARCHAR(100) NOT NULL,
-  `respuesta` VARCHAR(1000) NOT NULL,
+  `texto` VARCHAR(1000) NOT NULL,
   `resuelve` TINYINT NOT NULL DEFAULT 0,
   `puntos` INT NOT NULL DEFAULT 0,
   INDEX `fk_respuesta_pregunta1_idx` (`idpregunta` ASC),
@@ -92,6 +92,7 @@ ENGINE = InnoDB;
 CREATE TABLE `reto2`.`voto` (
   `usuario_idusuario` INT NOT NULL,
   `respuesta_idrespuesta` INT NOT NULL,
+  `positivo` TINYINT NOT NULL DEFAULT 1,
   INDEX `fk_voto_usuario1_idx` (`usuario_idusuario` ASC),
   INDEX `fk_voto_respuesta1_idx` (`respuesta_idrespuesta` ASC),
   PRIMARY KEY (`usuario_idusuario`, `respuesta_idrespuesta`),

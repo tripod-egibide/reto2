@@ -1,3 +1,3 @@
 $("#submit").click((event) =>
-  $.post(".../php/cuenta/signin.php", $("#signin").serialize())
-)
+  $.post("http://localhost/ficheros/php/cuenta/signin.php", $("#signin").serialize(), (r) => $("#resultado").html(r))
+);

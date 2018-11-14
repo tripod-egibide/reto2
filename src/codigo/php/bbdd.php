@@ -23,4 +23,17 @@ function encontrarUsuario($datos) {
 function insertarUsuario($datos) {
   return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }
+
+function verificarLogin($email, $contrasenna) {
+  $resultado = realizarConsulta("select idusuario, contrasenna from usuario where email=:email", ["email" => $email])->fetch();
+  if (password_verify($contrasenna, $resultado["contrasenna"])) {
+    return $resultado["idusuario"];
+  } else {
+    return false;
+  }
+}
+
+function insertarPregunta($datos) {
+    return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
+}
 ?>

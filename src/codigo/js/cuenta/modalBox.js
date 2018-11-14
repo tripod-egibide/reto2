@@ -1,26 +1,26 @@
-var modalLogin = document.getElementById('modalLogin');
-var modalSignin = document.getElementById('modalSignin');
-var botonLogin  = document.getElementById("botonLogin");
-var botonSignin = document.getElementById("botonSignin");
-var cerrarSignin = document.getElementById("cerrarSignin");
-var cerrarLogin = document.getElementById("cerrarLogin");
+var modalLogin = $('#modalLogin');
+var modalSignin = $('#modalSignin');
+var botonLogin  = $('#botonLogin');
+var botonSignin = $('#botonSignin');
+var cerrarSignin = $('#cerrarSignin');
+var cerrarLogin = $('#cerrarLogin');
 
-botonLogin.onclick = function() {
-    modalLogin.style.display = "block";
-};
-botonSignin.onclick = function() {
-    modalSignin.style.display = "block";
-};
+botonLogin.on("click", function() {
+    modalLogin.show();
+});
+botonSignin.on("click", function() {
+    modalSignin.show();
+});
 
-cerrarSignin.onclick = function() {
-    modalSignin.style.display = "none";
-};
-cerrarLogin.onclick = function() {
-    modalLogin.style.display = "none";
-};
+cerrarSignin.on("click", function() {
+    modalSignin.hide()
+});
+cerrarLogin.on("click", function() {
+    modalLogin.hide();
+});
 
-window.onclick = function(event) {
+window.on("click", function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
-};
+});

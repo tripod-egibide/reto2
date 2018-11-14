@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <header>
   <a href="" id="logo"><img src="" /></a>
   <form action="" method="get">
@@ -13,8 +16,8 @@
   <div class="modalContenido">
     <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
     <?php
-            include "./cuenta/login.html";
-            ?>
+    include "./cuenta/login.html";
+    ?>
   </div>
 </div>
 <!-- Signin -->
@@ -22,7 +25,7 @@
   <div class="modalContenido">
     <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
     <?php
-            include "./cuenta/signin.html";
-            ?>
+    include "./cuenta/signin.html";
+    ?>
   </div>
 </div>

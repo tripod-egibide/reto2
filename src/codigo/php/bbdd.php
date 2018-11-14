@@ -29,5 +29,7 @@ function verificarLogin($datos) {
     return true;
   }
   else return false;
+function insertarPregunta($datos) {
+    return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }
 ?>

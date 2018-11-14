@@ -25,4 +25,4 @@ if (isset($_POST)) {
     echo "El usuario o direcc&oacute;n de correo introducidos ya est&aacute;n en uso.";
   }
 }
- ?>
+?>

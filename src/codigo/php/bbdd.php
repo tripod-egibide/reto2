@@ -31,6 +31,9 @@ function verificarLogin($email, $contrasenna) {
   } else {
     return false;
   }
+  else{
+    return false;
+  }
 }
 
 function insertarPregunta($datos) {

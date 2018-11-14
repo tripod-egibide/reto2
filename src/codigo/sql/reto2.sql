@@ -110,8 +110,8 @@ CREATE TABLE IF NOT EXISTS `reto2`.`categoria` (
   `idetiqueta` INT(11) NOT NULL,
   `idpregunta` INT(11) NOT NULL,
   PRIMARY KEY (`idetiqueta`, `idpregunta`),
-  INDEX `fk_etiqueta_has_pregunta_pregunta1_idx` (`idpregunta` ASC) VISIBLE,
-  INDEX `fk_etiqueta_has_pregunta_etiqueta1_idx` (`idetiqueta` ASC) VISIBLE,
+  INDEX `fk_etiqueta_has_pregunta_pregunta1_idx` (`idpregunta` ASC),
+  INDEX `fk_etiqueta_has_pregunta_etiqueta1_idx` (`idetiqueta` ASC),
   CONSTRAINT `fk_etiqueta_has_pregunta_etiqueta1`
     FOREIGN KEY (`idetiqueta`)
     REFERENCES `reto2`.`etiqueta` (`idetiqueta`)

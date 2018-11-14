@@ -24,10 +24,10 @@ function insertarUsuario($datos) {
   return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }
 
-function verificarLogin($datos) {
-  if (realizarConsulta("select idusuario from usuario where email=:email and contrasenna=:contra", $datos)->rowCount()) {
-    return true;
-  }
-  else return false;
+function verificarLogin($email, $contrasenna) {
+  $resultado = realizarConsulta("select idusuario, contrasenna from usuario where email=:email", ["email" => $email])->fetch();
+  if (password_verify($contrasenna, $resultado["contrasenna"])) {
+    return $resultado["idusuario"];
+  } else return false;
 }
 ?>

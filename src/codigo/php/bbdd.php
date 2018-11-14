@@ -36,4 +36,8 @@ function verificarLogin($email, $contrasenna) {
 function insertarPregunta($datos) {
     return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }
+
+function cargarHilo($id) {
+  return realizarConsulta("select * from respuesta where idpregunta=:id order by idrespuesta", ["id" => $id]);
+}
 ?>

@@ -69,15 +69,9 @@ ENGINE = InnoDB;
 CREATE TABLE `reto2`.`etiqueta` (
   `idetiqueta` INT NOT NULL,
   `etiqueta` VARCHAR(50) NOT NULL,
-  `pregunta_idpregunta` INT NOT NULL,
   PRIMARY KEY (`idetiqueta`),
   UNIQUE INDEX `etiqueta_UNIQUE` (`etiqueta` ASC),
   INDEX `fk_etiqueta_pregunta1_idx` (`pregunta_idpregunta` ASC),
-  CONSTRAINT `fk_etiqueta_pregunta1`
-    FOREIGN KEY (`pregunta_idpregunta`)
-    REFERENCES `reto2`.`pregunta` (`idpregunta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 

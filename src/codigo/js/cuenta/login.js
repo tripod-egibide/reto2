@@ -6,9 +6,9 @@ $("#login").submit(() => {
     url: window.root + "/codigo/php/cuenta/login.php",
     data: $("#login").serialize(),
     success: (r) => {
-      if (r) {
-        //si hay un mensaje, lo mostramos por pantalla y vaciamos los campos de contrasenna
-        $("#resultado").html(r);
+      if (!r) {
+        //los datos son incorrectos mostramos un mensaje de error
+        $("#resultado").html("Los datos introducidos son incorrectos.");
         $(".contra").val("");
       } else {
         //si no, vamos al index

@@ -23,4 +23,8 @@ function encontrarUsuario($datos) {
 function insertarUsuario($datos) {
   return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }
+
+function insertarPregunta($datos) {
+    return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
+}
 ?>

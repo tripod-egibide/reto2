@@ -2,18 +2,24 @@
 
 
 //al hacer submit
-$("#signin").submit((event) => {
-  let status;
-  //llamamos al fichero php correspondiente, y mostramos el resultado en pantalla
-  $.post(window.root + "/ficheros/php/cuenta/signin.php", $("#signin").serialize(), ((r) => status = r));
-  if (!status) {
-    //si el resultado no tiene datos, la insercion funciono, y volvemos al index
-    // TODO: verificar que este sea el comportamiento adecuado, y si no, corregir
-    $(location).attr(window.root);
-  } else {
-    //si tiene datos entonces hubo un problema, que mostramos en pantalla y luego limpiamos las contrasennas
-    $("#resultado").html(r)
-    $(".contra").val("");
-    return false;
-  }
+$("#signin").submit(() => {
+  $.ajax({
+    //hacemos un post al php correspondiente, que solo devuelve un mensaje si ha habido un error
+    type: "post",
+    url: window.root + "/codigo/php/cuenta/signin.php",
+    data: $("#signin").serialize(),
+    datatype: "",
+    success: (r) => {
+      if (r) {
+        //si hay un mensaje, lo mostramos por pantalla y vaciamos los campos de contrasenna
+        $("#resultado").html(r);
+        $(".contra").val("");
+      } else {
+        //si no, vamos al index
+        // TODO: este comportamiento es temporal, en realidad se cerraria el popup
+        window.location.replace(window.root);
+      }
+    }
+  });
+  return false;
 });

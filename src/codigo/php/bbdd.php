@@ -24,6 +24,11 @@ function insertarUsuario($datos) {
   return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }
 
+function verificarLogin($datos) {
+  if (realizarConsulta("select idusuario from usuario where email=:email and contrasenna=:contra", $datos)->rowCount()) {
+    return true;
+  }
+  else return false;
 function insertarPregunta($datos) {
     return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }

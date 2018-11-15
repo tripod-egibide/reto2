@@ -21,7 +21,7 @@
             ?>
         </div>
         <div class="margen">Gap</div>
-        <div class="main">Main</div>
+        <div class="main"><a href="http://localhost/pregunta/publicarPregunta.php">Hola</a> </div>
         <div class="margen2">Gap</div>
             <?php
             include "./partefija/footer.html";

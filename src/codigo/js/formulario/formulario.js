@@ -6,7 +6,7 @@ $(document).ready(function (){
 });
 
 function titulo(){
-    if(!/^[A-Z][a-z ]+( [A-Z]*[a-z]*)*$/.test($("#titulo").val())){
+    if(!/^[A-Z0-9][a-z0-9 ]+( [A-Z0-9]*[a-z0-9]*)*$/.test($("#titulo").val())){
         //repito comando por si el user cambia el título
         $("#bEnviar").prop("disabled", true);
         alert("El título debe comenzar con una mayúscula y seguido de minúsculas");

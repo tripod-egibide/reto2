@@ -9,7 +9,7 @@ $("#login").submit(() => {
       if (r) {
         //si hay un mensaje, lo mostramos por pantalla y vaciamos los campos de contrasenna
         $("#resultado").html(r);
-        $(".contra").val("");
+        $("#contraLogin").val("");
       } else {
         //si no, vamos al index
         // TODO: este comportamiento es temporal, en realidad se cerraria el popup

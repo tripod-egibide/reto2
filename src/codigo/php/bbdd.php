@@ -43,7 +43,7 @@ function cargarPregunta($id) {
   select p.*,
    (select count(*) from voto_pregunta where idpregunta=:id and positivo=1) as positivos,
     (select count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
-     from pregunta as p where idpregunta=:id;", ["id" => $id])->fetch();
+     from pregunta as p where idpregunta=:id;", ["id" => $id]);
   $respuestas = realizarConsulta("select r.*,
   (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo=1) as positivos,
     (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo!=1) as negativos

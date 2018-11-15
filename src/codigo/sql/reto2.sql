@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `reto2`.`pregunta` (
   `idusuario` INT(11) NOT NULL,
   `titulo` VARCHAR(100) NOT NULL,
   `texto` VARCHAR(1000) NOT NULL,
-  `fecha_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpregunta`),
   INDEX `fk_pregunta_usuario1` (`idusuario` ASC),
   CONSTRAINT `fk_pregunta_usuario1`
@@ -90,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `reto2`.`respuesta` (
   `idusuario` INT(11) NOT NULL,
   `titulo` VARCHAR(100) NOT NULL,
   `texto` VARCHAR(1000) NOT NULL,
-  `resuelve` TINYINT(4) NOT NULL DEFAULT '0',
-  `fecha_creacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `resuelve` TINYINT(4) DEFAULT '0',
+  `fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrespuesta`),
   INDEX `fk_respuesta_pregunta1_idx` (`idpregunta` ASC),
   INDEX `fk_respuesta_usuario1_idx` (`idusuario` ASC),
@@ -115,7 +115,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `reto2`.`voto_respuesta` (
   `idusuario` INT(11) NOT NULL,
   `idrespuesta` INT(11) NOT NULL,
-  `positivo` TINYINT(4) NOT NULL DEFAULT '1',
+  `positivo` TINYINT(4) DEFAULT '1',
   PRIMARY KEY (`idusuario`, `idrespuesta`),
   INDEX `fk_voto_usuario1_idx` (`idusuario` ASC),
   INDEX `fk_voto_respuesta1_idx` (`idrespuesta` ASC),
@@ -139,7 +139,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `reto2`.`voto_pregunta` (
   `idusuario` INT(11) NOT NULL,
   `idpregunta` INT(11) NOT NULL,
-  `positivo` TINYINT NOT NULL DEFAULT 1,
+  `positivo` TINYINT DEFAULT 1,
   PRIMARY KEY (`idusuario`, `idpregunta`),
   INDEX `fk_usuario_has_pregunta_pregunta1_idx` (`idpregunta` ASC),
   INDEX `fk_usuario_has_pregunta_usuario1_idx` (`idusuario` ASC),

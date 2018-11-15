@@ -46,8 +46,8 @@ function cargarPregunta($id) {
      from pregunta as p where idpregunta=:id;", ["id" => $id])->fetch();
   $respuestas = realizarConsulta("select r.*,
   (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo=1) as positivos,
-    (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo!=1) as negativos 
-      from respuesta as r where idpregunta=3 order by idrespuesta;", ["id" => $id]);
+    (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo!=1) as negativos
+      from respuesta as r where idpregunta=:id order by idrespuesta;", ["id" => $id]);
   $etiquetas = realizarConsulta("select etiqueta from etiqueta where idetiqueta in (select idetiqueta from categoria where idpregunta=:id)", ["id" => $id]);
   $datos = [
     "pregunta" => $pregunta,

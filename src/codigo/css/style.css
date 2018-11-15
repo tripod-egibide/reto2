@@ -12,10 +12,6 @@ img{
 .logo{
     width: 25%;
 }
-button, input[type="search"]{
-    background-color: #222;
-    color: #eee;
-}
 
 .cabecera { grid-area: header; }
 .margen { grid-area: gap;}

@@ -39,6 +39,7 @@
           }
           ?>
         </ul>
+        <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
       </div>
     </div>
 

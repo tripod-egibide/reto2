@@ -7,8 +7,6 @@
     $pregunta = $datos["pregunta"]->fetch(0);
     $respuestas = $datos["respuestas"];
     $etiquetas = $datos["etiquetas"];
-
-    var_dump($pregunta);
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -18,6 +16,7 @@
     <title>
       <?=$pregunta["titulo"]?>
     </title>
+    <link rel="stylesheet" href="../iconos/iconos.css">
   </head>
 
   <body>
@@ -27,10 +26,11 @@
           <?=$pregunta["titulo"]?>
         </h1>
         <span class="informacion" id="informacionPregunta"></span>
+        <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
       </div>
       <div class="votos">
         <i class="material-icons">arrow_drop_up</i>
-        <span class="votosContador"></span>
+        <span class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"] ?></span>
         <i class="material-icons">arrow_drop_down</i>
       </div>
       <p class="cuerpo">
@@ -45,10 +45,11 @@
             echo "<li>$str</li>";
           }
           ?>
+          <?php // TODO: dar formato a la fecha para que sea lindo ?>
         </ul>
       </div>
     </div>
-
+<hr>
     <?php
     while ($respuesta = $respuestas->fetch()) {
       ?>
@@ -60,8 +61,9 @@
           <span class="informacion"></span>
       </div>
       <div class="votos">
-        <!-- faltarian las flechitas y la variable de los votos -->
-      </div>
+        <i class="material-icons">arrow_drop_up</i>
+        <span class="votosContador"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
+        <i class="material-icons">arrow_drop_down</i>      </div>
       <p class="cuerpo">Cuerpo</p>
     </div>
     <?php

@@ -38,7 +38,14 @@ function insertarPregunta($datos) {
 }
 
 function cargarPregunta($id) {
-  // TODO: falta modificar las selects para cargar tambien el contador de votos
+  // TODO: falta modificar las selects para cargar tambien la informacion del usuario que ha hecho el post
+//   //select p.*, u.*,
+//    (select count(*) from voto_pregunta where idpregunta=1 and positivo=1) as positivos,
+//     (select count(*) from voto_pregunta where idpregunta=1 and positivo!=1) as negativo
+//      from pregunta as p, usuario as u where p.idpregunta=1 and u.idusuario = p.idusuario
+//
+// ;
+
   $pregunta = realizarConsulta("
   select p.*,
    (select count(*) from voto_pregunta where idpregunta=:id and positivo=1) as positivos,

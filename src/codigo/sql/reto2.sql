@@ -1,7 +1,7 @@
 CREATE SCHEMA IF NOT EXISTS `reto2` DEFAULT CHARACTER SET utf8 ;
 USE `reto2` ;
 
-DROP TABLE IF EXISTS `reto2`.`categoria`;
+DROP TABLE IF EXISTS `reto2`.`pregunta_tiene_etiqueta`;
 DROP TABLE IF EXISTS `reto2`.`etiqueta`;
 DROP TABLE IF EXISTS `reto2`.`voto_respuesta`;
 DROP TABLE IF EXISTS `reto2`.`voto_pregunta`;
@@ -59,9 +59,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `reto2`.`categoria`
+-- Table `reto2`.`pregunta_tiene_etiqueta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `reto2`.`categoria` (
+CREATE TABLE IF NOT EXISTS `reto2`.`pregunta_tiene_etiqueta` (
   `idetiqueta` INT(11) NOT NULL,
   `idpregunta` INT(11) NOT NULL,
   PRIMARY KEY (`idetiqueta`, `idpregunta`),

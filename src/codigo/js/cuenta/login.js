@@ -1,7 +1,7 @@
 //al hacer submit
 $("#login").submit(() => {
   $.ajax({
-    //hacemos un post al php correspondiente, que solo devuelve un mensaje si ha habido un error
+    //hacemos un post al php correspondiente, que solo devuelve un mensaje si a habido un error
     type: "post",
     url: window.root + "/codigo/php/cuenta/login.php",
     data: $("#login").serialize(),

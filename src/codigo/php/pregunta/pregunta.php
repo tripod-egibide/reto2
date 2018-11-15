@@ -1,9 +1,9 @@
 <?php
-  if (isset($_GET["idP"])) {
-    $id = $_GET["idP"];
+  if (isset($_GET["id"])) {
+    $id = $_GET["id"];
     require "../codigo/php/bbdd.php";
-    $hilo = cargarHilo($id);
-    $pregunta = $hilo->fetch();
+    $datos = cargarPregunta($id);
+    $pregunta = $datos["pregunta"];
   } else {
     echo "<h1>404</h1>";
   }

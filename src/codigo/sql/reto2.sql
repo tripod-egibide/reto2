@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `reto2`.`usuario`;
 -- Table `reto2`.`etiqueta`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `reto2`.`etiqueta` (
-  `idetiqueta` INT(11) NOT NULL,
+  `idetiqueta` INT(11) NOT NULL AUTO_INCREMENT,
   `etiqueta` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`idetiqueta`),
   UNIQUE INDEX `etiqueta_UNIQUE` (`etiqueta` ASC))

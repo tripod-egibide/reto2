@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `reto2`.`respuesta` (
   `idrespuesta` INT(11) NOT NULL AUTO_INCREMENT,
   `idpregunta` INT(11) NOT NULL,
   `idusuario` INT(11) NOT NULL,
-  `titulo` VARCHAR(100) NOT NULL,
+  `titulo` VARCHAR(100) NULL,
   `texto` VARCHAR(1000) NOT NULL,
   `resuelve` TINYINT(4) DEFAULT '0',
   `fecha_creacion` DATETIME DEFAULT CURRENT_TIMESTAMP,

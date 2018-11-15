@@ -38,23 +38,16 @@ function insertarPregunta($datos) {
 }
 
 function cargarPregunta($id) {
-  // TODO: falta modificar las selects para cargar tambien la informacion del usuario que ha hecho el post
-//   //select p.*, u.*,
-//    (select count(*) from voto_pregunta where idpregunta=1 and positivo=1) as positivos,
-//     (select count(*) from voto_pregunta where idpregunta=1 and positivo!=1) as negativo
-//      from pregunta as p, usuario as u where p.idpregunta=1 and u.idusuario = p.idusuario
-//
-// ;
-
   $pregunta = realizarConsulta("
-  select p.*,
-   (select count(*) from voto_pregunta where idpregunta=:id and positivo=1) as positivos,
-    (select count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
-     from pregunta as p where idpregunta=:id;", ["id" => $id]);
-  $respuestas = realizarConsulta("select r.*,
-  (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo=1) as positivos,
-    (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo!=1) as negativos
-      from respuesta as r where idpregunta=:id order by idrespuesta;", ["id" => $id]);
+    select p.*, u.usuario, u.url_avatar,
+      (select count(*) from voto_pregunta where idpregunta=:id and positivo=1) as positivos,
+      (select count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
+      from pregunta as p, usuario as u where p.idpregunta=:id and u.idusuario = p.idusuario", ["id" => $id]);
+  $respuestas = realizarConsulta("
+    select r.*, u.usuario, u.url_avatar,
+      (select count(*) from voto_respuesta where idrespuesta=1 and positivo=1) as positivos,
+      (select count(*) from voto_respuesta where idrespuesta=1 and positivo!=1) as negativos
+      from respuesta as r, usuario as u where r.idrespuesta=1 and u.idusuario = r.idusuario", ["id" => $id]);
   $etiquetas = realizarConsulta("select etiqueta from etiqueta where idetiqueta in (select idetiqueta from pregunta_tiene_etiqueta where idpregunta=:id)", ["id" => $id]);
   $datos = [
     "pregunta" => $pregunta,

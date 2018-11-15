@@ -37,7 +37,16 @@ function insertarPregunta($datos) {
     return realizarConsulta("insert into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
 }
 
-function cargarHilo($id) {
-  return realizarConsulta("select * from respuesta where idpregunta=:id order by idrespuesta", ["id" => $id]);
+function cargarPregunta($id) {
+  // TODO: falta modificar las selects para cargar tambien el contador de votos
+  $pregunta = realizarConsulta("select * from pregunta where idpregunta=:id", ["id" => $id])->fetch();
+  $respuestas = realizarConsulta("select * from respuesta where idpregunta=:id order by fecha_creacion", ["id" => $id]);
+  $etiquetas = realizarConsulta("select etiqueta from etiqueta where idetiqueta in (select idetiqueta from categoria where idpregunta=:id)", ["id" => $id]);
+  $datos = [
+    "pregunta" => $pregunta,
+    "respuestas" => $respuestas,
+    "etiquetas" => $etiquetas
+  ];
+  return $datos;
 }
 ?>

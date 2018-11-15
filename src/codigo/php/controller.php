@@ -1,4 +1,6 @@
 <?php
+include "bbdd.php";
+
     $comando = $_GET['comando'];
     switch ($comando){
         case "publicarPregunta":
@@ -10,11 +12,16 @@
     }
 
     function publicarPregunta(){
-        $dato = "accion=publicarPregunta&titulo=" . $_GET['titulo'] . "&mensaje=" . $_GET['mensaje']. "&etiqueta=" . $_GET['etiqueta'];
-
-        //sql
-        header('Location: bbdd.php?'.$dato);
-        //header('Location: /pregunta/publicarPregunta.php?resultado=publicado');
+        $dato = [
+            "usuario" => $_SESSION['usuario'],
+            "titulo" => $_GET["titulo"],
+            "mensaje" => $_GET["mensaje"]
+        ];
+        if(insertarPregunta($dato) == null){
+            header('Location: /index.php?error=404');
+        }else{
+            header('Location: /pregunta/publicarPregunta.php?resultado=publicado');
+        }
 
     }
 ?>

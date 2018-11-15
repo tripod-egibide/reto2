@@ -32,30 +32,6 @@ function verificarLogin($email, $contrasenna) {
     return false;
   }
 }
-session_start();
-$_SESSION['usuario'] = 1;
-$comando = $_GET['accion'];
-
-switch ($comando){
-
-    case "publicarPregunta":
-        $datos = [
-            "usuario" => $_SESSION['usuario'],
-            "titulo" => $_GET["titulo"],
-            "mensaje" => $_GET["mensaje"],
-            "etiqueta" => $_GET["etiqueta"]
-        ];
-      if(insertarPregunta($datos) != 1){
-      ?>
-        <form id=”insertarPregunta” method=”get” action=”controller.php?comando=null”></form>
-          <?php
-
-    };
-        break;
-    default:
-        header('Location: /index.php?error=404');
-        break;
-}
 
 function insertarPregunta($datos) {
     return realizarConsulta("INSERT INTO pregunta	VALUES (NULL, :usuario, :titulo, :mensaje, CURRENT_TIMESTAMP);", $datos);

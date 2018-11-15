@@ -7,8 +7,7 @@
     $pregunta = $datos["pregunta"]->fetch(0);
     $respuestas = $datos["respuestas"];
     $etiquetas = $datos["etiquetas"];
-
-    var_dump($pregunta);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -18,6 +17,7 @@
     <title>
       <?=$pregunta["titulo"]?>
     </title>
+    <link rel="stylesheet" href="../iconos/iconos.css">
   </head>
 
   <body>
@@ -26,21 +26,29 @@
         <h1 class="titulo" id="tituloPregunta">
           <?=$pregunta["titulo"]?>
         </h1>
-        <span class="informacion" id="informacionPregunta"></span>
+        <!-- TODO: dar formato a la fecha o hacer un "escrito hace 3 dias y una hora" -->
+        <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
+        <!-- TODO: enlazar esto al perfil del usuario correspondiente -->
+        <span class="creador"><a href="../cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>"><?=$pregunta["usuario"]?></a></span>
+        <img src="../imagenes/avatares/<?=$pregunta["idusuario"]?>.jpg" width="32px" height="32px">
       </div>
       <div class="votos">
         <i class="material-icons">arrow_drop_up</i>
-        <span class="votosContador"></span>
+        <span class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
         <i class="material-icons">arrow_drop_down</i>
       </div>
-      <p class="cuerpo">
-        <?=$pregunta["texto"]?>
-      </p>
+      <p class="cuerpo"><?=$pregunta["texto"]?></p>
       <div id="piePregunta">
-        <span id="contadorRespuestas"></span>
+        <span id="contadorRespuestas">
+        <?php 
+          $contadoRespuestas = $respuestas->rowCount();
+          echo (($contadoRespuestas == 1) ? "1 respuesta." : $contadoRespuestas . " respuestas."); 
+        ?>
+        <span>
         <ul id="etiquetas">
           <?php
           while ($etiqueta = $etiquetas->fetch()) {
+            // TODO: enlazar las etiquetas a una busqueda de preguntas con la misma etiqueta
             $str = $etiqueta["etiqueta"];
             echo "<li>$str</li>";
           }
@@ -48,7 +56,7 @@
         </ul>
       </div>
     </div>
-
+<hr>
     <?php
     while ($respuesta = $respuestas->fetch()) {
       ?>
@@ -56,20 +64,21 @@
       <div class="cabeceraPost">
         <h2 class="titulo">
           <?=$respuesta["titulo"]?>
-          </h1>
-          <span class="informacion"></span>
+        </h2>
+        <span class="fecha"><?=$respuesta["fecha_creacion"]?></span>
+        <span class="creador"><a href="../cuenta/perfil.php?id=<?=$respuesta["idusuario"]?>"><?=$respuesta["usuario"]?></a></span>
+        <img src="../imagenes/avatares/<?=$respuesta["idusuario"]?>.jpg" width="32px" height="32px">
       </div>
       <div class="votos">
-        <!-- faltarian las flechitas y la variable de los votos -->
+        <i class="material-icons">arrow_drop_up</i>
+        <span class="votosContador"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
+        <i class="material-icons">arrow_drop_down</i>
       </div>
-      <p class="cuerpo">Cuerpo</p>
+      <p class="cuerpo"><?=$pregunta["texto"]?></p>
     </div>
     <?php
     }
     ?>
-
-
-
   </body>
 
 </html>

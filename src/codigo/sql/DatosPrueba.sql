@@ -23,7 +23,7 @@ INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, '#JavaScript');
 INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, '#PHP');
 /*CATEGORIAS*/
 INSERT INTO `categoria` (`idetiqueta`, `idpregunta`) VALUES (1, 1);
-INSERT INTO `categoria` (`idetiqueta`, `idpregunta`) VALUES (1, 3);
+INSERT INTO `categoria` (`idetiqueta`, `idpregunta`) VALUES (3, 1);
 INSERT INTO `categoria` (`idetiqueta`, `idpregunta`) VALUES (2, 2);
 /*VOTOS PREGUNTAS*/
 INSERT INTO `voto_pregunta` (`idusuario`, `idpregunta`, `positivo`) 

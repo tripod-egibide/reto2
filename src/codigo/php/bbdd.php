@@ -39,9 +39,16 @@ function insertarPregunta($datos) {
 
 function cargarPregunta($id) {
   // TODO: falta modificar las selects para cargar tambien el contador de votos
-  $pregunta = realizarConsulta("select * from pregunta where idpregunta=:id", ["id" => $id])->fetch();
-  $respuestas = realizarConsulta("select * from respuesta where idpregunta=:id order by fecha_creacion", ["id" => $id]);
-  $etiquetas = realizarConsulta("select etiqueta from etiqueta where idetiqueta in (select idetiqueta from categoria where idpregunta=:id)", ["id" => $id]);
+  $pregunta = realizarConsulta("
+  select p.*,
+   (select count(*) from voto_pregunta where idpregunta=:id and positivo=1) as positivos,
+    (select count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
+     from pregunta as p where idpregunta=:id;", ["id" => $id])->fetch();
+  $respuestas = realizarConsulta("select r.*,
+  (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo=1) as positivos,
+    (select count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo!=1) as negativos
+      from respuesta as r where idpregunta=:id order by idrespuesta;", ["id" => $id]);
+  $etiquetas = realizarConsulta("select etiqueta from etiqueta where idetiqueta in (select idetiqueta from pregunta_tiene_etiqueta where idpregunta=:id)", ["id" => $id]);
   $datos = [
     "pregunta" => $pregunta,
     "respuestas" => $respuestas,

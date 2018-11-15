@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +16,9 @@ session_start();
 <body>
     <div class="gridContenedor">
         <div class="cabecera">
-            <a href="#" id="botonLogin">Log in</a>
-            <a href="#" id="botonSignin">Sign in</a>
+            <?php
+            include "./partefija/header.php";
+            ?>
         </div>
         <div class="margen">Gap</div>
         <div class="main">Main</div>
@@ -28,24 +26,6 @@ session_start();
             <?php
             include "./partefija/footer.html";
             ?>
-    </div>
-    <!-- Login -->
-    <div id="modalLogin" class="modal">
-        <div class="modalContenido">
-            <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
-            <?php
-            include "./cuenta/login.html";
-            ?>
-        </div>
-    </div>
-    <!-- Signin -->
-    <div id="modalSignin" class="modal">
-        <div class="modalContenido">
-            <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
-            <?php
-            include "./cuenta/signin.html";
-            ?>
-        </div>
     </div>
     <!-- Script About -->
     <script src="./codigo/js/cuenta/modalBox.js" type="text/javascript"></script>

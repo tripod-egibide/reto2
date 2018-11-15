@@ -13,7 +13,7 @@
 <!-- carga la cabecera desde un html-->
     <div class="cabecera">
         <?php
-        include "../partefija/header.html";
+        include "../partefija/header.php";
         ?>
     </div>
     <div class="margen">Gap</div>

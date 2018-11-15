@@ -30,7 +30,7 @@
         <h1>Publicar una pregunta</h1>
         <div id="formulario">
             <!--manda la información del formulario -->
-            <form action="/codigo/php/controller.php" method="post">
+            <form action="/codigo/php/controller.php" method="get">
                 <input type="text" id="comando" name="comando" value="publicarPregunta" hidden>
                 <!--muestra un formulario predisennado de un html -->
                 <?php

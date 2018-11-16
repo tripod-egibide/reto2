@@ -18,6 +18,8 @@ function realizarConsulta($query, $datos){
 //funciones especificas:
 
 function ultimaPregunta(){
+  //devuelve la mayor ID de pregunta, que como es autoincremental siempre sera la mas reciente
+  //ojo, que es en forma de string
   return abrirConexion()->query("SELECT max(idpregunta) from pregunta")->fetch()[0];
 }
 
@@ -64,10 +66,11 @@ function cargarPregunta($id) {
   return $datos;
 }
 
-function cargarIndex($pagina=0) {
+function cargarIndex($pagina) {
   $ultima = ultimaPregunta();
+  //esto determina el rango de IDs que cargara la select, que luego se mostraran en pantalla, en funcion de la pagina que queremos
   $rango = [
-    "maxima" => ($ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0),
+    "maxima" => $ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0,
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
   $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion,
@@ -75,11 +78,11 @@ function cargarIndex($pagina=0) {
     from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
     order by p.idpregunta desc", $rango)->fetchAll();
 
+  //aqui añadimos las etiquetas correspondientes a cada una de las preguntas
   $annadirEtiquetas = function($pregunta) {
     $pregunta["etiquetas"] = cargarEtiquetas($pregunta[0]);
     return $pregunta;
   };
-
   return array_map($annadirEtiquetas, $preguntas);
 }
 ?>

@@ -31,8 +31,9 @@
         <!-- TODO: dar formato a la fecha o hacer un "escrito hace 3 dias y una hora" -->
         <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
         <!-- TODO: enlazar esto al perfil del usuario correspondiente -->
-        <span class="creador"><a href="../cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>"><?=$pregunta["usuario"]?></a></span>
-        <img src="../imagenes/avatares/<?=$pregunta["idusuario"]?>.jpg" width="32px" height="32px">
+        <span class="autor"><a href="../cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
+          <?=$pregunta["usuario"]?> <img src="<?=$pregunta["url_avatar"]?>">
+        </a></span>
       </div>
       <div class="votos">
         <i class="material-icons">arrow_drop_up</i>
@@ -44,12 +45,12 @@
         <span id="contadorRespuestas">
         <?php
           $contadoRespuestas = $respuestas->rowCount();
-          echo (($contadoRespuestas == 1) ? "1 respuesta." : $contadoRespuestas . " respuestas.");
+          echo ($contadoRespuestas == 1) ? "1 respuesta." : $contadoRespuestas . " respuestas.";
         ?>
         <span>
         <ul id="etiquetas">
           <?php
-          while ($etiqueta = $etiquetas->fetch()) {
+          foreach ($etiquetas as $etiqueta) {
             // TODO: enlazar las etiquetas a una busqueda de preguntas con la misma etiqueta
             $str = $etiqueta["etiqueta"];
             echo "<li>$str</li>";
@@ -69,7 +70,7 @@
         </h2>
         <span class="fecha"><?=$respuesta["fecha_creacion"]?></span>
         <span class="creador"><a href="../cuenta/perfil.php?id=<?=$respuesta["idusuario"]?>"><?=$respuesta["usuario"]?></a></span>
-        <img src="../imagenes/avatares/<?=$respuesta["idusuario"]?>.jpg" width="32px" height="32px">
+        <img src="../imagenes/avatares/<?=$respuesta["idusuario"]?>.jpg">
       </div>
       <div class="votos">
         <i class="material-icons">arrow_drop_up</i>

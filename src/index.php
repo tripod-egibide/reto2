@@ -15,7 +15,9 @@
           <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
           <?php
           require "codigo/php/bbdd.php";
-          var_dump(ultimaPregunta());
+          $datos = cargarIndex((isset($_GET["pagina"]) ? $_GET["pagina"] : null));
+          // $datos[0]["hola"] = cargarEtiquetas(1);
+          var_dump($datos[2]);
           ?>
         </div>
         <div class="margen2">Gap</div>

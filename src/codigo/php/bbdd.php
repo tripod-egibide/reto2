@@ -55,7 +55,7 @@ function insertarPregunta($datos){
 function insertarEtiqueta($etiquetas, $idPregunta){
     $cont = false;
     foreach($etiquetas as $etiqueta){
-        $etiqueta = ucfirst(strtolower($etiqueta));
+        $etiqueta = mb_convert_case($etiqueta, MB_CASE_TITLE, "UTF-8");
         if($etiqueta != ""){
             $idEtiqueta = consultarEtiqueta($etiqueta);
             if($idEtiqueta == null){

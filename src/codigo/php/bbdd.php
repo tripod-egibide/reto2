@@ -16,6 +16,11 @@ function realizarConsulta($query, $datos){
 }
 
 //funciones especificas:
+
+function ultimaPregunta(){
+  return abrirConexion()->query("select max(idpregunta) from pregunta")->fetch();
+}
+
 function encontrarUsuario($datos) {
   return realizarConsulta("select idusuario from usuario where usuario=:usuario or email=:email", $datos);
 }
@@ -55,5 +60,11 @@ function cargarPregunta($id) {
     "etiquetas" => $etiquetas
   ];
   return $datos;
+}
+
+
+
+function cargarIndex($pagina=0) {
+
 }
 ?>

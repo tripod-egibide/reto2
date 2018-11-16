@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="margen2"></div>
-      <?php include "./partefija/footer.html" ?>
+      <?php include "./partefija/footer.php" ?>
     </div>
   </body>
 

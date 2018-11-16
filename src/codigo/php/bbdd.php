@@ -117,7 +117,8 @@ function cargarIndex($pagina) {
     from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
     order by p.idpregunta desc", $rango)->fetchAll();
 
-  //aqui a�adimos las etiquetas correspondientes a cada una de las preguntas
+  //aqui annadimos las etiquetas correspondientes a cada una de las preguntas
+
   $annadirEtiquetas = function($pregunta) {
     $pregunta["etiquetas"] = cargarEtiquetas($pregunta[0]);
     return $pregunta;

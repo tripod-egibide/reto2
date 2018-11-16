@@ -1,35 +1,32 @@
-#formulario{
+#formularioGeneral{
     background-color: #ec9;
     border: 1px solid black;
-}
-#formulario form{
     display: flex;
     flex-grow: 1;
     flex-direction: column;
-    margin: 1%;
 }
-#formulario form *{
+#formularioGeneral *{
     margin:.5%;
 }
 
-#formulario form div {
+#formularioGeneral div {
     display: flex;
     flex-wrap: Wrap;
 }
 
-#formulario form div label{
+#formularioGeneral div label{
     width: 100%;
     flex-grow: 1;
 }
 
-#formulario form div #publicarEtiqueta{
+#formularioGeneral div #publicarEtiqueta{
     flex-grow: 1;
 }
 
-#formulario form #bEnviar{
+#formularioGeneral #bEnviar{
      flex-basis: auto;
  }
 
-#formulario form #titulo{
+#formularioGeneral #titulo{
     font-size: 1.5em;
 }

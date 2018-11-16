@@ -51,7 +51,7 @@
     </div>
     <!--carga el footer desde un html -->
     <?php
-    include "../partefija/footer.html";
+    include "../partefija/footer.php";
     ?>
 </div>
 </body>

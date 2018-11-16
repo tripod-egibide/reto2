@@ -15,7 +15,7 @@
           <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
           <?php
           require "codigo/php/bbdd.php";
-          
+          var_dump(ultimaPregunta());
           ?>
         </div>
         <div class="margen2">Gap</div>

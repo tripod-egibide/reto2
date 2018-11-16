@@ -18,7 +18,7 @@ function realizarConsulta($query, $datos){
 //funciones especificas:
 
 function ultimaPregunta(){
-  return abrirConexion()->query("select max(idpregunta) from pregunta")->fetch();
+  return abrirConexion()->query("select max(idpregunta) from pregunta")->fetch()[0];
 }
 
 function encontrarUsuario($datos) {

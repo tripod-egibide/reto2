@@ -6,6 +6,7 @@
     <title>Tripod</title>
     <link rel="stylesheet" type="text/css" href="../codigo/css/style.css">
     <script type="text/javascript" src="../codigo/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../codigo/js/publicarPregunta/publicarPregunta.js"></script>
 </head>
 <body>
 <div class="gridContenedor">

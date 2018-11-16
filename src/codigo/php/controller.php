@@ -45,34 +45,5 @@ session_start();
         $arrayPalabras = explode(',', $stringFinal);
         return $arrayPalabras;
     }
-    //Pendiente de empezar
-    function modificarPregunta(){
-        $pregunta = [
-            "usuario" => $_SESSION['usuario'],
-            "titulo" => $_POST["titulo"],
-            "mensaje" => $_POST["mensaje"]
-        ];
-        if(insertarPregunta($pregunta) == null){
-            header('Location: /index.php?error=404');
-        }else{
-            if($_POST["etiqueta"] != null){
 
-                $etiqueta = [
-                    "usuario" => $_SESSION['usuario'],
-                    "etiqueta" => $_POST["etiqueta"]
-                ];
-                if(insertarEtiqueta($etiqueta) == null){
-                    header('Location: /index.php?error=404');
-                }else{
-                    header('Location: /pregunta/publicarPregunta.php?resultado=publicado');
-                }
-            }else{
-                header('Location: /pregunta/publicarPregunta.php?resultado=publicado');
-            }
-
-        }
-
-
-
-}
 ?>

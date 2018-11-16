@@ -6,7 +6,6 @@
     <title>Tripod</title>
     <link rel="stylesheet" type="text/css" href="../codigo/css/style.css">
     <script type="text/javascript" src="../codigo/js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../codigo/js/publicarPregunta/publicarPregunta.js"></script>
 </head>
 <body>
 <div class="gridContenedor">
@@ -32,13 +31,8 @@
         <div id="formulario">
             <!--manda la información del formulario -->
             <form action="/codigo/php/controller.php" method="post">
-                <?php
-                    if(isset($_GET['modificar'])){
-                        ?><input type="text" id="comando" name="comando" value="modificarPregunta" hidden><?php
-                    }else{
-                        ?><input type="text" id="comando" name="comando" value="publicarPregunta" hidden><?php
-                    }
-                ?>
+                <!-- ANNADIR AQUI PARA LA AMPLIACION DEL MODIFICAR -->
+                <input type="text" id="comando" name="comando" value="publicarPregunta" hidden>
                 <!--muestra un formulario predisennado de un html -->
                 <?php
                 include '../codigo/html/formulario.html';

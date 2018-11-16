@@ -1,5 +1,6 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
+  include("../partefija/header.php");
   if (isset($_GET["id"])) {
     $id = $_GET["id"];
     require "../codigo/php/bbdd.php";
@@ -7,7 +8,7 @@
     $pregunta = $datos["pregunta"]->fetch(0);
     $respuestas = $datos["respuestas"];
     $etiquetas = $datos["etiquetas"];
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -18,6 +19,7 @@
       <?=$pregunta["titulo"]?>
     </title>
     <link rel="stylesheet" href="../iconos/iconos.css">
+    <link rel="stylesheet" href="../codigo/css/pregunta.css">
   </head>
 
   <body>
@@ -40,9 +42,9 @@
       <p class="cuerpo"><?=$pregunta["texto"]?></p>
       <div id="piePregunta">
         <span id="contadorRespuestas">
-        <?php 
+        <?php
           $contadoRespuestas = $respuestas->rowCount();
-          echo (($contadoRespuestas == 1) ? "1 respuesta." : $contadoRespuestas . " respuestas."); 
+          echo (($contadoRespuestas == 1) ? "1 respuesta." : $contadoRespuestas . " respuestas.");
         ?>
         <span>
         <ul id="etiquetas">

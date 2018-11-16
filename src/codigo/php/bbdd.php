@@ -33,8 +33,40 @@ function verificarLogin($email, $contrasenna) {
   }
 }
 
-function insertarPregunta($datos) {
-    return realizarConsulta("INSERT INTO pregunta	VALUES (NULL, :usuario, :titulo, :mensaje, CURRENT_TIMESTAMP);", $datos);
+function consultarPregunta(){
+
+}
+
+function insertarPregunta($datos){
+  if(realizarConsulta("INSERT INTO pregunta	VALUES (NULL, :usuario, :titulo, :mensaje, DEFAULT);", $datos) == null){
+    // devuelve id ultima pregunta insertada
+    return abrirConexion()->query("select max(idpregunta) from pregunta;")->fetch()[0];
+  }
+}
+
+function insertarEtiqueta($etiqueta, $idPregunta){
+  $idEtiqueta = consultarEtiqueta($etiqueta);
+  echo"$idEtiqueta";
+  if($idEtiqueta == null){
+      realizarConsulta("INSERT INTO etiqueta	VALUES (NULL, :etiqueta);", ["etiqueta" => $etiqueta]);
+      $idEtiqueta = consultarEtiqueta($etiqueta);
+      $dato = [
+          "idEtiqueta" => $idEtiqueta["idetiqueta"],
+          "idPregunta" => $idPregunta["idpregunta"]
+      ];
+      return realizarConsulta("INSERT INTO pregunta_tiene_etiqueta	VALUES (:idEtiqueta, :idPregunta);", $dato);
+  }else{
+      $dato = [
+          "idEtiqueta" => $idEtiqueta["idetiqueta"],
+          "idPregunta" => $idPregunta["idpregunta"]
+      ];
+      return realizarConsulta("INSERT INTO pregunta_tiene_etiqueta	VALUES (:idEtiqueta, :idPregunta);", $dato);
+  }
+
+}
+
+function consultarEtiqueta($etiqueta){
+  return realizarConsulta("SELECT idetiqueta FROM ETIQUETA WHERE etiqueta = :etiqueta;", ["etiqueta" => $etiqueta])->fetch();
 }
 
 function cargarPregunta($id) {

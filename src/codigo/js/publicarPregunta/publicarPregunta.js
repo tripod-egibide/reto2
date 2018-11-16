@@ -7,5 +7,5 @@ $(document).ready(function (){
                 clearInterval(tiempo);
             }
 
-        }, 2000);
+        }, 10000);
 });

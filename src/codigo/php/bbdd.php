@@ -40,8 +40,47 @@ function verificarLogin($email, $contrasenna) {
   }
 }
 
-function insertarPregunta($datos) {
-    return realizarConsulta("INSERT INTO pregunta	VALUES (NULL, :usuario, :titulo, :mensaje, CURRENT_TIMESTAMP);", $datos);
+function consultarPregunta(){
+
+}
+
+function insertarPregunta($datos){
+  if(realizarConsulta("INSERT INTO pregunta VALUES (NULL, :usuario, :titulo, :mensaje, DEFAULT);", $datos) == null){
+    return null;
+  }else{
+      return ultimaPregunta();
+  }
+}
+
+function insertarEtiqueta($etiquetas, $idPregunta){
+    $cont = false;
+    foreach($etiquetas as $etiqueta){
+        $etiqueta = ucfirst($etiqueta);
+        if($etiqueta != ""){
+            $idEtiqueta = consultarEtiqueta($etiqueta);
+            if($idEtiqueta == null){
+                realizarConsulta("INSERT INTO etiqueta VALUES (NULL, :etiqueta);", ["etiqueta" => $etiqueta]);
+                $idEtiqueta = consultarEtiqueta($etiqueta);
+                $dato = [
+                    "idEtiqueta" => $idEtiqueta,
+                    "idPregunta" => $idPregunta
+                ];
+                (realizarConsulta("INSERT INTO pregunta_tiene_etiqueta	 VALUES (:idEtiqueta, :idPregunta);", $dato)!= null ? $cont = true : $cont = false);
+
+            }else{
+                $dato = [
+                    "idEtiqueta" => $idEtiqueta,
+                    "idPregunta" => $idPregunta
+                ];
+                (realizarConsulta("INSERT INTO pregunta_tiene_etiqueta VALUES (:idEtiqueta, :idPregunta);", $dato)!= null ? $cont = true : $cont = false);
+            }
+        }
+    }
+    return $cont;
+}
+
+function consultarEtiqueta($etiqueta){
+  return realizarConsulta("SELECT idetiqueta FROM ETIQUETA WHERE etiqueta = :etiqueta;", ["etiqueta" => $etiqueta])->fetch()[0];
 }
 
 function cargarEtiquetas($idPregunta) {

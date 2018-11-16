@@ -13,10 +13,11 @@
 <!-- carga la cabecera desde un html-->
     <div class="cabecera">
         <?php
+
         include "../partefija/header.php";
+        $_SESSION["id"]= 1;
         ?>
     </div>
-    <div class="margen">Gap</div>
     <div class="main">
         <?php
             if(isset($_GET['resultado'])){
@@ -27,11 +28,17 @@
             }else{
                 ?>
         <!--formulario que carga la pregunta al servidor -->
-        <h1>Publicar una pregunta</h1>
+        <h1>Publicar la pregunta</h1>
         <div id="formulario">
             <!--manda la información del formulario -->
-            <form action="/codigo/php/controller.php" method="get">
-                <input type="text" id="comando" name="comando" value="publicarPregunta" hidden>
+            <form action="/codigo/php/controller.php" method="post">
+                <?php
+                    if(isset($_GET['modificar'])){
+                        ?><input type="text" id="comando" name="comando" value="modificarPregunta" hidden><?php
+                    }else{
+                        ?><input type="text" id="comando" name="comando" value="publicarPregunta" hidden><?php
+                    }
+                ?>
                 <!--muestra un formulario predisennado de un html -->
                 <?php
                 include '../codigo/html/formulario.html';
@@ -42,7 +49,6 @@
             }
         ?>
     </div>
-    <div class="margen2">Gap</div>
     <!--carga el footer desde un html -->
     <?php
     include "../partefija/footer.html";

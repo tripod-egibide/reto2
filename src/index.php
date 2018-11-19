@@ -9,9 +9,7 @@
 
   <body>
     <div class="gridContenedor">
-      <div class="cabecera">
-        <?php include "./partefija/header.php" ?>
-      </div>
+      <?php include "./partefija/header.php" ?>
       <div class="margen"></div>
       <div class="main">
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>

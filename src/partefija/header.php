@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
 }
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
-<header>
+<header class="cabecera">
   <a href="" id="logo"><img src="" /></a>
   <form action="" method="get">
     <input type="search" id="" name="" />

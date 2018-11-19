@@ -1,4 +1,5 @@
-var m = document.getElementById("modalLogin");
+var login = document.getElementById("modalLogin");
+var signin = document.getElementById("modalSignin");
 
 $('#botonLogin, #cerrarLogin').on("click", function() {
     $('#modalLogin').toggle();
@@ -8,8 +9,11 @@ $('#botonSignin, #cerrarSignin').on("click", function() {
 });
 
 $(window).on("click", function (event) {
-    if(event.currentTarget === $("#modalLogin")){
+    if(event.target === login){
         $('#modalLogin').hide();
+    }
+    if(event.target === signin){
+        $('#modalSignin').hide();
     }
 });
 /*

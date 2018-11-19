@@ -93,9 +93,9 @@ function cargarPregunta($id) {
       (SELECT count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
       from pregunta as p, usuario as u where p.idpregunta=:id and u.idusuario = p.idusuario", ["id" => $id]);
   $respuestas = realizarConsulta("SELECT r.*, u.usuario, u.url_avatar,
-      (SELECT count(*) from voto_respuesta where idrespuesta=1 and positivo=1) as positivos,
-      (SELECT count(*) from voto_respuesta where idrespuesta=1 and positivo!=1) as negativos
-      from respuesta as r, usuario as u where r.idrespuesta=1 and u.idusuario = r.idusuario", ["id" => $id]);
+      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo=1) as positivos,
+      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo!=1) as negativos
+      from respuesta as r, usuario as u where r.idrespuesta=:id and u.idusuario = r.idusuario", ["id" => $id]);
   $etiquetas = cargarEtiquetas($id);
   $datos = [
     "pregunta" => $pregunta,
@@ -113,7 +113,10 @@ function cargarIndex($pagina) {
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
   $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion,
-  	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,	u.idusuario, u.usuario
+  	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,
+    (select max(resuelve) from respuesta where idpregunta=p.idpregunta) as resuelto,
+    (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos,	
+    u.idusuario, u.usuario
     from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
     order by p.idpregunta desc", $rango)->fetchAll();
 

@@ -22,17 +22,25 @@ html {
   width: 25%;
 }
 
+.avatar {
+  height: 32px;
+  width: 32px;
+}
+
 #logoHeader{
   width: 15%;
   margin-right: 5%;
 }
+
 #barraBusqueda{
   width: 50%;
 }
+
 #barraBusqueda input{
   width: 100%;
   margin-left: 5px;
 }
+
 #barraBusqueda, #barraBusqueda input{
   display: flex;
   align-items: center;

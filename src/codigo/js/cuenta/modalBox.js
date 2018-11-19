@@ -1,18 +1,24 @@
-$('#botonLogin').on("click", function() {
-    $('#modalLogin').show();
+var m = document.getElementById("modalLogin");
+
+$('#botonLogin, #cerrarLogin').on("click", function() {
+    $('#modalLogin').toggle();
 });
-$('#botonSignin').on("click", function() {
-    $('#modalSignin').show();
+$('#botonSignin, #cerrarSignin').on("click", function() {
+    $('#modalSignin').toggle();
 });
 
-$('#cerrarSignin').on("click", function() {
-    $('#modalSignin').hide()
+$(window).on("click", function (event) {
+    if(event.currentTarget === $("#modalLogin")){
+        $('#modalLogin').hide();
+    }
 });
-$('#cerrarLogin').on("click", function() {
-    $('#modalLogin').hide();
+/*
+$(window).on("click", function(event) {
+    if (event.target == $("#modalLogin")) {
+        $('#modalLogin').hide();
+    }
+    if (event.target == $('#modalSignin')) {
+        $('#modalSignin').hide();
+    }
 });
-
-$('.modal').on("click", function(event) {
-    $('#modalLogin').hide();
-    $('#modalSignin').hide();
-});
+*/

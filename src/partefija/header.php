@@ -46,3 +46,4 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 <link rel="stylesheet" type="text/css" href="/codigo/css/modalBox.css">
 <!-- Script de modalBox -->
 <script src="/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
+

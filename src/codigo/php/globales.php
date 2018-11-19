@@ -1,4 +1,5 @@
 <?php
 //TODO variables header
-    $imagenTripod = "http://localhost/imagenes/bitmap.png"
+    $imagenTripod = "http://localhost/imagenes/bitmap.png";
+    $root = "http://localhost";
 ?>

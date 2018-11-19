@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tripod</title>
     <link rel="stylesheet" type="text/css" href="../codigo/css/style.css">
-    <script type="text/javascript" src="../codigo/js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../codigo/js/publicarPregunta/publicarPregunta.js"></script>
+    <script type="text/javascript" src="/codigo/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/codigo/js/publicarPregunta/publicarPregunta.js"></script>
 </head>
 <body>
 <div class="gridContenedor">
@@ -15,7 +15,7 @@
         <?php
 
         include "../partefija/header.php";
-        $_SESSION["id"]= 1;
+
         ?>
     </div>
     <div class="main">
@@ -28,7 +28,7 @@
             }else{
                 ?>
         <!--formulario que carga la pregunta al servidor -->
-        <h1>Publicar la pregunta</h1>
+        <h1>Publicar una pregunta</h1>
         <div id="formulario">
             <!--manda la información del formulario -->
             <form action="/codigo/php/controller.php" method="post">

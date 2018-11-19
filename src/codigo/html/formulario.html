@@ -10,12 +10,14 @@
 <!--formulario generico para emplearlo en las preguntas y respuestas -->
 <div id="formularioGeneral">
     <label for="titulo">Título de su publicación:</label>
-    <input type="text" id="titulo" name="titulo" minlength="3"/>
+    <input type="text" id="titulo" name="titulo" minlength="3" required/>
     <label for="mensaje">Mensaje:</label>
-    <textarea type="text" rows="10" cols="30" id="mensaje" name="mensaje" minlength="10"></textarea>
+    <textarea type="text" rows="10" cols="30" id="mensaje" name="mensaje" minlength="10" required></textarea>
     <div>
-        <label for="etiqueta">Agregue etiquetas para mejorar el resultado de búsqueda. Por cada coma o espacio, se creará una etiqueta.</label>
-        <input type="text" id="publicarEtiqueta" name="etiqueta" id="etiqueta"/>
+        <div id="campoEtiqueta">
+            <label for="etiqueta">Agregue etiquetas para mejorar el resultado de búsqueda. Por cada coma o espacio, se creará una nueva etiqueta.</label>
+            <input type="text" id="publicarEtiqueta" name="etiqueta" id="etiqueta"/>
+        </div>
         <input id="bEnviar" type="submit" value="Publicar"/>
     </div>
 </div>

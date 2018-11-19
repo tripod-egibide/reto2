@@ -1,6 +1,9 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
+
   include("../partefija/header.php");
+$_SESSION["id"] = 1;
+
   if (isset($_GET["id"])) {
     $id = $_GET["id"];
     require "../codigo/php/bbdd.php";
@@ -8,7 +11,6 @@
     $pregunta = $datos["pregunta"]->fetch(0);
     $respuestas = $datos["respuestas"];
     $etiquetas = $datos["etiquetas"];
-
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -61,6 +63,29 @@
     </div>
 <hr>
     <?php
+    if(isset($_GET['resultado'])){
+                ?>
+                <h1>Respuesta publicada correctamente.</h1>
+                <?php
+            }else if(isset($_SESSION["id"])){
+                ?>
+        <!--formulario que carga la pregunta al servidor -->
+        <h1 id="tituloFormulario">Publicar nueva respuesta</h1>
+        <div id="formulario">
+            <!--manda la información del formulario -->
+            <form action="/codigo/php/controller.php" method="post">
+                <!-- ANNADIR AQUI PARA LA AMPLIACION DEL MODIFICAR -->
+                    <input type="text" id="idPregunta" name="idPregunta" value="<?=$id?>" hidden>
+
+                <input type="text" id="comando" name="comando" value="publicarRespuesta" hidden>
+                <!--muestra un formulario predisennado de un html -->
+                <?php
+                include '../codigo/html/formulario.html';
+                ?>
+            </form>
+        </div>
+        <?php
+            }
     while ($respuesta = $respuestas->fetch()) {
       ?>
     <div class="post respuesta">
@@ -76,17 +101,24 @@
         <i class="material-icons">arrow_drop_up</i>
         <span class="votosContador"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
         <i class="material-icons">arrow_drop_down</i>
+        <?php
+        if ($respuesta["resuelve"]) {
+          echo '<i class="material-icons">check</i>';
+        }
+        ?>
       </div>
       <p class="cuerpo"><?=$pregunta["texto"]?></p>
     </div>
     <?php
     }
+    include("../partefija/footer.php");
     ?>
+
   </body>
 
 </html>
 <?php
   } else {
-    echo "<h1>404</h1>";
+      header('Location: /partefija/errores.php?error=404');
   }
 ?>

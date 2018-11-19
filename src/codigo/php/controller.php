@@ -10,8 +10,11 @@ session_start();
         case "modificarPregunta":
             modificarPregunta();
             break;
+        case "publicarRespuesta":
+            publicarRespuesta();
+            break;
         default:
-            header('Location: /error.php?iderror=404');
+            header('Location: /partefija/errores.php?error=404');
             break;
     }
 
@@ -24,13 +27,13 @@ session_start();
         $idPregunta = insertarPregunta($pregunta);
 
         if($idPregunta == null){
-            header('Location: /error.php?iderror=404');
+            header('Location: /partefija/errores.php?error=404');
         }else{
             if($_POST["etiqueta"] != null){
                 //crear array de las etiquetas
                 $etiquetas = dividirEtiquetas();
                 if(!insertarEtiqueta($etiquetas, $idPregunta)){
-                    header('Location: /error.php?iderror=404');
+                    header('Location: /partefija/errores.php?error=404');
                 }else{
                     header('Location: /pregunta/publicarPregunta.php?resultado=publicado');
                 }
@@ -45,5 +48,21 @@ session_start();
         $arrayPalabras = explode(',', $stringFinal);
         return $arrayPalabras;
     }
+
+function publicarRespuesta(){
+    $pregunta = [
+        "usuario" => $_SESSION["id"],
+        "titulo" => $_POST["titulo"],
+        "mensaje" => $_POST["mensaje"],
+        "pregunta" => $_POST["idPregunta"]
+    ];
+    $idPregunta = insertarRespuesta($pregunta);
+
+    if($idPregunta == null){
+        //header('Location: /partefija/errores.php?error=404');
+    }else{
+        header('Location: /pregunta/respuesta.php?resultado=publicado');
+    }
+}
 
 ?>

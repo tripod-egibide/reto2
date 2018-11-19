@@ -40,15 +40,26 @@ function verificarLogin($email, $contrasenna) {
   }
 }
 
-function consultarPregunta(){
-
+function ultimaRespuesta(){
+    //devuelve la mayor ID de pregunta, que como es autoincremental siempre sera la mas reciente
+    //ojo, que es en forma de string
+    return abrirConexion()->query("SELECT max(idrespuesta) from respuesta")->fetch()[0];
 }
 
 function insertarPregunta($datos){
+    //obtiene el último registro
+    $r = ultimaPregunta();
+    //inserta registro
   if(realizarConsulta("INSERT INTO pregunta VALUES (NULL, :usuario, :titulo, :mensaje, DEFAULT);", $datos) == null){
-    return null;
-  }else{
-      return ultimaPregunta();
+    //si no devuelve nada, es que ha fallado
+      return null;
+      //compara si se ha introducido
+  }else if(ultimaPregunta()> $r){
+      // si introducido ok, en caso contrario null
+      return "ok";
+  }
+  else{
+      return null;
   }
 }
 
@@ -79,6 +90,24 @@ function insertarEtiqueta($etiquetas, $idPregunta){
     return $cont;
 }
 
+function insertarRespuesta($datos){
+    //obtiene el último registro
+    $r = ultimaRespuesta();
+    //inserta registro
+    var_dump($datos);
+    echo "lol" ;
+    if(realizarConsulta("INSERT INTO respuesta VALUES (NULL, :pregunta, :usuario, :titulo, :mensaje, 0, DEFAULT);", $datos) == null){
+        // si no devuelve nada, es que ha fallado
+        return null;
+        //comprara si se ha introducido
+    }else if(ultimaRespuesta()> $r){
+        //si introducido ok, en caso contrario null
+        return "ok";
+    } else{
+        return null;
+    }
+}
+
 function consultarEtiqueta($etiqueta){
   return realizarConsulta("SELECT idetiqueta FROM ETIQUETA WHERE etiqueta = :etiqueta;", ["etiqueta" => $etiqueta])->fetch()[0];
 }
@@ -93,9 +122,9 @@ function cargarPregunta($id) {
       (SELECT count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
       from pregunta as p, usuario as u where p.idpregunta=:id and u.idusuario = p.idusuario", ["id" => $id]);
   $respuestas = realizarConsulta("SELECT r.*, u.usuario, u.url_avatar,
-      (SELECT count(*) from voto_respuesta where idrespuesta=1 and positivo=1) as positivos,
-      (SELECT count(*) from voto_respuesta where idrespuesta=1 and positivo!=1) as negativos
-      from respuesta as r, usuario as u where r.idrespuesta=1 and u.idusuario = r.idusuario", ["id" => $id]);
+      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo=1) as positivos,
+      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo!=1) as negativos
+      from respuesta as r, usuario as u where r.idpregunta=:id and u.idusuario = r.idusuario", ["id" => $id]);
   $etiquetas = cargarEtiquetas($id);
   $datos = [
     "pregunta" => $pregunta,
@@ -113,7 +142,10 @@ function cargarIndex($pagina) {
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
   $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion,
-  	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,	u.idusuario, u.usuario
+  	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,
+    (select max(resuelve) from respuesta where idpregunta=p.idpregunta) as resuelto,
+    (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos,
+    u.idusuario, u.usuario
     from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
     order by p.idpregunta desc", $rango)->fetchAll();
 

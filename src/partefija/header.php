@@ -1,5 +1,6 @@
 <?php
 session_start();
+$raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <header>
   <a href="" id="logo"><img src="" /></a>
@@ -9,6 +10,9 @@ session_start();
   <a href="" id="ayuda"><img src="" /></a>
   <a href="#" id="botonLogin">Log in</a>
   <a href="#" id="botonSignin">Sign in</a>
+  <!-- Scripts globales -->
+  <script type="text/javascript" src="/codigo/js/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="/codigo/js/globales.js"></script>
 </header>
 
 <!-- Login -->
@@ -16,7 +20,7 @@ session_start();
   <div class="modalContenido">
     <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
     <?php
-    include "../cuenta/login.html";
+    include "$raiz/cuenta/login.html";
     ?>
   </div>
 </div>
@@ -25,21 +29,18 @@ session_start();
   <div class="modalContenido">
     <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
     <?php
-    include "../cuenta/signin.html";
+    include "$raiz/cuenta/signin.html";
     ?>
   </div>
 </div>
 
 <!-- Iconos -->
-<link rel="stylesheet" href="iconos/iconos.css">
+<link rel="stylesheet" href="/iconos/iconos.css">
 <!-- Fuentes -->
-<link href="./fuentes/Roboto/roboto.css" rel="stylesheet">
-<link href="./fuentes/OpenSans/OpenSans.css" rel="stylesheet">
+<link href="/fuentes/Roboto/roboto.css" rel="stylesheet">
+<link href="/fuentes/OpenSans/OpenSans.css" rel="stylesheet">
 <!-- Estilos -->
-<link rel="stylesheet" type="text/css" href="./codigo/css/style.css">
-<link rel="stylesheet" type="text/css" href="./codigo/css/modalBox.css">
+<link rel="stylesheet" type="text/css" href="/codigo/css/style.css">
+<link rel="stylesheet" type="text/css" href="/codigo/css/modalBox.css">
 <!-- Script de modalBox -->
-<script src="./codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
-<!-- Scripts globales -->
-<script type="text/javascript" src="../codigo/js/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../codigo/js/globales.js"></script>
+<script src="/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>

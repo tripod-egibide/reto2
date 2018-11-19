@@ -145,7 +145,7 @@ function cargarIndex($pagina) {
   	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,
     (select max(resuelve) from respuesta where idpregunta=p.idpregunta) as resuelto,
     (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos,
-    u.idusuario, u.usuario
+    u.idusuario, u.usuario, u.url_avatar
     from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
     order by p.idpregunta desc", $rango)->fetchAll();
 

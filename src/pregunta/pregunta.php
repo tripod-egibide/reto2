@@ -34,7 +34,7 @@ $_SESSION["id"] = 1;
         <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
         <!-- TODO: enlazar esto al perfil del usuario correspondiente -->
         <span class="autor"><a href="../cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-          <?=$pregunta["usuario"]?> <img src="<?=$pregunta["url_avatar"]?>">
+          <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
         </a></span>
       </div>
       <div class="votos">
@@ -95,7 +95,7 @@ $_SESSION["id"] = 1;
         </h2>
         <span class="fecha"><?=$respuesta["fecha_creacion"]?></span>
         <span class="creador"><a href="../cuenta/perfil.php?id=<?=$respuesta["idusuario"]?>"><?=$respuesta["usuario"]?></a></span>
-        <img src="../imagenes/avatares/<?=$respuesta["idusuario"]?>.jpg">
+        <img class="avatar" src="<?=$respuesta["url_avatar"]?>">
       </div>
       <div class="votos">
         <i class="material-icons">arrow_drop_up</i>

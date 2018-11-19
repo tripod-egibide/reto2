@@ -1,8 +1,8 @@
 /*USUARIOS*/
 INSERT INTO `usuario` (`idusuario`, `usuario`, `email`, `contrasenna`, `descripcion`, `url_avatar`)
-	VALUES (NULL, 'user1', 'user1@email.com', 'user1', 'desc user1', 'avatar.jpg');
+	VALUES (NULL, 'user1', 'user1@email.com', 'user1', 'desc user1', '/imagenes/avatar/1.jpg');
 INSERT INTO `usuario` (`idusuario`, `usuario`, `email`, `contrasenna`, `descripcion`, `url_avatar`)
-	VALUES (NULL, 'user2', 'user2@email.com', 'user2', 'desc user2', 'user2.jpg');
+	VALUES (NULL, 'user2', 'user2@email.com', 'user2', 'desc user2', '/imagenes/avatar/2.jpg');
 /*PREGUNTAS*/
 INSERT INTO `pregunta` (`idpregunta`, `idusuario`, `titulo`, `texto`, `fecha_creacion`)
 	VALUES (NULL, '1', 'Pregunta 1 User1', 'texto', CURRENT_TIMESTAMP);
@@ -15,7 +15,7 @@ INSERT INTO `pregunta` (`idpregunta`, `idusuario`, `titulo`, `texto`, `fecha_cre
 /*RESPUESTAS*/
 INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, `titulo`, `texto`, `resuelve`, `fecha_creacion`)
 	VALUES (NULL, '1', '2', 'Respuesta User2, pregunta 1 User1', 'texto', '0', CURRENT_TIMESTAMP);
-INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, `titulo`, `texto`, `resuelve`, `fecha_creacion`) 
+INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, `titulo`, `texto`, `resuelve`, `fecha_creacion`)
 	VALUES (NULL, '3', '1', 'Respuesta User1, pregunta 1 User2', 'texto', '0', CURRENT_TIMESTAMP);
 /*ETIQUETAS*/
 INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, '#HTML');

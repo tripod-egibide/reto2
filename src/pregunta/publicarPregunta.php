@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tripod</title>
     <link rel="stylesheet" type="text/css" href="../codigo/css/style.css">
-    <script type="text/javascript" src="../codigo/js/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="../codigo/js/publicarPregunta/publicarPregunta.js"></script>
+    <script type="text/javascript" src="/codigo/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="/codigo/js/publicarPregunta/publicarPregunta.js"></script>
 </head>
 <body>
 <div class="gridContenedor">

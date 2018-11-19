@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stack Underflow</title>
   </head>
-  <!-- <?=$pregunta[""]?> -->
 
   <body>
     <div class="gridContenedor">

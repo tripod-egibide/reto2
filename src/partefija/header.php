@@ -16,7 +16,7 @@ session_start();
   <div class="modalContenido">
     <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
     <?php
-    include "../cuenta/login.html";
+    include $root+"/cuenta/login.html";
     ?>
   </div>
 </div>
@@ -25,21 +25,21 @@ session_start();
   <div class="modalContenido">
     <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
     <?php
-    include "../cuenta/signin.html";
+    include $root+"/cuenta/signin.html";
     ?>
   </div>
 </div>
 
 <!-- Iconos -->
-<link rel="stylesheet" href="iconos/iconos.css">
+<link rel="stylesheet" href="<?php echo $root?>/iconos/iconos.css">
 <!-- Fuentes -->
-<link href="./fuentes/Roboto/roboto.css" rel="stylesheet">
-<link href="./fuentes/OpenSans/OpenSans.css" rel="stylesheet">
+<link href="<?php echo $root?>/fuentes/Roboto/roboto.css" rel="stylesheet">
+<link href="<?php echo $root?>/fuentes/OpenSans/OpenSans.css" rel="stylesheet">
 <!-- Estilos -->
-<link rel="stylesheet" type="text/css" href="./codigo/css/style.css">
-<link rel="stylesheet" type="text/css" href="./codigo/css/modalBox.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $root?>/codigo/css/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $root?>/codigo/css/modalBox.css">
 <!-- Script de modalBox -->
-<script src="./codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
+<script src="<?php echo $root?>/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
 <!-- Scripts globales -->
-<script type="text/javascript" src="../codigo/js/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="../codigo/js/globales.js"></script>
+<script type="text/javascript" src="<?php echo $root?>/codigo/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="<?php echo $root?>/codigo/js/globales.js"></script>

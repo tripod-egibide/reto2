@@ -61,7 +61,6 @@
     </div>
 <hr>
     <?php
-    var_dump($respuestas);
     while ($respuesta = $respuestas->fetch()) {
       ?>
     <div class="post respuesta">

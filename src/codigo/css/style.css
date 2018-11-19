@@ -1,66 +1,81 @@
-*{
-    box-sizing: border-box;
-    font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
-    color: #222;
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
+  color: #222;
 }
 
-img{
-    width: 100%;
-    height: auto;
+#logo {
+  width: 25%;
 }
 
-.logo{
-    width: 25%;
+#logo>img {
+  width: 100%;
+  height: auto;
 }
 
-.error{
-    width: 50%;
-    margin: 50px auto;
-    text-align: center;
-    background-color: #eee;
-    border: 2px solid #888;
-    border-radius: 5px;
+.error {
+  width: 50%;
+  margin: 50px auto;
+  text-align: center;
+  background-color: #eee;
+  border: 2px solid #888;
+  border-radius: 5px;
 }
 
-.cabecera { grid-area: header; }
-.margen { grid-area: gap;}
-.margen2 { grid-area: gap2;}
-.main { grid-area: main; }
-.pie { grid-area: footer; }
+.cabecera {
+  grid-area: header;
+}
+
+.margen {
+  grid-area: gap;
+}
+
+.margen2 {
+  grid-area: gap2;
+}
+
+.main {
+  grid-area: main;
+}
+
+.pie {
+  grid-area: footer;
+}
 
 .gridContenedor {
-    display: grid;
-    grid-template-areas:
-            'header header header header header'
-            'gap main main main gap2'
-            'footer footer footer footer footer';
-
-    grid-gap: 1px;
-}
-.gridContenedor > div {
-    background-color: #eee;
+  display: grid;
+  grid-template-areas:
+    'header header header header header'
+    'gap main main main gap2'
+    'footer footer footer footer footer';
+  grid-gap: 1px;
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    background-color: #d64;
-    padding: 2%;
+.gridContenedor>div {
+  background-color: #eee;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: #d64;
+  padding: 2%;
 }
 
 /*footer*/
 footer {
-    display: flex;
-    background-color: #d64;
-    justify-content: center;
-    padding: 2%;
+  display: flex;
+  background-color: #d64;
+  justify-content: center;
+  padding: 2%;
 }
 
-footer div, #email, .contacto{
-    margin-top: 10px;
-    text-decoration: none;
+footer div, #email, .contacto {
+  margin-top: 10px;
+  text-decoration: none;
 }
-footer #logo{
-    width: 100px;
-    margin: 5px 2%;
+
+footer #logo {
+  width: 100px;
+  margin: 5px 2%;
 }

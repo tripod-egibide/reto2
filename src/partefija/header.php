@@ -5,16 +5,14 @@ if (!isset($_SESSION)) {
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <header class="cabecera">
-  <a href="" id="logo"><img src="" /></a>
-  <form action="" method="get">
-    <input type="search" id="" name="" />
+  <a href="" id="logoHeader"><img src="/imagenes/bitmap.png"></a>
+  <form action="" method="get" id="barraBusqueda">
+      <label for="busqueda"><i class="material-icons">search</i></label>
+    <input type="search"  id="busqueda"  name="" placeholder="Buscar..."/>
   </form>
-  <a href="" id="ayuda"><img src="" /></a>
+  <a href="" ><i id="ayuda" class="material-icons">help_outline</i></a>
   <a href="#" id="botonLogin">Log in</a>
   <a href="#" id="botonSignin">Sign in</a>
-  <!-- Scripts globales -->
-  <script type="text/javascript" src="/codigo/js/jquery-3.3.1.js"></script>
-  <script type="text/javascript" src="/codigo/js/globales.js"></script>
 </header>
 
 <!-- Login -->
@@ -36,14 +34,4 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
   </div>
 </div>
 
-<!-- Iconos -->
-<link rel="stylesheet" href="/iconos/iconos.css">
-<!-- Fuentes -->
-<link href="/fuentes/Roboto/roboto.css" rel="stylesheet">
-<link href="/fuentes/OpenSans/OpenSans.css" rel="stylesheet">
-<!-- Estilos -->
-<link rel="stylesheet" type="text/css" href="/codigo/css/style.css">
-<link rel="stylesheet" type="text/css" href="/codigo/css/modalBox.css">
-<!-- Script de modalBox -->
-<script src="/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
 

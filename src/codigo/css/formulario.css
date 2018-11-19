@@ -9,7 +9,13 @@
     margin:.5%;
 }
 
-#formularioGeneral div {
+#formularioGeneral div{
+    display: flex;
+    flex-grow: 1;
+    margin: 0%;
+}
+
+#formularioGeneral div #campoEtiqueta{
     display: flex;
     flex-wrap: Wrap;
 }
@@ -24,7 +30,9 @@
 }
 
 #formularioGeneral #bEnviar{
-     flex-basis: auto;
+    align-self: flex-end;
+    height: 50%;
+    flex-basis: auto;
  }
 
 #formularioGeneral #titulo{

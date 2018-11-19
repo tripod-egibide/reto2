@@ -20,7 +20,7 @@
 include './header.php';
 
 if(isset($_GET['error'])){
-    include '../codigo/php/globales.php';
+    include '../codigo/php/estilos.php';
     switch($_GET['error']){
         case 404:
             echo '<h1 class="error">Error 404</h1>';

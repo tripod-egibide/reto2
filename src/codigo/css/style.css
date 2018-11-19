@@ -58,7 +58,7 @@ html {
   background-color: #eee;
   color: #333;
   border-radius: 4px;
-  padding: 5px;
+  /*padding: 5px;*/
   text-decoration: none;
   margin-left: 5px;
 }
@@ -100,10 +100,6 @@ html {
     'footer footer footer';
   height: 100%;
   grid-template-rows: auto 1fr auto;
-}
-
-.gridContenedor>div {
-  background-color: #eee;
 }
 
 header {

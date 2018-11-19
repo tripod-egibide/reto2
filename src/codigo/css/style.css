@@ -4,13 +4,22 @@
   color: #222;
 }
 
-#logo {
-  width: 25%;
+body {
+  height: 100%;
+  margin: 0;
 }
 
-#logo>img {
+html {
+  min-height: 100%;
+}
+
+#logo img {
   width: 100%;
   height: auto;
+}
+
+#logo {
+  width: 25%;
 }
 
 .error {
@@ -48,7 +57,8 @@
     'header header header header header'
     'gap main main main gap2'
     'footer footer footer footer footer';
-  grid-gap: 1px;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
 }
 
 .gridContenedor>div {

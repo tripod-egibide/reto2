@@ -101,6 +101,11 @@ $_SESSION["id"] = 1;
         <i class="material-icons">arrow_drop_up</i>
         <span class="votosContador"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
         <i class="material-icons">arrow_drop_down</i>
+        <?php
+        if ($respuesta["resuelve"]) {
+          echo '<i class="material-icons">check</i>';
+        }
+        ?>
       </div>
       <p class="cuerpo"><?=$pregunta["texto"]?></p>
     </div>

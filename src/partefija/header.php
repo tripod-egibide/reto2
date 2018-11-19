@@ -1,8 +1,10 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
-<header>
+<header class="cabecera">
   <a href="" id="logo"><img src="" /></a>
   <form action="" method="get">
     <input type="search" id="" name="" />
@@ -44,3 +46,4 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 <link rel="stylesheet" type="text/css" href="/codigo/css/modalBox.css">
 <!-- Script de modalBox -->
 <script src="/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
+

@@ -6,11 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stack Underflow</title>
   </head>
+
   <body>
     <div class="gridContenedor">
-      <div class="cabecera">
-        <?php include "./partefija/header.php" ?>
-      </div>
+      <?php include "./partefija/header.php" ?>
       <div class="margen"></div>
       <div class="main">
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
@@ -21,9 +20,15 @@
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">
+            <?php
+            if ($pregunta["resuelto"]) {
+              echo '<i class="material-icons">check</i>';
+            }
+            ?>
             <span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
+            <span class="votos"><?=$pregunta["votos"]?><i class="material-icons">thumb_up</i></span>
             <div class="info">
-              <span class="titulo"><?=$pregunta["titulo"]?></span>
+              <span class="titulo"><a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a></span>
               <span class="autor"><a href="../cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
                 <?=$pregunta["usuario"]?> <img src="<?=$pregunta["url_avatar"]?>">
               </a></span>

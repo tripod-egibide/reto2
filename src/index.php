@@ -26,11 +26,22 @@
             }
             ?>
             <span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
-            <span class="votos"><?=$pregunta["votos"]?><i class="material-icons">thumb_up</i></span>
+            <span class="votos">
+              <?php
+              echo $pregunta["votos"];
+              if ($pregunta["votos"] > 0) {
+                echo '<i class="material-icons">thumb_up</i>';
+              } else if ($pregunta["votos"] < 0) {
+                echo '<i class="material-icons">thumb_down</i>';
+              } else {
+                echo '<i class="material-icons">thumbs_up_down</i>';
+              }
+              ?>
+            </span>
             <div class="info">
               <span class="titulo"><a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a></span>
               <span class="autor"><a href="../cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                <?=$pregunta["usuario"]?> <img src="<?=$pregunta["url_avatar"]?>">
+                <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
               </a></span>
               <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
             </div>

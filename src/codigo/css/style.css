@@ -22,6 +22,11 @@ html {
   width: 25%;
 }
 
+.avatar {
+  height: 32px;
+  width: 32px;
+}
+
 .error {
   width: 50%;
   margin: 50px auto;

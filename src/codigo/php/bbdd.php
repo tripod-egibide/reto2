@@ -55,7 +55,7 @@ function insertarPregunta($datos){
 function insertarEtiqueta($etiquetas, $idPregunta){
     $cont = false;
     foreach($etiquetas as $etiqueta){
-        $etiqueta = ucfirst($etiqueta);
+        $etiqueta = mb_convert_case($etiqueta, MB_CASE_TITLE, "UTF-8");
         if($etiqueta != ""){
             $idEtiqueta = consultarEtiqueta($etiqueta);
             if($idEtiqueta == null){
@@ -117,7 +117,8 @@ function cargarIndex($pagina) {
     from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
     order by p.idpregunta desc", $rango)->fetchAll();
 
-  //aqui añadimos las etiquetas correspondientes a cada una de las preguntas
+  //aqui annadimos las etiquetas correspondientes a cada una de las preguntas
+
   $annadirEtiquetas = function($pregunta) {
     $pregunta["etiquetas"] = cargarEtiquetas($pregunta[0]);
     return $pregunta;

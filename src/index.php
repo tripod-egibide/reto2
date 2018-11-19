@@ -1,6 +1,6 @@
+<?php // TODO: annadir un control de paginas, para que salte un 404 si la pagina estuviese vacia ?>
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,11 +44,17 @@
 
         <div class="navegacion">
           <?php
+          //si estamos en la pagina 0, no mostramos el boton de retroceder pagina
           if ($pagina>0) {
-            ?> <a href="?pagina=<?=$pagina-1?>"><button type="button">P&aacute;gina anterior</button></a> <?php
+             ?> <a href="?pagina=<?=$pagina-1?>"><button type="button">P&aacute;gina anterior</button></a> <?php
+          }
+          //buscamos la menor ID en la pagina para saber si hay mas preguntas que mostrar
+          //es decir, si hay mas paginas con contenido despues de esta
+          $minima = ($datos[count($datos)-1][0]);
+          if ($minima > 1) {
+            ?> <a href="?pagina=<?=$pagina+1?>"><button type="button">Siguiente p&aacute;gina</button></a> <?php
           }
           ?>
-          <a href="?pagina=<?=$pagina+1?>"><button type="button">Siguiente p&aacute;gina</button></a>
         </div>
       </div>
       <div class="margen2"></div>

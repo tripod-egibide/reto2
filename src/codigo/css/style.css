@@ -36,20 +36,23 @@ html {
 #barraBusqueda, #barraBusqueda input{
   display: flex;
   align-items: center;
-  background-color: #ccc;
-  border: none;
+  background-color: #eee;
+  border: 1px solid #eee;
   color: #333;
   padding: 5px;
   margin-right: 15px;
 }
 
 #ayuda, #botonLogin, #botonSignin{
-  border: 1px solid #d64;
-  background-color: #ccc;
-  color: #d64;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  color: #333;
   border-radius: 4px;
   padding: 5px;
   text-decoration: none;
+  margin-left: 5px;
 }
 
 .error {
@@ -58,7 +61,7 @@ html {
   text-align: center;
   background-color: #eee;
   border: 2px solid #888;
-  border-radius: 5px;
+  border-radius: 1px;
 }
 
 .cabecera {
@@ -98,7 +101,8 @@ html {
 header {
   display: flex;
   /*justify-content: center;*/
-  align-items: center;
+  align-items: stretch;
+  align-content: center;
   background-color: #d64;
   padding: 2%;
 }

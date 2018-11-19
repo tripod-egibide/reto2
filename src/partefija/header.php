@@ -5,12 +5,12 @@ if (!isset($_SESSION)) {
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <header class="cabecera">
-  <a href="" id="logoHeader"><img src="/imagenes/bitmap.png"></a>
+  <a href="/index.php" id="logoHeader"><img src="/imagenes/bitmap.png"></a>
   <form action="" method="get" id="barraBusqueda">
       <label for="busqueda"><i class="material-icons">search</i></label>
     <input type="search"  id="busqueda"  name="" placeholder="Buscar..."/>
   </form>
-  <a href="" ><i id="ayuda" class="material-icons">help_outline</i></a>
+  <a href="" id="ayuda"><i class="material-icons">help_outline</i></a>
   <a href="#" id="botonLogin">Log in</a>
   <a href="#" id="botonSignin">Sign in</a>
 </header>

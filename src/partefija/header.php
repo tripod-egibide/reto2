@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+  session_start();
+}
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <header>

@@ -40,15 +40,26 @@ function verificarLogin($email, $contrasenna) {
   }
 }
 
-function consultarPregunta(){
-
+function ultimaRespuesta(){
+    //devuelve la mayor ID de pregunta, que como es autoincremental siempre sera la mas reciente
+    //ojo, que es en forma de string
+    return abrirConexion()->query("SELECT max(idrespuesta) from respuesta")->fetch()[0];
 }
 
 function insertarPregunta($datos){
+    //obtiene el último registro
+    $r = ultimaPregunta();
+    //inserta registro
   if(realizarConsulta("INSERT INTO pregunta VALUES (NULL, :usuario, :titulo, :mensaje, DEFAULT);", $datos) == null){
-    return null;
-  }else{
-      return ultimaPregunta();
+    //si no devuelve nada, es que ha fallado
+      return null;
+      //compara si se ha introducido
+  }else if(ultimaPregunta()> $r){
+      // si introducido ok, en caso contrario null
+      return "ok";
+  }
+  else{
+      return null;
   }
 }
 
@@ -77,6 +88,24 @@ function insertarEtiqueta($etiquetas, $idPregunta){
         }
     }
     return $cont;
+}
+
+function insertarRespuesta($datos){
+    //obtiene el último registro
+    $r = ultimaRespuesta();
+    //inserta registro
+    var_dump($datos);
+    echo "lol" ;
+    if(realizarConsulta("INSERT INTO respuesta VALUES (NULL, :pregunta, :usuario, :titulo, :mensaje, 0, DEFAULT);", $datos) == null){
+        // si no devuelve nada, es que ha fallado
+        return null;
+        //comprara si se ha introducido
+    }else if(ultimaRespuesta()> $r){
+        //si introducido ok, en caso contrario null
+        return "ok";
+    } else{
+        return null;
+    }
 }
 
 function consultarEtiqueta($etiqueta){

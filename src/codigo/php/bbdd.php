@@ -172,4 +172,8 @@ function busquedaPorEtiquetas($etiquetasArray) {
   }
   return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in ($parametrosSQL))", $etiquetas);
 }
+
+function busquedaPorTexto($texto) {
+  //p.idpregunta in (SELECT idpregunta from pregunta where titulo like '%te%' or texto like '%te%')
+}
 ?>

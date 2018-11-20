@@ -20,7 +20,7 @@ $_SESSION["id"] = 1;
     <title>
       <?=$pregunta["titulo"]?>
     </title>
-    <link rel="stylesheet" href="../iconos/iconos.css">
+      <?php include "../codigo/php/estilos.php" ?>
     <link rel="stylesheet" href="../codigo/css/pregunta.css">
   </head>
 
@@ -38,9 +38,9 @@ $_SESSION["id"] = 1;
         </a></span>
       </div>
       <div class="votos">
-        <i class="material-icons">arrow_drop_up</i>
+        <i class="material-icons thumb">arrow_drop_up</i>
         <span class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
-        <i class="material-icons">arrow_drop_down</i>
+        <i class="material-icons thumb">arrow_drop_down</i>
       </div>
       <p class="cuerpo"><?=$pregunta["texto"]?></p>
       <div id="piePregunta">

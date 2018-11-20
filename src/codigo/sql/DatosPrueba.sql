@@ -18,9 +18,9 @@ INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, DEFAULT, ``, 
 INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, `No`, `nooooooooooooo`, `resuelve`, `fecha_creacion`)
 	VALUES (NULL, '3', '1', 'Respuesta User1, pregunta 1 User2', 'texto', '1', CURRENT_TIMESTAMP);
 /*ETIQUETAS*/
-INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, '#HTML');
-INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, '#JavaScript');
-INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, '#PHP');
+INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, 'HTML');
+INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, 'JavaScript');
+INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, 'PHP');
 /*pregunta_tiene_etiquetaS*/
 INSERT INTO `pregunta_tiene_etiqueta` (`idetiqueta`, `idpregunta`) VALUES (1, 1);
 INSERT INTO `pregunta_tiene_etiqueta` (`idetiqueta`, `idpregunta`) VALUES (3, 1);

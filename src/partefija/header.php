@@ -13,7 +13,7 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
       <label for="busqueda"><i class="material-icons">search</i></label>
     <input type="search"  id="busqueda"  name="" placeholder="Buscar..."/>
   </form>
-  <a href="" id="ayuda"><i class="material-icons">help_outline</i></a>
+  <a href="/doc/Manual%20del%20Usuario.pdf" id="ayuda" target="_blank"><i class="material-icons">help_outline</i></a>
   <a href="#" id="botonLogin">Sign in</a>
   <a href="#" id="botonSignin">Sign up</a>
 </header>

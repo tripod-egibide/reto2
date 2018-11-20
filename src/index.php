@@ -49,7 +49,9 @@
             <ul class="etiquetas">
               <?php
               foreach ($pregunta["etiquetas"] as $etiquetas) {
-               echo "<li>" . $etiquetas[0] . "</li>";
+                ?>
+                <li class=etiqueta><a href="/index.php?etiquetas=<?=$etiquetas["idetiqueta"]?>"><?=$etiquetas["etiqueta"]?></a></li>
+                <?php
               }
               ?>
             </ul>

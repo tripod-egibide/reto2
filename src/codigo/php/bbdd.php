@@ -179,4 +179,17 @@ function busquedaPorTexto($texto) {
   //p.idpregunta in (SELECT idpregunta from pregunta where titulo like '%:t%' or texto like '%:t%')
   return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where lower(titulo) like :t or lower(texto) like :t)", ["t" => strtolower("%".$texto."%")]);
 }
+
+function buscarVoto($base, $usuario, $pregunta){
+    return realizarConsulta("SELECT positivo FROM :base WHERE idusuario = :usuario and idpregunta = :pregunta;", ["base"=>$base,"usuario"=>$usuario, "pregunta"=>$pregunta])->fetch()[0];
+
+}
+function insertarVoto($dato){
+    //de alguna manera no me permite insertar :base como sustituto al voto_pregunta
+    return realizarConsulta("INSERT INTO voto_pregunta VALUES(:usuario, :pregunta, :valor) ;", $dato);
+}
+function actualizarVoto($dato){
+    return realizarConsulta("INSERT INTO voto_pregunta VALUES(1, 1, 1) ;", $dato);
+    //return realizarConsulta("UPDATE voto_pregunta SET positivo = :valor WHERE idusuario = :usuario and idpregunta = :pregunta ;", $dato);
+}
 ?>

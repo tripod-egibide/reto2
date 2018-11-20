@@ -174,6 +174,9 @@ function busquedaPorEtiquetas($etiquetasArray) {
 }
 
 function busquedaPorTexto($texto) {
-  //p.idpregunta in (SELECT idpregunta from pregunta where titulo like '%te%' or texto like '%te%')
+  // TODO: preguntar a jon si esto se deberia mejorar
+  // concretamente sobre las posibles busquedas repetidas y las palabras basura
+  //p.idpregunta in (SELECT idpregunta from pregunta where titulo like '%:t%' or texto like '%:t%')
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where lower(titulo) like :t or lower(texto) like :t)", ["t" => strtolower("%".$texto."%")]);
 }
 ?>

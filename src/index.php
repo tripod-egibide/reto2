@@ -29,8 +29,7 @@
 
         } else if (isset($_GET["busqueda"])) {
           //igual que la de arriba
-          //TODO: hacer esto
-          $datos = null;
+          $datos = busquedaPorTexto($_GET["busqueda"]);
         } else {
           $datos = cargarIndex($pagina);
           $mostrarPaginas = true;

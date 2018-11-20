@@ -5,3 +5,8 @@
 #tituloFormulario{
     font-size: 1.5em;
 }
+
+.material-icons:hover {
+    cursor:pointer;
+    cursor: hand
+}

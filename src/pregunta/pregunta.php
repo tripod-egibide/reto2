@@ -22,10 +22,11 @@ $_SESSION["id"] = 1;
     </title>
       <?php include "../codigo/php/estilos.php" ?>
     <link rel="stylesheet" href="../codigo/css/pregunta.css">
+      <script type="text/javascript" src="../codigo/js/pregunta/pregunta.js"></script>
   </head>
 
   <body>
-    <div class="post" id="pregunta">
+    <div class="post" id="pregunta" data-idpregunta="<?=$id?>" data-idusuario="<?=$_SESSION["id"]?>">
       <div class="cabeceraPost" id="cabeceraPregunta">
         <h1 class="titulo" id="tituloPregunta">
           <?=$pregunta["titulo"]?>
@@ -38,9 +39,13 @@ $_SESSION["id"] = 1;
         </a></span>
       </div>
       <div class="votos">
-        <i class="material-icons thumb">arrow_drop_up</i>
+          <?php
+          echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='ppositivo'>arrow_drop_up</i>" :  "");
+          ?>
         <span class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
-        <i class="material-icons thumb">arrow_drop_down</i>
+          <?php
+          echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='pnegativo'>arrow_drop_down</i>" :  "");
+          ?>
       </div>
       <p class="cuerpo"><?=$pregunta["texto"]?></p>
       <div id="piePregunta">
@@ -98,9 +103,13 @@ $_SESSION["id"] = 1;
         <img class="avatar" src="<?=$respuesta["url_avatar"]?>">
       </div>
       <div class="votos">
-        <i class="material-icons">arrow_drop_up</i>
+          <?php
+          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestapositivo\">arrow_drop_up</i>" :  "");
+          ?>
         <span class="votosContador"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
-        <i class="material-icons">arrow_drop_down</i>
+          <?php
+          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestanegativo\">arrow_drop_down</i>" :  "");
+          ?>
         <?php
         if ($respuesta["resuelve"]) {
           echo '<i class="material-icons">check</i>';

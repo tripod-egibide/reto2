@@ -32,12 +32,7 @@ html {
   margin-right: 5%;
 }
 
-#barraBusqueda{
-  width: 50%;
-}
-
 #barraBusqueda input{
-  width: 100%;
   margin-left: 5px;
 }
 
@@ -58,10 +53,9 @@ html {
   background-color: #eee;
   color: #333;
   border-radius: 4px;
-  /*padding: 5px;*/
   text-decoration: none;
   margin-left: 5px;
-  padding: 0 5px;
+  padding: 0 15px;
 }
 
 .error {
@@ -74,6 +68,7 @@ html {
   border-radius: 4px;
 }
 
+/*GRID*/
 .cabecera {
   grid-area: header;
 }
@@ -110,7 +105,8 @@ header {
   align-items: stretch;
   align-content: center;
   background-color: #d64;
-  padding: 2%;
+  padding: 20px;
+  overflow: visible;
 }
 
 /*footer*/
@@ -135,7 +131,15 @@ footer #logo {
   cursor: pointer;
 }
 
-@media only screen and (max-width: 661px) {
+#menuMovil{
+  display: flex;
+
+}
+#menuMovil>a{
+  width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
   #botonMenu{
     display: flex;
   }
@@ -146,11 +150,14 @@ footer #logo {
     width: 100%;
   }
 }
-@media only screen and (min-width: 662px) {
+@media only screen and (min-width: 601px) {
   #botonMenu{
     display: none;
   }
   #ayuda, #botonLogin, #botonSignin{
     display: flex;
+  }
+  #barraBusqueda, #barraBusqueda input{
+    width: 100%;
   }
 }

@@ -50,11 +50,11 @@
               <?php
               echo $pregunta["votos"];
               if ($pregunta["votos"] > 0) {
-                echo '<i class="material-icons">thumb_up</i>';
+                echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
               } else if ($pregunta["votos"] < 0) {
-                echo '<i class="material-icons">thumb_down</i>';
+                echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
               } else {
-                echo '<i class="material-icons">thumbs_up_down</i>';
+                echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
               }
               ?>
             </span>

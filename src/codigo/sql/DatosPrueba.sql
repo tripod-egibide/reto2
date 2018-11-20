@@ -13,9 +13,9 @@ INSERT INTO `pregunta` (`idpregunta`, `idusuario`, `titulo`, `texto`, `fecha_cre
 INSERT INTO `pregunta` (`idpregunta`, `idusuario`, `titulo`, `texto`, `fecha_creacion`)
 	VALUES (NULL, '2', 'Pregunta 2 User2', 'texto', CURRENT_TIMESTAMP);
 /*RESPUESTAS*/
-INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, DEFAULT, ``, `resuelve`, `fecha_creacion`)
-	VALUES (NULL, '1', '2', 'Respuesta User2, pregunta 1 User1', 'texto', '0', CURRENT_TIMESTAMP);
-INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, `No`, `nooooooooooooo`, `resuelve`, `fecha_creacion`)
+INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, `titulo`, `texto`, `resuelve`, `fecha_creacion`)
+	VALUES (NULL, '1', '2', DEFAULT, 'texto', '0', CURRENT_TIMESTAMP);
+INSERT INTO `respuesta` (`idrespuesta`, `idpregunta`, `idusuario`, `titulo`, `texto`, `resuelve`, `fecha_creacion`)
 	VALUES (NULL, '3', '1', 'Respuesta User1, pregunta 1 User2', 'texto', '1', CURRENT_TIMESTAMP);
 /*ETIQUETAS*/
 INSERT INTO `etiqueta` (`idetiqueta`, `etiqueta`) VALUES (NULL, 'HTML');

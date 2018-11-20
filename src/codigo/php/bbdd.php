@@ -113,7 +113,7 @@ function consultarEtiqueta($etiqueta){
 }
 
 function cargarEtiquetas($idPregunta) {
-  return realizarConsulta("SELECT etiqueta from etiqueta where idetiqueta in (SELECT idetiqueta from pregunta_tiene_etiqueta where idpregunta=:id)", ["id" => $idPregunta])->fetchAll();
+  return realizarConsulta("SELECT etiqueta, idetiqueta from etiqueta where idetiqueta in (SELECT idetiqueta from pregunta_tiene_etiqueta where idpregunta=:id)", ["id" => $idPregunta])->fetchAll();
 }
 
 function cargarPregunta($id) {
@@ -135,7 +135,7 @@ function cargarPregunta($id) {
 }
 
 function busquedaPreguntas($where, $parametros=NULL) {
-
+  $where = "where p.idusuario=u.idusuario and " . $where;
   $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion, u.idusuario, u.usuario, u.url_avatar,
   	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,
     (select max(resuelve) from respuesta where idpregunta=p.idpregunta) as resuelto,
@@ -160,10 +160,20 @@ function cargarIndex($pagina) {
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
 
-  return busquedaPreguntas("where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima", $rango);
+  return busquedaPreguntas("p.idpregunta between :minima and :maxima", $rango);
 }
 
-function busquedaEtiquetas($etiquetas) {
+function busquedaPorEtiquetas($etiquetasArray) {
+  $parametrosSQL = ":" . implode("|", $etiquetasArray);
+  $parametrosSQL = str_replace("|", ", :", $parametrosSQL);
 
+  foreach ($etiquetasArray as $id) {
+    $etiquetas[":$id"] = $id;
+  }
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in ($parametrosSQL))", $etiquetas);
+}
+
+function busquedaPorTexto($texto) {
+  //p.idpregunta in (SELECT idpregunta from pregunta where titulo like '%te%' or texto like '%te%')
 }
 ?>

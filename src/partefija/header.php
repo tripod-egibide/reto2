@@ -14,8 +14,14 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
     <input type="search"  id="busqueda"  name="" placeholder="Buscar..."/>
   </form>
   <a href="/doc/Manual%20del%20Usuario.pdf" id="ayuda" target="_blank"><i class="material-icons">help_outline</i></a>
-  <a href="#" id="botonLogin">Sign in</a>
-  <a href="#" id="botonSignin">Sign up</a>
+  <a href="#" id="botonLogin">Signin</a>
+  <a href="#" id="botonSignin">Signup</a>
+  <a href="#" id="botonMenu"><i class="material-icons">menu</i></a>
+    <br>
+    <div id="menuMovil">
+        <a href="#" >Sign in</a>
+        <a href="#" >Sign up</a>
+    </div>
 </header>
 
 <!-- Login -->
@@ -38,3 +44,5 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 </div>
 <!-- Script de modalBox -->
 <script src="/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
+<!-- Script menuResponsive -->
+<script src="/codigo/js/menuResponsive.js" type="text/javascript"></script>

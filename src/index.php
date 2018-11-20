@@ -24,7 +24,7 @@
           $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
         } else if (isset($_GET["busqueda"])) {
           //igual que la de arriba
-          //TODO: esto tambien
+          //TODO: hacer esto
           $datos = null;
         } else {
           $datos = cargarIndex($pagina);
@@ -84,8 +84,11 @@
             //es decir, si hay mas paginas con contenido despues de esta
             $minima = ($datos[count($datos)-1][0]);
             if ($minima > 1) {
-              ?> <a href="?pagina=<?=$pagina+1?>"><button type="button">Siguiente p&aacute;gina</button></a> </div><?php
+              ?> <a href="?pagina=<?=$pagina+1?>"><button type="button">Siguiente p&aacute;gina</button></a><?php
             }
+            ?>
+            </div>
+            <?php
         }?>
       </div>
       <div class="margen2"></div>

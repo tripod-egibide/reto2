@@ -51,7 +51,7 @@ html {
   margin-right: 15px;
 }
 
-#ayuda, #botonLogin, #botonSignin{
+#ayuda, #botonLogin, #botonSignin, #botonMenu{
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
@@ -61,6 +61,7 @@ html {
   /*padding: 5px;*/
   text-decoration: none;
   margin-left: 5px;
+  padding: 0 5px;
 }
 
 .error {
@@ -132,4 +133,24 @@ footer #logo {
 
 .thumb{
   cursor: pointer;
+}
+
+@media only screen and (max-width: 661px) {
+  #botonMenu{
+    display: flex;
+  }
+  #ayuda, #botonLogin, #botonSignin{
+    display: none;
+  }
+  #barraBusqueda, #barraBusqueda input{
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 662px) {
+  #botonMenu{
+    display: none;
+  }
+  #ayuda, #botonLogin, #botonSignin{
+    display: flex;
+  }
 }

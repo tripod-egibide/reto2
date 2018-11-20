@@ -16,6 +16,7 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
   <a href="/doc/Manual%20del%20Usuario.pdf" id="ayuda" target="_blank"><i class="material-icons">help_outline</i></a>
   <a href="#" id="botonLogin">Sign in</a>
   <a href="#" id="botonSignin">Sign up</a>
+  <a href="#" id="botonMenu"><i class="material-icons">menu</i></a>
 </header>
 
 <!-- Login -->

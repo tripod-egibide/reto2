@@ -36,8 +36,5 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
     ?>
   </div>
 </div>
-<!-- Scripts globales -->
-<script type="text/javascript" src="/codigo/js/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="/codigo/js/globales.js"></script>
 <!-- Script de modalBox -->
 <script src="/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>

@@ -141,11 +141,10 @@ function cargarIndex($pagina) {
     "maxima" => $ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0,
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
-  $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion,
+  $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion, u.idusuario, u.usuario, u.url_avatar,
   	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,
     (select max(resuelve) from respuesta where idpregunta=p.idpregunta) as resuelto,
-    (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos,
-    u.idusuario, u.usuario, u.url_avatar
+    (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos
     from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
     order by p.idpregunta desc", $rango)->fetchAll();
 

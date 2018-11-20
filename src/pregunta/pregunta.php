@@ -53,9 +53,9 @@ $_SESSION["id"] = 1;
         <ul id="etiquetas">
           <?php
           foreach ($etiquetas as $etiqueta) {
-            // TODO: enlazar las etiquetas a una busqueda de preguntas con la misma etiqueta
-            $str = $etiqueta["etiqueta"];
-            echo "<li>$str</li>";
+            ?>
+            <li class=etiqueta><a href="/index.php?etiquetas=<?=$etiqueta["idetiqueta"]?>"><?=$etiqueta["etiqueta"]?></a></li>
+            <?php
           }
           ?>
         </ul>

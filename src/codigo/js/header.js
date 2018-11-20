@@ -10,19 +10,16 @@ $("#botonMenu").on("click", interruptorMenu);
 
 
 $("#barraBusqueda").submit(() => {
-  alert("w")
   let texto = $("#busqueda").val();
   let palabras = texto.split(" ");
   let etiquetas = [];
-  palabras.forEach((p) => {
+  palabras = palabras.filter((p) => {
     if (p.charAt(0) == "#") {
-      etiquetas.push(p);
-      palabras.filter((e) => {
-        return (p == e)
-      });
-    }
+      etiquetas.push(p.replace("#", ""));
+      return false;
+    } else return true;
   });
   console.log(palabras, "\n")
   console.log(etiquetas, "\n")
   return false;
-})
+});

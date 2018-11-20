@@ -164,7 +164,12 @@ function cargarIndex($pagina) {
 }
 
 function busquedaPorEtiquetas($etiquetasArray) {
-  $etiquetas = implode(", ", $etiquetasArray);
-  busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in (:etiquetas))", ["etiquetas" => $etiquetas]);
+  $parametrosSQL = ":" . implode("|", $etiquetasArray);
+  $parametrosSQL = str_replace("|", ", :", $parametrosSQL);
+
+  foreach ($etiquetasArray as $id) {
+    $etiquetas[":$id"] = $id;
+  }
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in ($parametrosSQL))", $etiquetas);
 }
 ?>

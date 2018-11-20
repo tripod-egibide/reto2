@@ -16,8 +16,22 @@
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
+        $mostrarPaginas = false;
         require "codigo/php/bbdd.php";
-        $datos = cargarIndex($pagina);
+        //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
+        if (isset($_GET["etiquetas"])) {
+          //dividir esta busqueda en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
+          $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
+        } else if (isset($_GET["busqueda"])) {
+          //igual que la de arriba
+          //TODO: esto tambien
+          $datos = null;
+        } else {
+          $datos = cargarIndex($pagina);
+          $mostrarPaginas = true;
+        }
+
+
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">
@@ -58,22 +72,21 @@
           </div>
           <?php
         }
-        ?>
-
-        <div class="navegacion">
-          <?php
-          //si estamos en la pagina 0, no mostramos el boton de retroceder pagina
-          if ($pagina>0) {
-             ?> <a href="?pagina=<?=$pagina-1?>"><button type="button">P&aacute;gina anterior</button></a> <?php
-          }
-          //buscamos la menor ID en la pagina para saber si hay mas preguntas que mostrar
-          //es decir, si hay mas paginas con contenido despues de esta
-          $minima = ($datos[count($datos)-1][0]);
-          if ($minima > 1) {
-            ?> <a href="?pagina=<?=$pagina+1?>"><button type="button">Siguiente p&aacute;gina</button></a> <?php
-          }
+        if ($mostrarPaginas) {
           ?>
-        </div>
+          <div class="navegacion">
+            <?php
+            //si estamos en la pagina 0, no mostramos el boton de retroceder pagina
+            if ($pagina>0) {
+               ?> <a href="?pagina=<?=$pagina-1?>"><button type="button">P&aacute;gina anterior</button></a><?php
+            }
+            //buscamos la menor ID en la pagina para saber si hay mas preguntas que mostrar
+            //es decir, si hay mas paginas con contenido despues de esta
+            $minima = ($datos[count($datos)-1][0]);
+            if ($minima > 1) {
+              ?> <a href="?pagina=<?=$pagina+1?>"><button type="button">Siguiente p&aacute;gina</button></a> </div><?php
+            }
+        }?>
       </div>
       <div class="margen2"></div>
       <?php include "./partefija/footer.php" ?>

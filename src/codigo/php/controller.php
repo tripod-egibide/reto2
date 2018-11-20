@@ -1,21 +1,42 @@
 <?php
 include "bbdd.php";
 session_start();
-
+//recibe comando, dependiendo del texto, ejecuta una funcion determinada.
     $comando = $_POST['comando'];
     switch ($comando){
         case "publicarPregunta":
             publicarPregunta();
             break;
-        case "modificarPregunta":
-            modificarPregunta();
-            break;
         case "publicarRespuesta":
             publicarRespuesta();
             break;
-        default:
-            header('Location: /partefija/errores.php?error=404');
+        case "votoPregunta":
+            votoPregunta();
             break;
+        case "votoRespuesta":
+            votoRespuesta();
+            break;
+        default:
+            //header('Location: /partefija/errores.php?error=404');
+            break;
+    }
+    // vota positivo o negativo a una pregunta
+    function votoPregunta(){
+
+        $voto = [
+            "usuario" => $_SESSION["id"],
+            "pregunta" => $_POST["idPregunta"],
+            "valor" => $_POST["valor"]
+        ];
+        if(buscarVoto("voto_pregunta",$_SESSION["id"], $_POST["idPregunta"])== 1){
+            actualizarVoto($voto);
+        }else{
+            insertarVoto($voto);
+        }
+    }
+    // vota positivo o negativo a una respuesta
+    function votoRespuesta(){
+
     }
 
     function publicarPregunta(){
@@ -25,7 +46,6 @@ session_start();
             "mensaje" => $_POST["mensaje"]
         ];
         $idPregunta = insertarPregunta($pregunta);
-
         if($idPregunta == null){
             header('Location: /partefija/errores.php?error=404');
         }else{
@@ -59,7 +79,7 @@ function publicarRespuesta(){
     $idPregunta = insertarRespuesta($pregunta);
 
     if($idPregunta == null){
-        //header('Location: /partefija/errores.php?error=404');
+        header('Location: /partefija/errores.php?error=404');
     }else{
         header('Location: /pregunta/respuesta.php?resultado=publicado');
     }

@@ -60,6 +60,7 @@ html {
   text-decoration: none;
   margin-left: 5px;
   padding: 0 15px;
+  flex-shrink: 0;
 }
 
 .error {
@@ -129,12 +130,15 @@ footer #logo {
   cursor: pointer;
 }
 
-#menuMovil {
-  /* display: flex; */
-}
+#menuMovil{
+  display: none;
+  flex-shrink: 0;
+  /*width: 100%;*/
+  /*justify-content: center;*/
 
-#menuMovil>a {
-  width: 100%;
+}
+#menuMovil>a{
+  /*flex-basis: 100%;*/
 }
 
 @media only screen and (max-width: 600px) {

@@ -7,11 +7,11 @@ if (!isset($_SESSION)) {
 }
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
-<header class="cabecera">
+<header>
   <a href="/index.php" id="logoHeader"><img src="/imagenes/bitmap.png"></a>
   <form action="" method="get" id="barraBusqueda">
-      <label for="busqueda"><i class="material-icons">search</i></label>
-    <input type="search"  id="busqueda"  name="" placeholder="Buscar..."/>
+    <i><input type="submit" class="material-icons" value="search"/></i>
+    <input type="search" id="busqueda" name="" placeholder="Buscar..."/>
   </form>
   <a href="/doc/Manual%20del%20Usuario.pdf" id="ayuda" target="_blank"><i class="material-icons">help_outline</i></a>
   <a href="#" id="botonLogin">Signin</a>
@@ -45,4 +45,4 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 <!-- Script de modalBox -->
 <script src="/codigo/js/cuenta/modalBox.js" type="text/javascript"></script>
 <!-- Script menuResponsive -->
-<script src="/codigo/js/menuResponsive.js" type="text/javascript"></script>
+<script src="/codigo/js/header.js" type="text/javascript"></script>

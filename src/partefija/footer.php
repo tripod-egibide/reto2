@@ -1,4 +1,4 @@
-<footer class="pie">
+<footer>
   <div>Powered by</div>
   <a id="logo" href="#"><img src="/imagenes/bitmap.png"></a>
   <div>e-mail:</div>

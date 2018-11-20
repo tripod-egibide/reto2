@@ -1,3 +1,5 @@
+<!-- Responsividad -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
 <link rel="icon" href="/imagenes/favicon.ico" type="image/icon" sizes="any">
 <!-- Iconos -->

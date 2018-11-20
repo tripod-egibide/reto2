@@ -113,7 +113,7 @@ function consultarEtiqueta($etiqueta){
 }
 
 function cargarEtiquetas($idPregunta) {
-  return realizarConsulta("SELECT etiqueta from etiqueta where idetiqueta in (SELECT idetiqueta from pregunta_tiene_etiqueta where idpregunta=:id)", ["id" => $idPregunta])->fetchAll();
+  return realizarConsulta("SELECT etiqueta, idetiqueta from etiqueta where idetiqueta in (SELECT idetiqueta from pregunta_tiene_etiqueta where idpregunta=:id)", ["id" => $idPregunta])->fetchAll();
 }
 
 function cargarPregunta($id) {
@@ -134,6 +134,24 @@ function cargarPregunta($id) {
   return $datos;
 }
 
+function busquedaPreguntas($where, $parametros=NULL) {
+  $where = "where p.idusuario=u.idusuario and " . $where;
+  $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion, u.idusuario, u.usuario, u.url_avatar,
+  	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,
+    (select max(resuelve) from respuesta where idpregunta=p.idpregunta) as resuelto,
+    (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos
+    from pregunta as p, usuario as u $where
+    order by p.idpregunta desc", $parametros)->fetchAll();
+
+    //aqui annadimos las etiquetas correspondientes a cada una de las preguntas
+    $annadirEtiquetas = function($pregunta) {
+      $pregunta["etiquetas"] = cargarEtiquetas($pregunta[0]);
+      return $pregunta;
+    };
+
+    return array_map($annadirEtiquetas, $preguntas);
+}
+
 function cargarIndex($pagina) {
   $ultima = ultimaPregunta();
   //esto determina el rango de IDs que cargara la select, que luego se mostraran en pantalla, en funcion de la pagina que queremos
@@ -141,20 +159,24 @@ function cargarIndex($pagina) {
     "maxima" => $ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0,
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
-  $preguntas = realizarConsulta("SELECT p.idpregunta, p.titulo, p.fecha_creacion,
-  	(select count(*) from respuesta where idpregunta=p.idpregunta) as respuestas,
-    (select max(resuelve) from respuesta where idpregunta=p.idpregunta) as resuelto,
-    (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos,
-    u.idusuario, u.usuario, u.url_avatar
-    from pregunta as p, usuario as u where p.idusuario=u.idusuario and p.idpregunta between :minima and :maxima
-    order by p.idpregunta desc", $rango)->fetchAll();
 
-  //aqui annadimos las etiquetas correspondientes a cada una de las preguntas
+  return busquedaPreguntas("p.idpregunta between :minima and :maxima", $rango);
+}
 
-  $annadirEtiquetas = function($pregunta) {
-    $pregunta["etiquetas"] = cargarEtiquetas($pregunta[0]);
-    return $pregunta;
-  };
-  return array_map($annadirEtiquetas, $preguntas);
+function busquedaPorEtiquetas($etiquetasArray) {
+  $parametrosSQL = ":" . implode("|", $etiquetasArray);
+  $parametrosSQL = str_replace("|", ", :", $parametrosSQL);
+
+  foreach ($etiquetasArray as $id) {
+    $etiquetas[":$id"] = $id;
+  }
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in ($parametrosSQL))", $etiquetas);
+}
+
+function busquedaPorTexto($texto) {
+  // TODO: preguntar a jon si esto se deberia mejorar
+  // concretamente sobre las posibles busquedas repetidas y las palabras basura
+  //p.idpregunta in (SELECT idpregunta from pregunta where titulo like '%:t%' or texto like '%:t%')
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where lower(titulo) like :t or lower(texto) like :t)", ["t" => strtolower("%".$texto."%")]);
 }
 ?>

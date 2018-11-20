@@ -4,23 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
-    <!-- Iconos -->
-    <link rel="stylesheet" href="../iconos/iconos.css">
-    <!-- Favicon -->
-    <link rel="icon" href="../imagenes/favicon.ico" type="image/ico" sizes="any">
-    <!-- Fuentes -->
-    <link href="../fuentes/Roboto/roboto.css" rel="stylesheet">
-    <link href="../fuentes/OpenSans/OpenSans.css" rel="stylesheet">
-    <!-- Estilos -->
-    <link rel="stylesheet" type="text/css" href="../codigo/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../codigo/css/modalBox.css">
+    <?php include "../codigo/php/estilos.php" ?>
 </head>
 <body>
 <?php
 include './header.php';
 
 if(isset($_GET['error'])){
-    include '../codigo/php/estilos.php';
     switch($_GET['error']){
         case 404:
             echo '<h1 class="error">Error 404</h1>';

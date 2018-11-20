@@ -27,21 +27,16 @@ html {
   width: 32px;
 }
 
-#logoHeader{
+#logoHeader {
   width: 15%;
   margin-right: 5%;
 }
 
-#barraBusqueda{
-  width: 50%;
-}
-
-#barraBusqueda input{
-  width: 100%;
+#barraBusqueda input {
   margin-left: 5px;
 }
 
-#barraBusqueda, #barraBusqueda input{
+#barraBusqueda, #barraBusqueda input {
   display: flex;
   align-items: center;
   background-color: #eee;
@@ -51,31 +46,34 @@ html {
   margin-right: 15px;
 }
 
-#ayuda, #botonLogin, #botonSignin{
+#barraBusqueda i {
+  border-right: 6px solid #d64;
+}
+
+#ayuda, #botonLogin, #botonSignin, #botonMenu {
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
   background-color: #eee;
   color: #333;
   border-radius: 4px;
-  /*padding: 5px;*/
   text-decoration: none;
   margin-left: 5px;
+  padding: 0 15px;
+  flex-shrink: 0;
 }
 
 .error {
   width: 50%;
   margin: 50px auto;
+  padding: 15px;
   text-align: center;
   background-color: #eee;
-  border: 2px solid #888;
-  border-radius: 1px;
+  border: 2px solid #333;
+  border-radius: 4px;
 }
 
-.cabecera {
-  grid-area: header;
-}
-
+/*GRID*/
 .margen {
   grid-area: gap;
 }
@@ -86,10 +84,6 @@ html {
 
 .main {
   grid-area: main;
-}
-
-.pie {
-  grid-area: footer;
 }
 
 .gridContenedor {
@@ -108,7 +102,9 @@ header {
   align-items: stretch;
   align-content: center;
   background-color: #d64;
-  padding: 2%;
+  padding: 20px;
+  overflow: visible;
+  grid-area: header;
 }
 
 /*footer*/
@@ -117,6 +113,7 @@ footer {
   background-color: #d64;
   justify-content: center;
   padding: 2%;
+  grid-area: footer;
 }
 
 footer div, #email, .contacto {
@@ -127,4 +124,47 @@ footer div, #email, .contacto {
 footer #logo {
   width: 100px;
   margin: 5px 2%;
+}
+
+.thumb {
+  cursor: pointer;
+}
+
+#menuMovil{
+  display: none;
+  flex-shrink: 0;
+  /*width: 100%;*/
+  /*justify-content: center;*/
+
+}
+#menuMovil>a{
+  /*flex-basis: 100%;*/
+}
+
+@media only screen and (max-width: 600px) {
+  #botonMenu {
+    display: flex;
+  }
+
+  #ayuda, #botonLogin, #botonSignin {
+    display: none;
+  }
+
+  #barraBusqueda, #barraBusqueda input {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  #botonMenu {
+    display: none;
+  }
+
+  #ayuda, #botonLogin, #botonSignin {
+    display: flex;
+  }
+
+  #barraBusqueda, #barraBusqueda input {
+    width: 100%;
+  }
 }

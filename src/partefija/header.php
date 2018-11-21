@@ -8,7 +8,7 @@ if (!isset($_SESSION)) {
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <header>
-  <a href="/index.php" id="logoHeader"><img src="/imagenes/bitmap.png"></a>
+  <a id="logoHeader" href="/index.php"><img src="/imagenes/Logo.png"/></a>
   <form action="" method="get" id="barraBusqueda">
     <i><input type="submit" class="material-icons" value="search"/></i>
     <input type="search" id="busqueda" name="" placeholder="Buscar..."/>

@@ -112,6 +112,7 @@ html {
 
 header {
   display: flex;
+  /*position: fixed;*/
   /*justify-content: center;*/
   align-content: center;
   background-color: #d64;

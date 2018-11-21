@@ -11,7 +11,6 @@
   <body>
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
-      <div class="margen"></div>
       <div class="main">
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
@@ -95,7 +94,7 @@
             <?php
         }?>
       </div>
-      <div class="margen2"></div>
+      <div class="margen"></div>
       <?php include "./partefija/footer.php" ?>
     </div>
   </body>

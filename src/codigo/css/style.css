@@ -78,10 +78,6 @@ html {
   grid-area: gap;
 }
 
-.margen2 {
-  grid-area: gap2;
-}
-
 .main {
   grid-area: main;
 }
@@ -90,7 +86,7 @@ html {
   display: grid;
   grid-template-areas:
     'header header header'
-    'gap main gap2'
+    'main main gap'
     'footer footer footer';
   min-height: 100vh;
   grid-template-rows: 80px 1fr auto;

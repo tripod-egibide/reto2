@@ -14,6 +14,7 @@
       <div class="main">
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
+        var_dump($_SESSION);
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         require "codigo/php/bbdd.php";
@@ -23,6 +24,13 @@
           if (isset($_GET["busqueda"])) {
             //esta es la busqueda que combina etiquetas con titulos
             $porEtiquetas = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
+            $porPalabras = busquedaPorTexto(explode(",", $_GET["busqueda"]));
+            $datos = [];
+            foreach ($porEtiquetas as $preguntaEtiquetas) {
+              if (in_array($preguntaEtiquetas, $porPalabras)) {
+                $datos[] = $preguntaEtiquetas;
+              }
+            }
           } else {
             $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
           }

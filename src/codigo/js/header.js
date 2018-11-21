@@ -8,6 +8,15 @@ function interruptorMenu() {
 }
 $("#botonMenu").on("click", interruptorMenu);
 
+$("#botonLogout").on("click", (data) => {
+  $.post("/codigo/php/cuenta/signout.php");
+  $.ajax({
+      type: "POST",
+      url: "/codigo/php/cuenta/signout.php"
+    })
+    .done(() => window.location.replace(window.location.pathname + window.location.search + window.location.hash));
+
+})
 
 $("#barraBusqueda").submit(() => {
   let texto = $("#busqueda").val();

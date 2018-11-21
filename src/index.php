@@ -20,7 +20,7 @@
         require "codigo/php/bbdd.php";
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
         if (isset($_GET["etiquetas"])) {
-          //dividir estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
+          //dividir el resultado de estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
           if (isset($_GET["busqueda"])) {
             //esta es la busqueda que combina etiquetas con titulos
           } else {

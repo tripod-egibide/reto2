@@ -74,6 +74,7 @@ $_SESSION["id"] = 1;
     if(isset($_GET['resultado'])){
                 ?>
                 <h1>Respuesta publicada correctamente.</h1>
+                <input type="text" id="comando" name="comando" value="ok" hidden>
                 <?php
             }else if(isset($_SESSION["id"])){
                 ?>
@@ -84,7 +85,6 @@ $_SESSION["id"] = 1;
             <form action="/codigo/php/controller.php" method="post">
                 <!-- ANNADIR AQUI PARA LA AMPLIACION DEL MODIFICAR -->
                     <input type="text" id="idPregunta" name="idPregunta" value="<?=$id?>" hidden>
-
                 <input type="text" id="comando" name="comando" value="publicarRespuesta" hidden>
                 <!--muestra un formulario predisennado de un html -->
                 <?php

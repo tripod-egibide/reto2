@@ -1,5 +1,16 @@
 $(document).ready(function(){
     try{
+
+        var tiempo = setInterval(
+            function(){
+                if($("#comando").val() == ("ok")){
+                    location.href="/index.php";
+                }else{
+                    clearInterval(tiempo);
+                }
+
+            }, 2000);
+
         //comprobar si el usuario está loggeado
         if($("#pregunta").attr("data-idusuario") == null){
             deshabilitarVotos();
@@ -69,4 +80,3 @@ function enviar(idPregunta, tipoVoto, voto, campo){
 
     });
 }
-

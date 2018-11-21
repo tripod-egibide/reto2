@@ -21,13 +21,14 @@ $_SESSION["id"] = 1;
     </title>
       <?php include "../codigo/php/estilos.php" ?>
     <link rel="stylesheet" href="../codigo/css/pregunta.css">
-      <script type="text/javascript" src="../codigo/js/pregunta/pregunta.js"></script>
   </head>
 
   <body>
+  <div class="gridContenedor">
   <?php
   include("../partefija/header.php");
   ?>
+  <script type="text/javascript" src="../codigo/js/pregunta/pregunta.js"></script>
     <div class="post" id="pregunta" data-idpregunta="<?=$id?>" data-idusuario="<?=$_SESSION["id"]?>">
       <div class="cabeceraPost" id="cabeceraPregunta">
         <h1 class="titulo" id="tituloPregunta">
@@ -124,7 +125,7 @@ $_SESSION["id"] = 1;
     }
     include("../partefija/footer.php");
     ?>
-
+  </div>
   </body>
 
 </html>

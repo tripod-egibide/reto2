@@ -9,14 +9,12 @@
 <body>
 <div class="gridContenedor">
 <!-- carga la cabecera desde un html-->
-    <div class="cabecera">
-        <?php
+    <?php
 
-        include "../partefija/header.php";
+    include "../partefija/header.php";
 
-        ?>
-    </div>
-    <div class="main">
+    ?>
+    <div>
         <?php
             if(isset($_GET['resultado'])){
                 ?>

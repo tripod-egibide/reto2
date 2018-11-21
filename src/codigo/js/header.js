@@ -14,7 +14,7 @@ $("#botonLogout").on("click", (data) => {
       type: "POST",
       url: "/codigo/php/cuenta/signout.php"
     })
-    .done(() => window.location.replace(window.location.pathname + window.location.search + window.location.hash));
+    .done(() => window.location.reload());
 
 })
 

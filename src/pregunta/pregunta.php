@@ -1,7 +1,6 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
 
-  include("../partefija/header.php");
 $_SESSION["id"] = 1;
 
   if (isset($_GET["id"])) {
@@ -26,6 +25,9 @@ $_SESSION["id"] = 1;
   </head>
 
   <body>
+  <?php
+  include("../partefija/header.php");
+  ?>
     <div class="post" id="pregunta" data-idpregunta="<?=$id?>" data-idusuario="<?=$_SESSION["id"]?>">
       <div class="cabeceraPost" id="cabeceraPregunta">
         <h1 class="titulo" id="tituloPregunta">

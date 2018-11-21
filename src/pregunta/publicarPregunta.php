@@ -14,7 +14,7 @@
     include "../partefija/header.php";
 
     ?>
-    <div>
+    <div class="main">
         <?php
             if(isset($_GET['resultado'])){
                 ?>

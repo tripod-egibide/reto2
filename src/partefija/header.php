@@ -17,13 +17,12 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
   <a href="#" id="botonLogin">Sign in</a>
   <a href="#" id="botonSignin">Sign up</a>
   <a href="#" id="botonMenu"><i class="material-icons">menu</i></a>
-    <br>
-    <div id="menuMovil">
-        <a href="#" >Sign in</a>
-        <a href="#" >Sign up</a>
-    </div>
 </header>
-
+<div id="menuMovil">
+    <a href="#" id="botonLoginMovil">Sign in</a>
+    <a href="#" id="botonSigninMovil">Sign up</a>
+    <a href="/doc/Manual%20del%20Usuario.pdf" id="ayudaMovil" target="_blank"><i class="material-icons">help_outline</i></a>
+</div>
 <!-- Login -->
 <div id="modalLogin" class="modal">
   <div class="modalContenido">

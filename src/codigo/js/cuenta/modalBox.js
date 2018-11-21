@@ -1,10 +1,10 @@
 var login = document.getElementById("modalLogin");
 var signin = document.getElementById("modalSignin");
 
-$('#botonLogin, #cerrarLogin').on("click", function() {
+$('#botonLogin, #botonLoginMovil, #cerrarLogin').on("click", function() {
     $('#modalLogin').toggle();
 });
-$('#botonSignin, #cerrarSignin').on("click", function() {
+$('#botonSignin, #botonSigninMovil, #cerrarSignin').on("click", function() {
     $('#modalSignin').toggle();
 });
 

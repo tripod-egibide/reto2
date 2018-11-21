@@ -59,7 +59,7 @@ $_SESSION["id"] = 1;
           <?php
           foreach ($etiquetas as $etiqueta) {
             ?>
-            <li class=etiqueta><a href="/index.php?etiquetas=<?=$etiqueta["idetiqueta"]?>"><?=$etiqueta["etiqueta"]?></a></li>
+            <li class=etiqueta><a href="/index.php?etiquetas=<?=strtolower($etiquetas["etiqueta"])?>">#<?=$etiqueta["etiqueta"]?></a></li>
             <?php
           }
           ?>

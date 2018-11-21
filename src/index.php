@@ -23,13 +23,13 @@
           //dividir el resultado de estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
           if (isset($_GET["busqueda"])) {
             //esta es la busqueda que combina etiquetas con titulos
+            $porEtiquetas = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
           } else {
             $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
           }
 
         } else if (isset($_GET["busqueda"])) {
-          //igual que la de arriba
-          $datos = busquedaPorTexto($_GET["busqueda"]);
+          $datos = busquedaPorTexto(explode(",", $_GET["busqueda"]));
         } else {
           $datos = cargarIndex($pagina);
           $mostrarPaginas = true;
@@ -68,7 +68,7 @@
               <?php
               foreach ($pregunta["etiquetas"] as $etiquetas) {
                 ?>
-                <li class=etiqueta><a href="/index.php?etiquetas=<?=$etiquetas["idetiqueta"]?>"><?=$etiquetas["etiqueta"]?></a></li>
+                <li class=etiqueta><a href="/index.php?etiquetas=<?=strtolower($etiquetas["etiqueta"])?>">#<?=$etiquetas["etiqueta"]?></a></li>
                 <?php
               }
               ?>

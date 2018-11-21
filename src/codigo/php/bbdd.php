@@ -167,21 +167,21 @@ function busquedaPorEtiquetas($etiquetasArray) {
   $parametrosSQL = ":" . implode("|", $etiquetasArray);
   $parametrosSQL = str_replace("|", ", :", $parametrosSQL);
 
-  foreach ($etiquetasArray as $id) {
-    $etiquetas[":$id"] = $id;
+  foreach ($etiquetasArray as $etiqueta) {
+    $etiquetas[":$etiqueta"] = $etiqueta;
   }
-  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in ($parametrosSQL))", $etiquetas);
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in (SELECT idetiqueta from etiqueta where lower(etiqueta) in ($parametrosSQL)))", $etiquetas);
 }
 
 function busquedaPorTexto($texto) {
   $where = "";
   $array = [];
   foreach ($texto as $palabra) {
-    $where .= "lower(titulo) like :$palabra or lower(texto) like :$palabra)";
-    $array[$palabra] = "%".$palabra."%";
+    $where .= " lower(titulo) like :i$palabra or lower(texto) like :i$palabra or";
+    $array["i$palabra"] = "%".$palabra."%";
   }
-  
-  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where lower(titulo) like :t or lower(texto) like :t)", ["t" => strtolower("%".$texto."%")]);
+  $where = substr($where, 0, -3);
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where$where)", $array);
 }
 
 function buscarVoto($base, $usuario, $pregunta){

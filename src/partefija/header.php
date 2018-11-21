@@ -26,19 +26,19 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 <!-- Login -->
 <div id="modalLogin" class="modal">
   <div class="modalContenido">
-    <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
     <?php
     include "$raiz/cuenta/signin.html";
     ?>
+    <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
   </div>
 </div>
 <!-- Signin -->
 <div id="modalSignin" class="modal">
   <div class="modalContenido">
-    <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
     <?php
     include "$raiz/cuenta/signup.html";
     ?>
+      <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
   </div>
 </div>
 <!-- Script de modalBox -->

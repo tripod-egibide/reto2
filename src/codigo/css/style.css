@@ -92,17 +92,16 @@ html {
     'header header header'
     'gap main gap2'
     'footer footer footer';
-  height: 100%;
-  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  grid-template-rows: 80px 1fr auto;
 }
 
 header {
   display: flex;
   /*justify-content: center;*/
-  align-items: stretch;
   align-content: center;
   background-color: #d64;
-  padding: 20px;
+  padding: 10px;
   overflow: visible;
   grid-area: header;
 }
@@ -112,7 +111,7 @@ footer {
   display: flex;
   background-color: #d64;
   justify-content: center;
-  padding: 2%;
+  padding: 10px;
   grid-area: footer;
 }
 
@@ -130,14 +129,14 @@ footer #logo {
   cursor: pointer;
 }
 
-#menuMovil{
+#menuMovil {
   display: none;
   flex-shrink: 0;
   /*width: 100%;*/
   /*justify-content: center;*/
-
 }
-#menuMovil>a{
+
+#menuMovil>a {
   /*flex-basis: 100%;*/
 }
 

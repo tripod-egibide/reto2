@@ -47,7 +47,7 @@ function ultimaRespuesta(){
 }
 
 function insertarPregunta($datos){
-    //obtiene el último registro
+    //obtiene el ultimo registro
     $r = ultimaPregunta();
     //inserta registro
   if(realizarConsulta("INSERT INTO pregunta VALUES (NULL, :usuario, :titulo, :mensaje, DEFAULT);", $datos) == null){
@@ -172,9 +172,13 @@ function busquedaPorEtiquetas($etiquetasArray) {
 }
 
 function busquedaPorTexto($texto) {
-  // TODO: preguntar a jon si esto se deberia mejorar
-  // concretamente sobre las posibles busquedas repetidas y las palabras basura
-  //p.idpregunta in (SELECT idpregunta from pregunta where titulo like '%:t%' or texto like '%:t%')
+  $where = "";
+  $array = [];
+  foreach ($texto as $palabra) {
+    $where .= "lower(titulo) like :$palabra or lower(texto) like :$palabra)";
+    $array[$palabra] = "%".$palabra."%";
+  }
+  
   return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where lower(titulo) like :t or lower(texto) like :t)", ["t" => strtolower("%".$texto."%")]);
 }
 

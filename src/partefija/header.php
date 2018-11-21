@@ -8,7 +8,7 @@ if (!isset($_SESSION)) {
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <header>
-  <a href="/index.php" id="logoHeader"><img src="/imagenes/bitmap.png"></a>
+  <a id="logoHeader" href="/index.php"><img src="/imagenes/Logo.png"/></a>
   <form action="" method="get" id="barraBusqueda">
     <i><input type="submit" class="material-icons" value="search"/></i>
     <input type="search" id="busqueda" name="" placeholder="Buscar..."/>
@@ -17,29 +17,28 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
   <a href="#" id="botonLogin">Sign in</a>
   <a href="#" id="botonSignin">Sign up</a>
   <a href="#" id="botonMenu"><i class="material-icons">menu</i></a>
-    <br>
-    <div id="menuMovil">
-        <a href="#" >Sign in</a>
-        <a href="#" >Sign up</a>
-    </div>
 </header>
-
+<div id="menuMovil">
+    <a href="#" id="botonLoginMovil">Sign in</a>
+    <a href="#" id="botonSigninMovil">Sign up</a>
+    <a href="/doc/Manual%20del%20Usuario.pdf" id="ayudaMovil" target="_blank"><i class="material-icons">help_outline</i></a>
+</div>
 <!-- Login -->
 <div id="modalLogin" class="modal">
   <div class="modalContenido">
-    <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
     <?php
     include "$raiz/cuenta/signin.html";
     ?>
+    <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
   </div>
 </div>
 <!-- Signin -->
 <div id="modalSignin" class="modal">
   <div class="modalContenido">
-    <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
     <?php
     include "$raiz/cuenta/signup.html";
     ?>
+      <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
   </div>
 </div>
 <!-- Script de modalBox -->

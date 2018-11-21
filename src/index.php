@@ -11,7 +11,6 @@
   <body>
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
-      <div class="margen"></div>
       <div class="main">
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
@@ -20,7 +19,7 @@
         require "codigo/php/bbdd.php";
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
         if (isset($_GET["etiquetas"])) {
-          //dividir estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
+          //dividir el resultado de estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
           if (isset($_GET["busqueda"])) {
             //esta es la busqueda que combina etiquetas con titulos
           } else {
@@ -95,7 +94,7 @@
             <?php
         }?>
       </div>
-      <div class="margen2"></div>
+      <div class="margen"></div>
       <?php include "./partefija/footer.php" ?>
     </div>
   </body>

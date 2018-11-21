@@ -66,7 +66,7 @@ function insertarPregunta($datos){
 function insertarEtiqueta($etiquetas, $idPregunta){
     $cont = false;
     foreach($etiquetas as $etiqueta){
-        $etiqueta = mb_convert_case($etiqueta, MB_CASE_TITLE, "UTF-8");
+        $etiqueta = mb_convert_case($etiqueta, MB_CASE_LOWER, "UTF-8");
         if($etiqueta != ""){
             $idEtiqueta = consultarEtiqueta($etiqueta);
             if($idEtiqueta == null){
@@ -94,8 +94,6 @@ function insertarRespuesta($datos){
     //obtiene el último registro
     $r = ultimaRespuesta();
     //inserta registro
-    var_dump($datos);
-    echo "lol" ;
     if(realizarConsulta("INSERT INTO respuesta VALUES (NULL, :pregunta, :usuario, :titulo, :mensaje, 0, DEFAULT);", $datos) == null){
         // si no devuelve nada, es que ha fallado
         return null;
@@ -180,16 +178,20 @@ function busquedaPorTexto($texto) {
   return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where lower(titulo) like :t or lower(texto) like :t)", ["t" => strtolower("%".$texto."%")]);
 }
 
-function buscarVoto($base, $usuario, $pregunta){
-    return realizarConsulta("SELECT positivo FROM :base WHERE idusuario = :usuario and idpregunta = :pregunta;", ["base"=>$base,"usuario"=>$usuario, "pregunta"=>$pregunta])->fetch()[0];
-
+//busca e inserta o actualiza el voto de una pregunta
+function buscarVoto($base, $dato){
+    return realizarConsulta("SELECT idusuario FROM $base WHERE idusuario = :usuario and idpregunta = :pregunta;", $dato)->fetch()[0];
 }
-function insertarVoto($dato){
-    //de alguna manera no me permite insertar :base como sustituto al voto_pregunta
-    return realizarConsulta("INSERT INTO voto_pregunta VALUES(:usuario, :pregunta, :valor) ;", $dato);
+//no hay necesidad de un return, ya que consultarVotosPregunta realiza una actualización de los votos contra la bbdd
+//el motivo de realizar una nueva consulta es por si otro usuario votase antes de que el actual pudiese votar, ya que la página no se recarga por voto de cada usuario
+//así obtendría un resultado de votos más exacto.
+function insertarVoto($base, $dato){
+    realizarConsulta("INSERT INTO $base VALUES(:usuario, :pregunta, :voto) ;", $dato);
 }
-function actualizarVoto($dato){
-    return realizarConsulta("INSERT INTO voto_pregunta VALUES(1, 1, 1) ;", $dato);
-    //return realizarConsulta("UPDATE voto_pregunta SET positivo = :valor WHERE idusuario = :usuario and idpregunta = :pregunta ;", $dato);
+function actualizarVoto($base, $dato){
+    realizarConsulta("UPDATE $base SET positivo = :voto WHERE idusuario = :usuario AND idpregunta = :pregunta;", $dato);
+}
+function consultarVotos($base, $dato){
+    return realizarConsulta("SELECT SUM(REPLACE(positivo, '0', '-1')) FROM $base WHERE idpregunta = :pregunta;", ["pregunta"=>$dato])->fetch()[0];
 }
 ?>

@@ -42,7 +42,7 @@ $_SESSION["id"] = 1;
           <?php
           echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='ppositivo'>arrow_drop_up</i>" :  "");
           ?>
-        <span class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
+        <span id="votoPregunta" class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
           <?php
           echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='pnegativo'>arrow_drop_down</i>" :  "");
           ?>
@@ -102,13 +102,13 @@ $_SESSION["id"] = 1;
         <span class="creador"><a href="../cuenta/perfil.php?id=<?=$respuesta["idusuario"]?>"><?=$respuesta["usuario"]?></a></span>
         <img class="avatar" src="<?=$respuesta["url_avatar"]?>">
       </div>
-      <div class="votos">
+      <div class="votos votoRespuesta" data-idrespuesta="<?=$respuesta['idrespuesta']?>">
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestapositivo\">arrow_drop_up</i>" :  "");
+          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestaPositivo\">arrow_drop_up</i>" :  "");
           ?>
-        <span class="votosContador"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
+        <span class="votosContador" id="respuesta<?=$respuesta["idrespuesta"]?>"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestanegativo\">arrow_drop_down</i>" :  "");
+          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestaNegativo\">arrow_drop_down</i>" :  "");
           ?>
         <?php
         if ($respuesta["resuelve"]) {

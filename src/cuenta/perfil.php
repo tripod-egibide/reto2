@@ -1,4 +1,6 @@
-<?php if (isset($_GET["id"])) { ?>
+<?php
+require "codigo/php/bbdd.php"
+if (isset($_GET["id"])) { ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -9,9 +11,7 @@
 
   <body>
     <?php
-
       session_start();
-      include '../codigo/php/bbdd.php';
       include '../codigo/php/estilos.php';
       include "../partefija/header.php";
       $duenno = $_SESSION["id"] == $_GET["id"];

@@ -1,4 +1,4 @@
-<?php // TODO: annadir un control de paginas, para que salte un 404 si la pagina estuviese vacia ?>
+<?php require "codigo/php/bbdd.php" ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,7 +16,6 @@
         <?php
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
-        require "codigo/php/bbdd.php";
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
         if (isset($_GET["etiquetas"])) {
           //dividir el resultado de estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo

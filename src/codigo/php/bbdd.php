@@ -214,4 +214,12 @@ function preguntasDeUsuario($id) {
 function actualizarAvatar($datos) {
   realizarConsulta("UPDATE usuario set url_avatar = :url where idusuario = :id", $datos);
 }
+
+function verAvatar($id) {
+  return realizarConsulta("SELECT url_avatar from usuario where idusuario = :id", ["id" => $id])->fetch();
+}
+
+function etiquetasFrecuentes() {
+  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 10")->fetchAll();
+}
 ?>

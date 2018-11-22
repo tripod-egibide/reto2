@@ -1,6 +1,5 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
-
   include("../partefija/header.php");
 $_SESSION["id"] = 1;
 

@@ -16,8 +16,9 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
   <a href="/doc/Manual%20del%20Usuario.pdf" id="ayuda" target="_blank"><i class="material-icons">help_outline</i></a>
   <?php
     if (isset($_SESSION["id"])) {
+      $avatar = verAvatar($_SESSION["id"]);
       ?>
-      <a href="#"><img src="" alt=""></a>
+      <a href="/cuenta/perfil.php?id=<?=$_SESSION["id"]?>"><img class="avatar avatarHeader" src="<?=$avatar["url_avatar"]?>"></a>
       <a href="#" id="botonLogout">Log out</a>
       <?php
     } else {

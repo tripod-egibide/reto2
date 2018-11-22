@@ -1,6 +1,5 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
-  include("../partefija/header.php");
 $_SESSION["id"] = 1;
 
   if (isset($_GET["id"])) {
@@ -21,10 +20,14 @@ $_SESSION["id"] = 1;
     </title>
       <?php include "../codigo/php/estilos.php" ?>
     <link rel="stylesheet" href="../codigo/css/pregunta.css">
-      <script type="text/javascript" src="../codigo/js/pregunta/pregunta.js"></script>
   </head>
 
   <body>
+  <div class="gridContenedor">
+  <?php
+  include("../partefija/header.php");
+  ?>
+  <script type="text/javascript" src="../codigo/js/pregunta/pregunta.js"></script>
     <div class="post" id="pregunta" data-idpregunta="<?=$id?>" data-idusuario="<?=$_SESSION["id"]?>">
       <div class="cabeceraPost" id="cabeceraPregunta">
         <h1 class="titulo" id="tituloPregunta">
@@ -41,7 +44,7 @@ $_SESSION["id"] = 1;
           <?php
           echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='ppositivo'>arrow_drop_up</i>" :  "");
           ?>
-        <span class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
+        <span id="votoPregunta" class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
           <?php
           echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='pnegativo'>arrow_drop_down</i>" :  "");
           ?>
@@ -68,11 +71,12 @@ $_SESSION["id"] = 1;
 <hr>
     <?php
     if(isset($_GET['resultado'])){
-      ?>
-      <h1>Respuesta publicada correctamente.</h1>
-      <?php
+        ?>
+        <h1>Respuesta publicada correctamente.</h1>
+        <input type="text" id="comando" name="comando" value="ok" hidden>
+        <?php
     }else if(isset($_SESSION["id"])){
-      ?>
+        ?>
         <!--formulario que carga la pregunta al servidor -->
         <h1 id="tituloFormulario">Publicar nueva respuesta</h1>
         <div id="formulario">
@@ -80,7 +84,6 @@ $_SESSION["id"] = 1;
             <form action="/codigo/php/controller.php" method="post">
                 <!-- ANNADIR AQUI PARA LA AMPLIACION DEL MODIFICAR -->
                     <input type="text" id="idPregunta" name="idPregunta" value="<?=$id?>" hidden>
-
                 <input type="text" id="comando" name="comando" value="publicarRespuesta" hidden>
                 <!--muestra un formulario predisennado de un html -->
                 <?php
@@ -102,13 +105,13 @@ $_SESSION["id"] = 1;
         <span class="creador"><a href="../cuenta/perfil.php?id=<?=$respuesta["idusuario"]?>"><?=$respuesta["usuario"]?></a></span>
         <img class="avatar" src="<?=$respuesta["url_avatar"]?>">
       </div>
-      <div class="votos">
+      <div class="votos votoRespuesta" data-idrespuesta="<?=$respuesta['idrespuesta']?>">
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestapositivo\">arrow_drop_up</i>" :  "");
+          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestaPositivo\">arrow_drop_up</i>" :  "");
           ?>
-        <span class="votosContador"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
+        <span class="votosContador" id="respuesta<?=$respuesta["idrespuesta"]?>"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestanegativo\">arrow_drop_down</i>" :  "");
+          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestaNegativo\">arrow_drop_down</i>" :  "");
           ?>
         <?php
         if ($respuesta["resuelve"]) {
@@ -122,7 +125,7 @@ $_SESSION["id"] = 1;
     }
     include("../partefija/footer.php");
     ?>
-
+  </div>
   </body>
 
 </html>

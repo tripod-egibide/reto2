@@ -8,7 +8,7 @@ if (!isset($_SESSION)) {
 $raiz = $_SERVER['DOCUMENT_ROOT'];
 ?>
 <header>
-  <a href="/index.php" id="logoHeader"><img src="/imagenes/bitmap.png"></a>
+  <a id="logoHeader" href="/index.php"><img src="/imagenes/Logo.png"/></a>
   <form action="" method="get" id="barraBusqueda">
     <i><input type="submit" class="material-icons" value="search"/></i>
     <input type="search" id="busqueda" name="" placeholder="Buscar..."/>
@@ -39,19 +39,19 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 <!-- Login -->
 <div id="modalLogin" class="modal">
   <div class="modalContenido">
-    <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
     <?php
     include "$raiz/cuenta/signin.html";
     ?>
+    <i id="cerrarLogin" class="cerrarModal material-icons">cancel</i>
   </div>
 </div>
 <!-- Signin -->
 <div id="modalSignin" class="modal">
   <div class="modalContenido">
-    <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
     <?php
     include "$raiz/cuenta/signup.html";
     ?>
+      <i id="cerrarSignin" class="cerrarModal material-icons">cancel</i>
   </div>
 </div>
 <!-- Script de modalBox -->

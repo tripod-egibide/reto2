@@ -1,6 +1,5 @@
 <footer>
   <div>Powered by</div>
   <a id="logo" href="#"><img src="/imagenes/bitmap.png"></a>
-  <div>e-mail:</div>
-  <a id="email" href="mailto:tripod@tripod.com">tripod@tripod.com</a>
+  <a id="emailFooter" href="mailto:tripod@tripod.com">tripod@tripod.com</a>
 </footer>

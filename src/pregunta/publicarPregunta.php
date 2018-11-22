@@ -3,16 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Tripod</title>
+<<<<<<< HEAD
+    <?php
+    include "../codigo/php/estilos.php";
+    include "../codigo/php/bbdd.php";
+    ?>
+    <script type="text/javascript" src="/codigo/js/publicarPregunta/publicarPregunta.js"></script>
+=======
     <?php include "../codigo/php/estilos.php" ?>
 
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 </head>
 <body>
 <div class="gridContenedor">
 <!-- carga la cabecera desde un html-->
     <?php
-
     include "../partefija/header.php";
-
     ?>
     <script type="text/javascript" src="/codigo/js/pregunta/publicarPregunta.js"></script>
     <div class="main">

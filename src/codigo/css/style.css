@@ -33,8 +33,8 @@ html {
   border-right: 1px solid #d64;
 }
 
-#ayuda, #botonLogin, #botonSignin, #botonMenu,
-#ayudaMovil, #botonLoginMovil, #botonSigninMovil{
+#botonLogin, #botonSignin, #botonMenu,
+#ayudaMovil, #botonLoginMovil, #botonSigninMovil {
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
@@ -61,11 +61,13 @@ html {
 .margen {
   grid-area: gap;
 }
+
 .main {
   grid-area: main;
   padding-left: 5%;
   padding-top: 10px;
 }
+
 #menuMovil {
   grid-area: menu;
   display: none;
@@ -91,7 +93,10 @@ html {
     'footer footer footer';
   min-height: 100vh;
   grid-template-rows: 80px auto 1fr auto;
+<<<<<<< HEAD
+=======
   grid-template-columns: auto auto 20%;
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 }
 
 header {
@@ -118,20 +123,28 @@ header {
 footer {
   display: flex;
   background-color: #d64;
-  justify-content: center;
-  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px;
   grid-area: footer;
   flex-shrink: 0;
 }
 
+<<<<<<< HEAD
+footer>* {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+=======
 footer div, #emailFooter, .contacto {
   margin-top: 10px;
   text-decoration: none;
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 }
 
-footer #logo {
-  width: 100px;
-  margin: 5px 2%;
+footer img {
+  height: 32px;
+  width: 32px;
 }
 
 .thumb {
@@ -178,7 +191,7 @@ footer #logo {
     display: flex;
   }
 
-  #ayuda, #botonLogin, #botonSignin {
+  #botonLogin, #botonSignin {
     display: none;
   }
 
@@ -191,7 +204,12 @@ footer #logo {
   #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonMenu{
     display: none;
   }
+<<<<<<< HEAD
+
+  #botonLogin, #botonSignin {
+=======
   #ayuda, #botonLogin, #botonSignin {
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
     display: flex;
   }
 

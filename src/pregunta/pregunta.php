@@ -1,10 +1,14 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
+<<<<<<< HEAD
+  require "../codigo/php/bbdd.php";
+  require "../partefija/header.php";
+=======
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 $_SESSION["id"] = 1;
 
   if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    require "../codigo/php/bbdd.php";
     $datos = cargarPregunta($id);
     $pregunta = $datos["pregunta"]->fetch(0);
     $respuestas = $datos["respuestas"];

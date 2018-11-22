@@ -200,6 +200,28 @@ function consultarVotos($base, $dato, $tipoVoto){
 }
 
 function cargarUsuario($id) {
-  return realizarConsulta("SELECT * from usuario where idusuario = :id", ["id" => $id])->fetch();
+  return realizarConsulta("SELECT *, (select count(*) from pregunta where idusuario=u.idusuario) as preguntas,
+    (select count(*) from respuesta where idusuario=u.idusuario) as respuestas,
+    (select count(*) from voto_pregunta where idpregunta in (select idpregunta from pregunta where idusuario = :id) and positivo=1) as p_positivos,
+    (select count(*) from voto_respuesta where idrespuesta in (select idrespuesta from respuesta where idusuario = :id) and positivo=1) as r_positivos,
+    (select count(*) from voto_pregunta where idpregunta in (select idpregunta from pregunta where idusuario = :id) and positivo!=1) as p_negativos,
+    (select count(*) from voto_respuesta where idrespuesta in (select idrespuesta from respuesta where idusuario = :id) and positivo=1) as r_negativos
+  from usuario as u where idusuario=:id;", ["id" => $id])->fetch();
+}
+
+function preguntasDeUsuario($id) {
+  return realizarConsulta("SELECT idpregunta, titulo from pregunta where idusuario = :id", ["id" => $id])->fetchAll();
+}
+
+function actualizarAvatar($datos) {
+  realizarConsulta("UPDATE usuario set url_avatar = :url where idusuario = :id", $datos);
+}
+
+function verAvatar($id) {
+  return realizarConsulta("SELECT url_avatar from usuario where idusuario = :id", ["id" => $id])->fetch();
+}
+
+function etiquetasFrecuentes() {
+  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 10")->fetchAll();
 }
 ?>

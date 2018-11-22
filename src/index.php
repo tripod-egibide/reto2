@@ -1,4 +1,4 @@
-<?php // TODO: annadir un control de paginas, para que salte un 404 si la pagina estuviese vacia ?>
+<?php require "codigo/php/bbdd.php" ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,12 +12,10 @@
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
       <div class="main">
-        <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
+        <a class="iraPublicarPregunta" href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
-        var_dump($_SESSION);
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
-        require "codigo/php/bbdd.php";
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
         if (isset($_GET["etiquetas"])) {
           //dividir el resultado de estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
@@ -46,11 +44,6 @@
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">
-            <?php
-            if ($pregunta["resuelto"]) {
-              echo '<i class="material-icons">check</i>';
-            }
-            ?>
             <span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
             <span class="votos">
               <?php
@@ -65,11 +58,19 @@
               ?>
             </span>
             <div class="info">
-              <span class="titulo"><a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a></span>
-              <span class="autor"><a href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
-              </a></span>
-              <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
+              <div class="titulo">
+                  <?php
+                  if ($pregunta["resuelto"]) {
+                      echo '<i class="material-icons">check</i>';
+                  }
+                  ?>
+                  <a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
+              </div>
+              <div class="autor">
+                  el <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
+                  <a href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
+                  por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>"></a>
+              </div>
             </div>
             <ul class="etiquetas">
               <?php

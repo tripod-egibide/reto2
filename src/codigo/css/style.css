@@ -29,12 +29,13 @@ html {
   margin-right: 15px;
   /*text-align: center;*/
 }
+
 #barraBusqueda i {
   border-right: 1px solid #d64;
 }
 
-#ayuda, #botonLogin, #botonSignin, #botonMenu,
-#ayudaMovil, #botonLoginMovil, #botonSigninMovil{
+#botonLogin, #botonSignin, #botonMenu,
+#ayudaMovil, #botonLoginMovil, #botonSigninMovil {
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
@@ -46,6 +47,7 @@ html {
   padding: 0 15px;
   flex-shrink: 0;
 }
+
 /*Página errores*/
 .error {
   width: 50%;
@@ -61,10 +63,13 @@ html {
 .margen {
   grid-area: gap;
 }
+
 .main {
   grid-area: main;
-  padding-left: 20%;
+  padding-left: 5%;
+  padding-top: 10px;
 }
+
 #menuMovil {
   grid-area: menu;
   display: none;
@@ -89,7 +94,8 @@ html {
     'main main gap'
     'footer footer footer';
   min-height: 100vh;
-  grid-template-rows: 80px 1fr auto;
+  grid-template-rows: 80px auto 1fr auto;
+  grid-template-columns: auto auto 20%;
 }
 
 header {
@@ -101,16 +107,14 @@ header {
   padding: 10px;
   grid-area: header;
 }
-header #logoHeader {
-  margin: 5px;
-}
 
 #logoHeader img {
-  width: auto;
-  height: 100%;
-  /*margin: 5px;*/
+  width: 60px;
+  height: 60px;
+  margin: 0 5px;
 }
-#logo img{
+
+#logo img {
   width: 100%;
   height: auto;
 }
@@ -119,24 +123,69 @@ header #logoHeader {
 footer {
   display: flex;
   background-color: #d64;
-  justify-content: center;
-  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0px;
   grid-area: footer;
   flex-shrink: 0;
 }
 
-footer div, #email, .contacto {
-  margin-top: 10px;
-  text-decoration: none;
+footer>* {
+  display: flex;
+  align-items: center;
+  justify-items: center;
 }
 
-footer #logo {
-  width: 100px;
-  margin: 5px 2%;
+footer img {
+  height: 32px;
+  width: 32px;
 }
 
 .thumb {
   cursor: pointer;
+}
+
+/*Index*/
+.iraPublicarPregunta {
+  text-decoration: none;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  /*margin: 5px;*/
+}
+
+.pregunta * {
+  text-decoration: none;
+}
+
+.pregunta {
+  padding: 5px;
+}
+
+.titulo {
+  background-color: #ec9;
+  padding: 4px;
+}
+
+.etiquetas {
+  list-style: none;
+}
+
+.etiqueta {
+  display: inline-block;
+}
+
+.etiqueta a {
+  background-color: #ec9;
+  /*border: 1px solid #333;*/
+  color: #d64;
+  padding: 4px;
+  margin: 2px;
+  border-radius: 2px;
+}
+.autor, .fecha{
+  text-align: right;
 }
 
 /*Responsividad*/
@@ -145,7 +194,7 @@ footer #logo {
     display: flex;
   }
 
-  #ayuda, #botonLogin, #botonSignin {
+  #botonLogin, #botonSignin {
     display: none;
   }
 
@@ -155,10 +204,11 @@ footer #logo {
 }
 
 @media only screen and (min-width: 601px) {
-  #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonMenu{
+  #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonMenu {
     display: none;
   }
-  #ayuda, #botonLogin, #botonSignin {
+
+  #botonLogin, #botonSignin {
     display: flex;
   }
 

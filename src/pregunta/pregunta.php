@@ -2,7 +2,6 @@
 <?php
 
 $_SESSION["id"] = 1;
-
   if (isset($_GET["id"])) {
     $id = $_GET["id"];
     require "../codigo/php/bbdd.php";
@@ -130,7 +129,6 @@ $_SESSION["id"] = 1;
     ?>
   </div>
   </body>
-
 </html>
 <?php
   } else {

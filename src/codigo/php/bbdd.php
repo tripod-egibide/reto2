@@ -183,20 +183,20 @@ function busquedaPorTexto($texto) {
 }
 
 //busca e inserta o actualiza el voto de una pregunta
-function buscarVoto($base, $dato){
-    return realizarConsulta("SELECT idusuario FROM $base WHERE idusuario = :usuario and idpregunta = :pregunta;", $dato)->fetch()[0];
+function buscarVoto($base, $dato, $tipoVoto){
+    return realizarConsulta("SELECT idusuario FROM $base WHERE idusuario = :usuario and $tipoVoto = :idPreguntaRespuesta;", $dato)->fetch()[0];
 }
 //no hay necesidad de un return, ya que consultarVotosPregunta realiza una actualización de los votos contra la bbdd
 //el motivo de realizar una nueva consulta es por si otro usuario votase antes de que el actual pudiese votar, ya que la página no se recarga por voto de cada usuario
 //así obtendría un resultado de votos más exacto.
-function insertarVoto($base, $dato){
-    realizarConsulta("INSERT INTO $base VALUES(:usuario, :pregunta, :voto) ;", $dato);
+function insertarVoto($base, $dato, $tipoVoto){
+    realizarConsulta("INSERT INTO $base VALUES(:usuario, :idPreguntaRespuesta, :voto) ;", $dato);
 }
-function actualizarVoto($base, $dato){
-    realizarConsulta("UPDATE $base SET positivo = :voto WHERE idusuario = :usuario AND idpregunta = :pregunta;", $dato);
+function actualizarVoto($base, $dato, $tipoVoto){
+    realizarConsulta("UPDATE $base SET positivo = :voto WHERE idusuario = :usuario AND $tipoVoto = :idPreguntaRespuesta;", $dato);
 }
-function consultarVotos($base, $dato){
-    return realizarConsulta("SELECT SUM(REPLACE(positivo, '0', '-1')) FROM $base WHERE idpregunta = :pregunta;", ["pregunta"=>$dato])->fetch()[0];
+function consultarVotos($base, $dato, $tipoVoto){
+    return realizarConsulta("SELECT SUM(REPLACE(positivo, '0', '-1')) FROM $base WHERE $tipoVoto = :idPreguntaRespuesta;", ["idPreguntaRespuesta"=>$dato])->fetch()[0];
 }
 
 function cargarUsuario($id) {

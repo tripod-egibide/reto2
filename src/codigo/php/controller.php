@@ -1,5 +1,5 @@
 <?php
-include "bbdd.php";
+require "bbdd.php";
 session_start();
 //recibe comando, dependiendo del texto, ejecuta una funcion determinada.
     $comando = $_POST['comando'];
@@ -17,30 +17,24 @@ session_start();
             echo voto($comando);
             break;
         default:
-            //header('Location: /partefija/errores.php?error=404');
+            header('Location: /partefija/errores.php?error=404');
             break;
     }
     // vota positivo o negativo a una pregunta
     function voto($comando){
         $datoBusqueda = [
             "usuario" => $_SESSION["id"],
-            "pregunta" => $_POST["idPregunta"]];
-
-        if(buscarVoto($comando, $datoBusqueda) == null){
+            "idPreguntaRespuesta" => $_POST["idPreguntaRespuesta"]];
+        $tipoVoto = ($comando == "voto_pregunta") ? "idpregunta" : "idrespuesta";
+        if(buscarVoto($comando, $datoBusqueda, $tipoVoto) == null){
             $datoBusqueda["voto"] = $_POST["voto"];
-            insertarVoto($comando, $datoBusqueda);
+            insertarVoto($comando, $datoBusqueda, $tipoVoto);
         }else{
             $datoBusqueda["voto"] = $_POST["voto"];
-            actualizarVoto($comando, $datoBusqueda);
+            actualizarVoto($comando, $datoBusqueda, $tipoVoto);
         }
-        return consultarVotos($comando, $_POST["idPregunta"]);
-
+        return consultarVotos($comando, $_POST["idPreguntaRespuesta"],$tipoVoto);
     }
-    // vota positivo o negativo a una respuesta
-    function votoRespuesta(){
-
-    }
-
     function publicarPregunta(){
         $pregunta = [
             "usuario" => $_SESSION["id"],
@@ -71,7 +65,6 @@ session_start();
         $arrayPalabras = explode(',', $stringFinal);
         return $arrayPalabras;
     }
-
 function publicarRespuesta(){
     $pregunta = [
         "usuario" => $_SESSION["id"],

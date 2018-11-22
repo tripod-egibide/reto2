@@ -68,7 +68,7 @@ function votarNegativo(iddato, dato, campo){
 
 //funcion de envio de votos
 function enviar(idPregunta, tipoVoto, voto, campo){
-    var datos = {"idPregunta" : idPregunta, "comando" : tipoVoto, "voto" : voto };
+    var datos = {"idPreguntaRespuesta" : idPregunta, "comando" : tipoVoto, "voto" : voto };
     $.ajax({
         //hacemos un post al php correspondiente, que solo devuelve un mensaje si a habido un error
         type: "post",

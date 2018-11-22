@@ -44,20 +44,22 @@
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">
-            <span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
-            <span class="votos">
-              <?php
-              echo $pregunta["votos"];
-              if ($pregunta["votos"] > 0) {
-                echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
-              } else if ($pregunta["votos"] < 0) {
-                echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
-              } else {
-                echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
-              }
-              ?>
-            </span>
             <div class="info">
+			<div class="votosRespuesta">
+				<span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
+				<span class="votos">
+				  <?php
+				  echo '<span>'.$pregunta["votos"].'</span>';
+				  if ($pregunta["votos"] > 0) {
+					echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
+				  } else if ($pregunta["votos"] < 0) {
+					echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
+				  } else {
+					echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
+				  }
+				  ?>
+				</span>
+			</div>
               <div class="titulo">
                   <?php
                   if ($pregunta["resuelto"]) {
@@ -67,8 +69,8 @@
                   <a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
               </div>
               <div class="autor">
-                  el <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
-                  <a href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
+                  <span class="fecha">el <?=$pregunta["fecha_creacion"]?></span>
+                  <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
                   por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>"></a>
               </div>
             </div>
@@ -82,6 +84,7 @@
               ?>
             </ul>
           </div>
+		  <hr>
           <?php
         }
         if ($mostrarPaginas) {

@@ -163,19 +163,25 @@ footer img {
   padding: 5px;
 }
 
+.votosRespuesta{
+	
+}
+
 .titulo {
   background-color: #ec9;
   padding: 4px;
 }
 
+.autor, .fecha{
+  text-align: right;
+}
+
 .etiquetas {
   list-style: none;
 }
-
 .etiqueta {
   display: inline-block;
 }
-
 .etiqueta a {
   background-color: #ec9;
   /*border: 1px solid #333;*/
@@ -183,9 +189,6 @@ footer img {
   padding: 4px;
   margin: 2px;
   border-radius: 2px;
-}
-.autor, .fecha{
-  text-align: right;
 }
 
 /*Responsividad*/

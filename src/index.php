@@ -14,6 +14,7 @@
       <div class="main">
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
+        var_dump($_SESSION);
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         require "codigo/php/bbdd.php";
@@ -22,13 +23,20 @@
           //dividir el resultado de estas busquedas en paginas seria complicado, pero lo podemos hacer luego si tenemos tiempo
           if (isset($_GET["busqueda"])) {
             //esta es la busqueda que combina etiquetas con titulos
+            $porEtiquetas = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
+            $porPalabras = busquedaPorTexto(explode(",", $_GET["busqueda"]));
+            $datos = [];
+            foreach ($porEtiquetas as $preguntaEtiquetas) {
+              if (in_array($preguntaEtiquetas, $porPalabras)) {
+                $datos[] = $preguntaEtiquetas;
+              }
+            }
           } else {
             $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
           }
 
         } else if (isset($_GET["busqueda"])) {
-          //igual que la de arriba
-          $datos = busquedaPorTexto($_GET["busqueda"]);
+          $datos = busquedaPorTexto(explode(",", $_GET["busqueda"]));
         } else {
           $datos = cargarIndex($pagina);
           $mostrarPaginas = true;
@@ -58,7 +66,7 @@
             </span>
             <div class="info">
               <span class="titulo"><a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a></span>
-              <span class="autor"><a href="../cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
+              <span class="autor"><a href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
                 <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
               </a></span>
               <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
@@ -67,7 +75,7 @@
               <?php
               foreach ($pregunta["etiquetas"] as $etiquetas) {
                 ?>
-                <li class=etiqueta><a href="/index.php?etiquetas=<?=$etiquetas["idetiqueta"]?>"><?=$etiquetas["etiqueta"]?></a></li>
+                <li class=etiqueta><a href="/index.php?etiquetas=<?=strtolower($etiquetas["etiqueta"])?>">#<?=$etiquetas["etiqueta"]?></a></li>
                 <?php
               }
               ?>

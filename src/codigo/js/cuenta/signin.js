@@ -6,14 +6,15 @@ $("#login").submit(() => {
     url: window.root + "/codigo/php/cuenta/signin.php",
     data: $("#login").serialize(),
     success: (r) => {
-      if (r) {
+      if (r != 1) {
         //si hay un mensaje, lo mostramos por pantalla y vaciamos los campos de contrasenna
         $("#resultado").html(r);
         $("#contraLogin").val("");
+
       } else {
         //si no, vamos al index
         // TODO: este comportamiento es temporal, en realidad se cerraria el popup
-        window.location.replace(window.root);
+        location.reload();
       }
     }
   });

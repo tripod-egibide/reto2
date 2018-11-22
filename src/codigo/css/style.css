@@ -64,6 +64,7 @@ html {
 .main {
   grid-area: main;
   padding-left: 5%;
+  padding-top: 10px;
 }
 #menuMovil {
   grid-area: menu;
@@ -137,6 +138,40 @@ footer #logo {
   cursor: pointer;
 }
 
+/*Index*/
+.iraPublicarPregunta{
+  text-decoration: none;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  /*margin: 5px;*/
+}
+.pregunta *{
+  text-decoration: none;
+}
+.pregunta{
+  padding: 5px;
+}
+.titulo{
+  background-color: #ec9;
+  padding: 4px;
+}
+
+.etiquetas{
+  list-style: none;
+}
+.etiqueta{
+  display: inline-block;
+}
+.etiqueta a{
+  background-color: #ec9;
+  border: 1px solid #333;
+  color: #d64;
+  padding: 4px;
+  margin: 2px;
+  border-radius: 3px;
+}
 /*Responsividad*/
 @media only screen and (max-width: 600px) {
   #botonMenu {

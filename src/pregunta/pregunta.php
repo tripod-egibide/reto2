@@ -62,7 +62,7 @@ $_SESSION["id"] = 1;
           <?php
           foreach ($etiquetas as $etiqueta) {
             ?>
-            <li class=etiqueta><a href="/index.php?etiquetas=<?=$etiqueta["idetiqueta"]?>"><?=$etiqueta["etiqueta"]?></a></li>
+            <li class=etiqueta><a href="/index.php?etiquetas=<?=strtolower($etiquetas["etiqueta"])?>">#<?=$etiqueta["etiqueta"]?></a></li>
             <?php
           }
           ?>
@@ -94,8 +94,11 @@ $_SESSION["id"] = 1;
         </div>
         <?php
             }
+            var_dump($respuestas);
     while ($respuesta = $respuestas->fetch()) {
+      // var_dump($respuesta);
       ?>
+
     <div class="post respuesta">
       <div class="cabeceraPost">
         <h2 class="titulo">
@@ -119,7 +122,7 @@ $_SESSION["id"] = 1;
         }
         ?>
       </div>
-      <p class="cuerpo"><?=$pregunta["texto"]?></p>
+      <p class="cuerpo"><?=$respuesta["texto"]?></p>
     </div>
     <?php
     }

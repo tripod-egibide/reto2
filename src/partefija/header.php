@@ -14,8 +14,20 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
     <input type="search" id="busqueda" name="" placeholder="Buscar..."/>
   </form>
   <a href="/doc/Manual%20del%20Usuario.pdf" id="ayuda" target="_blank"><i class="material-icons">help_outline</i></a>
-  <a href="#" id="botonLogin">Sign in</a>
-  <a href="#" id="botonSignin">Sign up</a>
+  <?php
+    if (isset($_SESSION["id"])) {
+      ?>
+      <a href="#"><img src="" alt=""></a>
+      <a href="#" id="botonLogout">Log out</a>
+      <?php
+    } else {
+      ?>
+      <a href="#" id="botonLogin">Sign in</a>
+      <a href="#" id="botonSignin">Sign up</a>
+      <?php
+    }
+   ?>
+
   <a href="#" id="botonMenu"><i class="material-icons">menu</i></a>
 </header>
 <div id="menuMovil">

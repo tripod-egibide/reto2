@@ -120,8 +120,8 @@ function cargarPregunta($id) {
       (SELECT count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
       from pregunta as p, usuario as u where p.idpregunta=:id and u.idusuario = p.idusuario", ["id" => $id]);
   $respuestas = realizarConsulta("SELECT r.*, u.usuario, u.url_avatar,
-      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo=1) as positivos,
-      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo!=1) as negativos
+      (SELECT count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo=1) as positivos,
+      (SELECT count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo!=1) as negativos
       from respuesta as r, usuario as u where r.idpregunta=:id and u.idusuario = r.idusuario", ["id" => $id]);
   $etiquetas = cargarEtiquetas($id);
   $datos = [
@@ -165,21 +165,21 @@ function busquedaPorEtiquetas($etiquetasArray) {
   $parametrosSQL = ":" . implode("|", $etiquetasArray);
   $parametrosSQL = str_replace("|", ", :", $parametrosSQL);
 
-  foreach ($etiquetasArray as $id) {
-    $etiquetas[":$id"] = $id;
+  foreach ($etiquetasArray as $etiqueta) {
+    $etiquetas[":$etiqueta"] = $etiqueta;
   }
-  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in ($parametrosSQL))", $etiquetas);
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta_tiene_etiqueta where idetiqueta in (SELECT idetiqueta from etiqueta where lower(etiqueta) in ($parametrosSQL)))", $etiquetas);
 }
 
 function busquedaPorTexto($texto) {
   $where = "";
   $array = [];
   foreach ($texto as $palabra) {
-    $where .= "lower(titulo) like :$palabra or lower(texto) like :$palabra)";
-    $array[$palabra] = "%".$palabra."%";
+    $where .= " lower(titulo) like :i$palabra or lower(texto) like :i$palabra or";
+    $array["i$palabra"] = "%".$palabra."%";
   }
-  
-  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where lower(titulo) like :t or lower(texto) like :t)", ["t" => strtolower("%".$texto."%")]);
+  $where = substr($where, 0, -3);
+  return busquedaPreguntas("p.idpregunta in (SELECT idpregunta from pregunta where$where)", $array);
 }
 
 //busca e inserta o actualiza el voto de una pregunta
@@ -197,5 +197,9 @@ function actualizarVoto($base, $dato){
 }
 function consultarVotos($base, $dato){
     return realizarConsulta("SELECT SUM(REPLACE(positivo, '0', '-1')) FROM $base WHERE idpregunta = :pregunta;", ["pregunta"=>$dato])->fetch()[0];
+}
+
+function cargarUsuario($id) {
+  return realizarConsulta("SELECT * from usuario where idusuario = :id", ["id" => $id])->fetch();
 }
 ?>

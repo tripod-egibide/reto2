@@ -12,7 +12,7 @@
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
       <div class="main">
-        <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
+        <a class="iraPublicarPregunta" href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
         var_dump($_SESSION);
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;

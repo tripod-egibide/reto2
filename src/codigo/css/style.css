@@ -29,6 +29,7 @@ html {
   margin-right: 15px;
   /*text-align: center;*/
 }
+
 #barraBusqueda i {
   border-right: 1px solid #d64;
 }
@@ -46,6 +47,7 @@ html {
   padding: 0 15px;
   flex-shrink: 0;
 }
+
 /*Página errores*/
 .error {
   width: 50%;
@@ -93,10 +95,7 @@ html {
     'footer footer footer';
   min-height: 100vh;
   grid-template-rows: 80px auto 1fr auto;
-<<<<<<< HEAD
-=======
   grid-template-columns: auto auto 20%;
->>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 }
 
 header {
@@ -114,7 +113,8 @@ header {
   height: 60px;
   margin: 0 5px;
 }
-#logo img{
+
+#logo img {
   width: 100%;
   height: auto;
 }
@@ -130,16 +130,10 @@ footer {
   flex-shrink: 0;
 }
 
-<<<<<<< HEAD
 footer>* {
   display: flex;
   align-items: center;
   justify-items: center;
-=======
-footer div, #emailFooter, .contacto {
-  margin-top: 10px;
-  text-decoration: none;
->>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 }
 
 footer img {
@@ -201,15 +195,11 @@ footer img {
 }
 
 @media only screen and (min-width: 601px) {
-  #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonMenu{
+  #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonMenu {
     display: none;
   }
-<<<<<<< HEAD
 
   #botonLogin, #botonSignin {
-=======
-  #ayuda, #botonLogin, #botonSignin {
->>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
     display: flex;
   }
 

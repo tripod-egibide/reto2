@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Tripod</title>
-    <?php include "../codigo/php/estilos.php" ?>
-
+    <?php
+    include "../codigo/php/estilos.php";
+    include "../codigo/php/bbdd.php";
+    ?>
+    <script type="text/javascript" src="/codigo/js/publicarPregunta/publicarPregunta.js"></script>
 </head>
 <body>
 <div class="gridContenedor">
 <!-- carga la cabecera desde un html-->
     <?php
-
     include "../partefija/header.php";
-
     ?>
     <script type="text/javascript" src="/codigo/js/pregunta/publicarPregunta.js"></script>
     <div class="main">

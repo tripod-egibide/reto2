@@ -164,10 +164,15 @@ footer img {
 }
 
 .votosRespuesta{
-	
+	display: flex;
+	justify-content: space-between;
+	width: 15%;
+	float: left;
 }
 
 .titulo {
+  width: 85%;
+  float: right;
   background-color: #ec9;
   padding: 4px;
 }
@@ -178,6 +183,8 @@ footer img {
 
 .etiquetas {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 .etiqueta {
   display: inline-block;

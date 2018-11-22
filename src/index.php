@@ -14,7 +14,6 @@
       <div class="main">
         <a href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
-        var_dump($_SESSION);
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         require "codigo/php/bbdd.php";

@@ -9,13 +9,22 @@
 
   <body>
     <?php
+
       session_start();
       include '../codigo/php/bbdd.php';
       include '../codigo/php/estilos.php';
       include "../partefija/header.php";
       $duenno = $_SESSION["id"] == $_GET["id"];
       $usuario = cargarUsuario(isset($_GET["id"]));
-      var_dump($usuario);
+
+      if (isset($_FILES["avatar"])) {
+        $uploadfile = "/imagenes/avatar/" . basename($_FILES['avatar']['name']);
+        move_uploaded_file($_FILES['avatar']['tmp_name'], "..".$uploadfile);
+        //la siguiente linea elimina el avatar anterior, que es importante en la vida real pero solo causa conflictos en desarrollo
+        // unlink("../".$usuario["url_avatar"]);
+        actualizarAvatar(["id" => $_GET["id"], "url" => $uploadfile]);
+        header('Location: '.$_SERVER['REQUEST_URI']);
+      }
       ?>
     <div class="gridContenedor">
       <main>
@@ -27,9 +36,9 @@
             <div class="divAvatar">
               <img src="<?=$usuario["url_avatar"]?>" alt="" id="granAvatar">
               <?php if ($duenno) { ?>
-                <form class="" action="index.html" method="post" enctype="multipart/form-data">
+                <form class="subirAvatar" action="perfil.php?id=<?=$_GET["id"]?>" method="post" enctype="multipart/form-data">
                   <input type="file" name="avatar" accept="image/*"><br>
-                  <input type="submit" name="" value="Cambiar avatar">
+                  <input type="submit" value="Cambiar avatar">
                 </form>
               <?php } ?>
             </div>

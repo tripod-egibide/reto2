@@ -210,4 +210,8 @@ function cargarUsuario($id) {
 function preguntasDeUsuario($id) {
   return realizarConsulta("SELECT idpregunta, titulo from pregunta where idusuario = :id", ["id" => $id])->fetchAll();
 }
+
+function actualizarAvatar($datos) {
+  realizarConsulta("UPDATE usuario set url_avatar = :url where idusuario = :id", $datos);
+}
 ?>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Tripod</title>
     <?php include "../codigo/php/estilos.php" ?>
-    <script type="text/javascript" src="/codigo/js/publicarPregunta/publicarPregunta.js"></script>
+
 </head>
 <body>
 <div class="gridContenedor">
@@ -14,6 +14,7 @@
     include "../partefija/header.php";
 
     ?>
+    <script type="text/javascript" src="/codigo/js/pregunta/publicarPregunta.js"></script>
     <div class="main">
         <?php
             if(isset($_GET['resultado'])){

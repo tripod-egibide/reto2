@@ -10,29 +10,31 @@ session_start();
         case "publicarRespuesta":
             publicarRespuesta();
             break;
-        case "votoPregunta":
-            votoPregunta();
+        case "voto_pregunta":
+            echo voto($comando);
             break;
-        case "votoRespuesta":
-            votoRespuesta();
+        case "voto_respuesta":
+            echo voto($comando);
             break;
         default:
             //header('Location: /partefija/errores.php?error=404');
             break;
     }
     // vota positivo o negativo a una pregunta
-    function votoPregunta(){
-
-        $voto = [
+    function voto($comando){
+        $datoBusqueda = [
             "usuario" => $_SESSION["id"],
-            "pregunta" => $_POST["idPregunta"],
-            "valor" => $_POST["valor"]
-        ];
-        if(buscarVoto("voto_pregunta",$_SESSION["id"], $_POST["idPregunta"])== 1){
-            actualizarVoto($voto);
+            "pregunta" => $_POST["idPregunta"]];
+
+        if(buscarVoto($comando, $datoBusqueda) == null){
+            $datoBusqueda["voto"] = $_POST["voto"];
+            insertarVoto($comando, $datoBusqueda);
         }else{
-            insertarVoto($voto);
+            $datoBusqueda["voto"] = $_POST["voto"];
+            actualizarVoto($comando, $datoBusqueda);
         }
+        return consultarVotos($comando, $_POST["idPregunta"]);
+
     }
     // vota positivo o negativo a una respuesta
     function votoRespuesta(){
@@ -49,9 +51,10 @@ session_start();
         if($idPregunta == null){
             header('Location: /partefija/errores.php?error=404');
         }else{
-            if($_POST["etiqueta"] != null){
+            $listaEtiqueta = $_POST["etiqueta"];
+            if($listaEtiqueta != null){
                 //crear array de las etiquetas
-                $etiquetas = dividirEtiquetas();
+                $etiquetas = dividirEtiquetas($listaEtiqueta);
                 if(!insertarEtiqueta($etiquetas, $idPregunta)){
                     header('Location: /partefija/errores.php?error=404');
                 }else{
@@ -63,8 +66,8 @@ session_start();
         }
     }
     //divide el string de la etiqueta en varias etiquetas tomando como separador la coma ,
-    function dividirEtiquetas(){
-        $stringFinal = str_replace(' ', ',', $_POST["etiqueta"]);
+    function dividirEtiquetas($listaEtiqueta){
+        $stringFinal = str_replace(' ', ',', $listaEtiqueta);
         $arrayPalabras = explode(',', $stringFinal);
         return $arrayPalabras;
     }
@@ -81,7 +84,7 @@ function publicarRespuesta(){
     if($idPregunta == null){
         header('Location: /partefija/errores.php?error=404');
     }else{
-        header('Location: /pregunta/respuesta.php?resultado=publicado');
+        header('Location: /pregunta/pregunta.php?id='.$pregunta["pregunta"].'&resultado=publicado');
     }
 }
 

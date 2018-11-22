@@ -13,41 +13,24 @@ html {
   min-height: 100%;
 }
 
-#logo img, #logoHeader img {
-  width: 100%;
-  height: auto;
-}
-
-#logo {
-  width: 25%;
-}
-
 .avatar {
   height: 32px;
   width: 32px;
 }
 
-#logoHeader {
-  width: 15%;
-  margin-right: 5%;
-}
-
-#barraBusqueda input {
-  margin-left: 5px;
-}
-
+/*Menu*/
 #barraBusqueda, #barraBusqueda input {
   display: flex;
   align-items: center;
   background-color: #eee;
   border: 1px solid #eee;
   color: #333;
-  /*padding: 5px;*/
+  padding: 5px;
   margin-right: 15px;
+  /*text-align: center;*/
 }
-
 #barraBusqueda i {
-  border-right: 6px solid #d64;
+  border-right: 1px solid #d64;
 }
 
 #botonLogin, #botonSignin, #botonMenu,
@@ -59,11 +42,11 @@ html {
   color: #333;
   border-radius: 4px;
   text-decoration: none;
-  margin-left: 5px;
+  margin: 0 5px;
   padding: 0 15px;
   flex-shrink: 0;
 }
-
+/*Página errores*/
 .error {
   width: 50%;
   margin: 50px auto;
@@ -81,22 +64,21 @@ html {
 
 .main {
   grid-area: main;
-  padding-left: 20%;
+  padding-left: 5%;
 }
 
 #menuMovil {
   grid-area: menu;
   display: none;
   flex-shrink: 0;
-  flex-basis: 100%;
-  flex-wrap: wrap;
+  /*flex-wrap: wrap;*/
   justify-content: center;
-  background-color: #dd6644;
+  background-color: #d64;
   padding: 5px;
 }
 
 #menuMovil a {
-  flex-basis: 80%;
+  flex-grow: 1;
   justify-content: center;
   padding: 5px 0;
 }
@@ -110,16 +92,30 @@ html {
     'footer footer footer';
   min-height: 100vh;
   grid-template-rows: 80px auto 1fr auto;
+<<<<<<< HEAD
+=======
+  grid-template-columns: auto auto 20%;
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 }
 
 header {
   display: flex;
-  /*justify-content: center;*/
+  /*position: fixed;*/
+  justify-content: space-between;
   align-content: center;
   background-color: #d64;
   padding: 10px;
-  overflow: visible;
   grid-area: header;
+}
+
+#logoHeader img {
+  width: 60px;
+  height: 60px;
+  margin: 0 5px;
+}
+#logo img{
+  width: 100%;
+  height: auto;
 }
 
 /*footer*/
@@ -130,12 +126,19 @@ footer {
   align-items: center;
   padding: 0px;
   grid-area: footer;
+  flex-shrink: 0;
 }
 
+<<<<<<< HEAD
 footer>* {
   display: flex;
   align-items: center;
   justify-items: center;
+=======
+footer div, #emailFooter, .contacto {
+  margin-top: 10px;
+  text-decoration: none;
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
 }
 
 footer img {
@@ -147,6 +150,7 @@ footer img {
   cursor: pointer;
 }
 
+/*Responsividad*/
 @media only screen and (max-width: 600px) {
   #botonMenu {
     display: flex;
@@ -162,11 +166,15 @@ footer img {
 }
 
 @media only screen and (min-width: 601px) {
-  #botonMenu {
+  #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonMenu{
     display: none;
   }
+<<<<<<< HEAD
 
   #botonLogin, #botonSignin {
+=======
+  #ayuda, #botonLogin, #botonSignin {
+>>>>>>> d584ae43f054dd5c7069a474827fd049c3dc50fa
     display: flex;
   }
 

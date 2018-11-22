@@ -6,7 +6,12 @@ if (isset($_GET["id"])) {
   if (isset($_SESSION["id"])) {
     $duenno = $_SESSION["id"] == $_GET["id"];
   }
-  $usuario = cargarUsuario(isset($_GET["id"]));
+  $usuario = cargarUsuario($_GET["id"]);
+
+  if (isset($_POST["descripcion"])) {
+    actualizarDescripcion(["id" => $_GET["id"], "descripcion" => $_POST["descripcion"]]);
+    header('Location: '.$_SERVER['REQUEST_URI']);
+  }
 
   if (isset($_FILES["avatar"])) {
     $uploadfile = "/imagenes/avatar/" . basename($_FILES['avatar']['name']);
@@ -65,9 +70,9 @@ if (isset($_GET["id"])) {
           <label>Email:</label> <a href="mailto:<?=$usuario["email"]?>"><?=$usuario["email"]?></a><br>
           <?php if ($duenno) {
             ?>
-            <form action="" method="post">
+            <form action="perfil.php?id=<?=$_GET["id"]?>" method="post">
               <label for="descripcion">Descripci&oacute;n:</label><br>
-              <textarea name="descripcion" rows="16" cols="40" id="descripcion" placeholder="Nueva desripci&oacute;n..."></textarea>
+              <textarea name="descripcion" rows="16" cols="40" id="descripcion" maxlength=1000 placeholder="Nueva desripci&oacute;n..."><?=$usuario["descripcion"]?></textarea>
               <input type="submit" name="" value="Actualizar">
             </form>
             <?php

@@ -28,7 +28,7 @@ function encontrarUsuario($datos) {
 }
 
 function insertarUsuario($datos) {
-  return realizarConsulta("INSERT into usuario values (NULL, :usuario, :email, :contrasenna, NULL, NULL)", $datos);
+  return realizarConsulta("INSERT into usuario values (NULL, :usuario, :email, :contrasenna, NULL, DEFAULT)", $datos);
 }
 
 function verificarLogin($email, $contrasenna) {
@@ -219,6 +219,10 @@ function actualizarAvatar($datos) {
 
 function verAvatar($id) {
   return realizarConsulta("SELECT url_avatar from usuario where idusuario = :id", ["id" => $id])->fetch();
+}
+
+function actualizarDescripcion($datos) {
+  realizarConsulta("UPDATE usuario set descripcion = :descripcion where idusuario = :id", $datos);
 }
 
 function etiquetasFrecuentes() {

@@ -63,7 +63,7 @@ html {
 }
 .main {
   grid-area: main;
-  padding-left: 20%;
+  padding-left: 5%;
 }
 #menuMovil {
   grid-area: menu;
@@ -89,7 +89,8 @@ html {
     'main main gap'
     'footer footer footer';
   min-height: 100vh;
-  grid-template-rows: 80px 1fr auto;
+  grid-template-rows: 80px auto 1fr auto;
+  grid-template-columns: auto auto 20%;
 }
 
 header {
@@ -101,14 +102,11 @@ header {
   padding: 10px;
   grid-area: header;
 }
-header #logoHeader {
-  margin: 5px;
-}
 
 #logoHeader img {
-  width: auto;
-  height: 100%;
-  /*margin: 5px;*/
+  width: 60px;
+  height: 60px;
+  margin: 0 5px;
 }
 #logo img{
   width: 100%;

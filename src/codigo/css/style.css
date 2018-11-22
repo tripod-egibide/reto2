@@ -13,11 +13,6 @@ html {
   min-height: 100%;
 }
 
-#logoHeader img, #logo img {
-  width: 100%;
-  height: auto;
-}
-
 .avatar {
   height: 32px;
   width: 32px;
@@ -107,8 +102,17 @@ header {
   grid-area: header;
 }
 header #logoHeader {
-  width: 150px;
-  margin: 5px 2%;
+  margin: 5px;
+}
+
+#logoHeader img {
+  width: auto;
+  height: 100%;
+  /*margin: 5px;*/
+}
+#logo img{
+  width: 100%;
+  height: auto;
 }
 
 /*footer*/

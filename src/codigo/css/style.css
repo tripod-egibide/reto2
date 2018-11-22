@@ -125,7 +125,7 @@ footer {
   flex-shrink: 0;
 }
 
-footer div, #email, .contacto {
+footer div, #emailFooter, .contacto {
   margin-top: 10px;
   text-decoration: none;
 }

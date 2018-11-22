@@ -1,0 +1,19 @@
+main, .estadisticasDeUsuario>* {
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.estadisticasDeUsuario>* {
+  align-items: center;
+}
+
+#granAvatar {
+  max-height: 256px;
+  max-width: 256px;
+  justify-self: center;
+}

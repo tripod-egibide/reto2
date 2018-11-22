@@ -1,33 +1,35 @@
 <?php
-require "codigo/php/bbdd.php"
-if (isset($_GET["id"])) { ?>
+require "../codigo/php/bbdd.php";
+if (isset($_GET["id"])) {
+  session_start();
+  $duenno = false;
+  if (isset($_SESSION["id"])) {
+    $duenno = $_SESSION["id"] == $_GET["id"];
+  }
+  $usuario = cargarUsuario(isset($_GET["id"]));
+
+  if (isset($_FILES["avatar"])) {
+    $uploadfile = "/imagenes/avatar/" . basename($_FILES['avatar']['name']);
+    move_uploaded_file($_FILES['avatar']['tmp_name'], "..".$uploadfile);
+    //la siguiente linea elimina el avatar anterior, que es importante en la vida real pero solo causa conflictos en desarrollo
+    // unlink("../".$usuario["url_avatar"]);
+    actualizarAvatar(["id" => $_GET["id"], "url" => $uploadfile]);
+    header('Location: '.$_SERVER['REQUEST_URI']);
+  }?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title><?=$usuario["usuario"]?></title>
+    <?php include '../codigo/php/estilos.php';?>
+    <link rel="stylesheet" href="/codigo/css/perfil.css">
   </head>
 
   <body>
-    <?php
-      session_start();
-      include '../codigo/php/estilos.php';
-      include "../partefija/header.php";
-      $duenno = $_SESSION["id"] == $_GET["id"];
-      $usuario = cargarUsuario(isset($_GET["id"]));
-
-      if (isset($_FILES["avatar"])) {
-        $uploadfile = "/imagenes/avatar/" . basename($_FILES['avatar']['name']);
-        move_uploaded_file($_FILES['avatar']['tmp_name'], "..".$uploadfile);
-        //la siguiente linea elimina el avatar anterior, que es importante en la vida real pero solo causa conflictos en desarrollo
-        // unlink("../".$usuario["url_avatar"]);
-        actualizarAvatar(["id" => $_GET["id"], "url" => $uploadfile]);
-        header('Location: '.$_SERVER['REQUEST_URI']);
-      }
-      ?>
     <div class="gridContenedor">
-      <main>
+      <?php include "../partefija/header.php"; ?>
+      <main class="main">
         <h1>
           <?=$usuario["usuario"]?>
         </h1>
@@ -44,33 +46,33 @@ if (isset($_GET["id"])) { ?>
             </div>
             <div class="estadisticasDeUsuario">
               <div class="preguntas">
-                <?=$usuario["preguntas"]?> preguntas:<br>
-                <i class="material-icons thumb" id="thumbUp">thumb_up</i> <?=$usuario["p_positivos"]?>
-                <i class="material-icons thumb" id="thumbUp">thumb_down</i> <?=$usuario["p_negativos"]?>
+                <span><?=$usuario["preguntas"]?> preguntas:</span>
+                <div>
+                  <i class="material-icons thumb" id="thumbUp">thumb_up</i> <?=$usuario["p_positivos"]?>
+                  <i class="material-icons thumb" id="thumbUp">thumb_down</i> <?=$usuario["p_negativos"]?>
+                </div>                
               </div>
               <div class="respuestas">
-                <?=$usuario["respuestas"]?> respuestas:<br>
-                <i class="material-icons thumb" id="thumbUp">thumb_up</i> <?=$usuario["r_positivos"]?>
-                <i class="material-icons thumb" id="thumbUp">thumb_down</i> <?=$usuario["r_negativos"]?>
+                 <span><?=$usuario["respuestas"]?> respuestas:</span>
+                 <div>
+                   <i class="material-icons thumb" id="thumbUp">thumb_up</i> <?=$usuario["r_positivos"]?>
+                   <i class="material-icons thumb" id="thumbUp">thumb_down</i> <?=$usuario["r_negativos"]?>
+                 </div>
               </div>
             </div>
           </div>
-          <div class="modificables">
+          <div class="datos">
+          <label>Email:</label> <a href="mailto:<?=$usuario["email"]?>"><?=$usuario["email"]?></a><br>
           <?php if ($duenno) {
             ?>
             <form action="" method="post">
-              <label for="nickname">Nickname:</label><br>
-              <input type="text" name="nickname" id="nickname"><br>
-              <label for="email">Email:</label><br>
-              <input type="email" name="email" id="email"><br>
               <label for="descripcion">Descripci&oacute;n:</label><br>
-              <textarea name="descripcion" rows="8" cols="80" id="descripcion"></textarea>
+              <textarea name="descripcion" rows="16" cols="40" id="descripcion" placeholder="Nueva desripci&oacute;n..."></textarea>
               <input type="submit" name="" value="Actualizar">
             </form>
             <?php
               } else {
               ?>
-            <label>Email:</label> <a href="mailto:<?=$usuario["email"]?>"><?=$usuario["email"]?></a><br>
             <p><?=$usuario["descripcion"]?></p>
             <?php } ?>
           </div>
@@ -87,8 +89,11 @@ if (isset($_GET["id"])) { ?>
           ?>
         </div>
       </main>
+      <div class="margen">
+        <?php include "../partefija/margen.php" ?>
+      </div>
+      <?php include "../partefija/footer.php" ?>
     </div>
-    <?php include "../partefija/footer.php" ?>
   </body>
 
 </html>

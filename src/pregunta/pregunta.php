@@ -1,7 +1,6 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
   require "../codigo/php/bbdd.php";
-  require "../partefija/header.php";
 $_SESSION["id"] = 1;
 
   if (isset($_GET["id"])) {

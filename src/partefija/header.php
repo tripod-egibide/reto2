@@ -13,7 +13,6 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
     <i><input type="submit" class="material-icons" value="search"/></i>
     <input type="search" id="busqueda" name="" placeholder="Buscar..."/>
   </form>
-  <a href="/doc/Manual%20del%20Usuario.pdf" id="ayuda" target="_blank"><i class="material-icons">help_outline</i></a>
   <?php
     if (isset($_SESSION["id"])) {
       $avatar = verAvatar($_SESSION["id"]);

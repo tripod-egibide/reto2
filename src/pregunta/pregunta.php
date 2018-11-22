@@ -69,11 +69,11 @@ $_SESSION["id"] = 1;
 <hr>
     <?php
     if(isset($_GET['resultado'])){
-                ?>
-                <h1>Respuesta publicada correctamente.</h1>
-                <?php
-            }else if(isset($_SESSION["id"])){
-                ?>
+      ?>
+      <h1>Respuesta publicada correctamente.</h1>
+      <?php
+    }else if(isset($_SESSION["id"])){
+      ?>
         <!--formulario que carga la pregunta al servidor -->
         <h1 id="tituloFormulario">Publicar nueva respuesta</h1>
         <div id="formulario">
@@ -90,11 +90,9 @@ $_SESSION["id"] = 1;
             </form>
         </div>
         <?php
-            }
-            var_dump($respuestas);
-    while ($respuesta = $respuestas->fetch()) {
-      // var_dump($respuesta);
-      ?>
+          }
+        while ($respuesta = $respuestas->fetch()) {
+        ?>
 
     <div class="post respuesta">
       <div class="cabeceraPost">

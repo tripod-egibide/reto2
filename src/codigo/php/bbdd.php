@@ -198,6 +198,16 @@ function actualizarVoto($dato){
 }
 
 function cargarUsuario($id) {
-  return realizarConsulta("SELECT * from usuario where idusuario = :id", ["id" => $id])->fetch();
+  return realizarConsulta("SELECT *, (select count(*) from pregunta where idusuario=u.idusuario) as preguntas,
+    (select count(*) from respuesta where idusuario=u.idusuario) as respuestas,
+    (select count(*) from voto_pregunta where idpregunta in (select idpregunta from pregunta where idusuario = :id) and positivo=1) as p_positivos,
+    (select count(*) from voto_respuesta where idrespuesta in (select idrespuesta from respuesta where idusuario = :id) and positivo=1) as r_positivos,
+    (select count(*) from voto_pregunta where idpregunta in (select idpregunta from pregunta where idusuario = :id) and positivo!=1) as p_negativos,
+    (select count(*) from voto_respuesta where idrespuesta in (select idrespuesta from respuesta where idusuario = :id) and positivo=1) as r_negativos
+  from usuario as u where idusuario=:id;", ["id" => $id])->fetch();
+}
+
+function preguntasDeUsuario($id) {
+  return realizarConsulta("SELECT idpregunta, titulo from pregunta where idusuario = :id", ["id" => $id])->fetchAll();
 }
 ?>

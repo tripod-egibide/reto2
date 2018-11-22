@@ -65,7 +65,7 @@
               ?>
             </span>
             <div class="info">
-              <span class="titulo"><a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a></span>
+              <div class="titulo"><a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a></div>
               <span class="autor"><a href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
                 <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
               </a></span>

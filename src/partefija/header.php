@@ -17,6 +17,7 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
   <?php
     if (isset($_SESSION["id"])) {
       ?>
+      <a href="#"><img src="" alt=""></a>
       <a href="#" id="botonLogout">Log out</a>
       <?php
     } else {

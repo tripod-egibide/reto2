@@ -122,8 +122,8 @@ function cargarPregunta($id) {
       (SELECT count(*) from voto_pregunta where idpregunta=:id and positivo!=1) as negativos
       from pregunta as p, usuario as u where p.idpregunta=:id and u.idusuario = p.idusuario", ["id" => $id]);
   $respuestas = realizarConsulta("SELECT r.*, u.usuario, u.url_avatar,
-      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo=1) as positivos,
-      (SELECT count(*) from voto_respuesta where idrespuesta=:id and positivo!=1) as negativos
+      (SELECT count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo=1) as positivos,
+      (SELECT count(*) from voto_respuesta where idrespuesta=r.idrespuesta and positivo!=1) as negativos
       from respuesta as r, usuario as u where r.idpregunta=:id and u.idusuario = r.idusuario", ["id" => $id]);
   $etiquetas = cargarEtiquetas($id);
   $datos = [
@@ -195,5 +195,9 @@ function insertarVoto($dato){
 function actualizarVoto($dato){
     return realizarConsulta("INSERT INTO voto_pregunta VALUES(1, 1, 1) ;", $dato);
     //return realizarConsulta("UPDATE voto_pregunta SET positivo = :valor WHERE idusuario = :usuario and idpregunta = :pregunta ;", $dato);
+}
+
+function cargarUsuario($id) {
+  return realizarConsulta("SELECT * from usuario where idusuario = :id", ["id" => $id])->fetch();
 }
 ?>

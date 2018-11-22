@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `reto2`.`usuario` (
   `email` VARCHAR(45) NOT NULL,
   `contrasenna` VARCHAR(255) NOT NULL,
   `descripcion` VARCHAR(1000) NULL DEFAULT NULL,
-  `url_avatar` VARCHAR(255) NULL DEFAULT NULL,
+  `url_avatar` VARCHAR(255) NULL DEFAULT "/imagenes/avatar/default.png",
   PRIMARY KEY (`idusuario`),
   UNIQUE INDEX `usuario_UNIQUE` (`usuario` ASC),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))

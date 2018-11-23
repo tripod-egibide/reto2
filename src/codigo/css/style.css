@@ -222,7 +222,7 @@ footer img {
   font-size: 200%;
 }
 
-.autor, .fecha {
+.autor{
   text-align: right;
   clear: both;
 }

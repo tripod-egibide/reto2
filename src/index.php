@@ -41,34 +41,37 @@
           ?>
           <div class="pregunta">
             <div class="info">
-			<div class="votosRespuesta">
-				<span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
-				<span class="votos">
-				  <?php
-				  echo '<span>'.$pregunta["votos"].'</span>';
-				  if ($pregunta["votos"] > 0) {
-					echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
-				  } else if ($pregunta["votos"] < 0) {
-					echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
-				  } else {
-					echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
-				  }
-				  ?>
-				</span>
-			</div>
-                <?php
-                if ($pregunta["resuelto"]) {
-                    echo '<i class="material-icons check">check_circle</i>';
-                }
-                ?>
               <div class="cabeceraTitulo">
-
-                  <a class="titulo" href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
+          			<div class="votosRespuesta">
+                  <i class="material-icons check">
+                  <?php
+                  if ($pregunta["resuelto"]) {
+                    echo 'check_circle';
+                  }
+                  ?>
+                  </i>
+          				<span class="votos">
+          				  <?php
+          				  if ($pregunta["votos"] > 0) {
+          					echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
+          				  } else if ($pregunta["votos"] < 0) {
+          					echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
+          				  } else {
+          					echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
+          				  }
+                    echo '<span>'.$pregunta["votos"].'</span>';
+          				  ?>
+                  </span>
+          			</div>
+                <a class="titulo" href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>">
+                  <?=$pregunta["titulo"]?>
+                  <span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
+                </a>
               </div>
               <div class="autor">
-                  <span class="fecha">el <?=$pregunta["fecha_creacion"]?></span>
+                  <span class="fecha">el <?=$pregunta["fecha_creacion"]?> por</span>
                   <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                    por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
+                    <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
                   </a>
               </div>
             </div>

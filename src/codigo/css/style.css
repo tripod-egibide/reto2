@@ -14,13 +14,15 @@ html {
   background-color: #eee;
 }
 
-a{
+a {
   color: #d64;
 }
 
 .avatar {
   height: 32px;
   width: 32px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 /*Menu*/
@@ -132,8 +134,6 @@ header {
 #avatarHeader .avatar {
   height: 60px;
   width: 60px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
 }
 
 .votado {
@@ -177,7 +177,7 @@ footer img {
   margin-bottom: 50px;
 }
 
-.bPublicar{
+.bPublicar {
   width: 100%;
   text-align: right;
   margin: 15px 0 15px;
@@ -191,28 +191,42 @@ footer img {
   padding: 5px;
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
 .votosRespuesta {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   flex-shrink: 0;
-  width: 25%;
-  float: left;
+  flex-basis: 10%;
+  align-items: center;
+  margin-right: 5px;
 }
+
+.votos {
+  justify-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .cabeceraTitulo {
-  width: 75%;
-  float: right;
+  width: 100%;
   padding-left: 5px;
+  display: flex;
 }
-.cabeceraTitulo i{
-  width: 10%;
-}
+
 .titulo {
-  width: 90%;
-  float: right;
   background-color: #ec9;
   padding: 10px;
   color: #333;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .check {
@@ -222,9 +236,19 @@ footer img {
   font-size: 200%;
 }
 
-.autor, .fecha {
-  text-align: right;
+.autor, .imagenAutor {
+  display: flex;
+  justify-content: right;
+  align-items: center;
   clear: both;
+}
+
+.autor {
+  margin-top: 5px;
+}
+
+.fecha {
+  margin-right: 3px;
 }
 
 .etiquetas {

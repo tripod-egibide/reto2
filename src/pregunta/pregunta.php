@@ -55,20 +55,18 @@ if (isset($_GET["id"])) {
                     <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
                   </a>
                 </div>
-
-                <p class="cuerpo"><?= $pregunta["texto"] ?></p>
-                <div id="piePregunta">
-                <ul id="etiquetas">
+                <ul class="etiquetas">
                   <?php
                   foreach ($etiquetas as $etiqueta) {
                       ?>
-                      <li class=etiqueta><a
-                                  href="/index.php?etiquetas=<?= strtolower($etiquetas["etiqueta"]) ?>">#<?= $etiqueta["etiqueta"] ?></a></li>
+                      <li class=etiqueta><a href="/index.php?etiquetas=<?= strtolower($etiqueta["etiqueta"]) ?>">
+                        #<?= $etiqueta["etiqueta"] ?>
+                      </a></li>
                       <?php
                   }
                   ?>
                 </ul>
-                </div>
+                <p class="cuerpo"><?=$pregunta["texto"] ?></p>
             </div>
             <?php
             if (isset($_GET['resultado'])) {

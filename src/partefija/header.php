@@ -17,7 +17,7 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
     if (isset($_SESSION["id"])) {
       $avatar = verAvatar($_SESSION["id"]);
       ?>
-      <a href="/cuenta/perfil.php?id=<?=$_SESSION["id"]?>"><img class="avatar avatarHeader" src="<?=$avatar["url_avatar"]?>"></a>
+      <a href="/cuenta/perfil.php?id=<?=$_SESSION["id"]?>" id="avatarHeader"><img class="avatar" src="<?=$avatar["url_avatar"]?>"></a>
       <a href="#" id="botonLogout">Log out</a>
       <?php
     } else {
@@ -44,7 +44,6 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 	<?php
 	}
 	?>
-    <a href="/doc/Manual%20del%20Usuario.pdf" id="ayudaMovil" target="_blank"><i class="material-icons">help_outline</i></a>
 </div>
 <!-- Login -->
 <div id="modalLogin" class="modal">

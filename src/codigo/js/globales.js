@@ -1,3 +1,3 @@
-var root = "http://localhost";
-var header = "http://localhost/partefija/header.html";
-var footer = "http://localhost/partefija/footer.php";
+var root = "";
+var header = "/partefija/header.html";
+var footer = "/partefija/footer.php";

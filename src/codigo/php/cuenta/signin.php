@@ -7,7 +7,7 @@ if (isset($_POST)) {
     $_SESSION["id"]=$id;
     echo true;
   } else {
-    echo "Contrase&ntilde;a invalida.";
+    echo "Los datos introducidos no coinciden, por favor intenta de nuevo.";
   }
 }
 ?>

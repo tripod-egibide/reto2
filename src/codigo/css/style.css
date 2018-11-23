@@ -166,6 +166,7 @@ footer img {
   cursor: default;
 }
 
+<<<<<<< HEAD
 /*Index*/
 .iraPublicarPregunta {
   text-decoration: none;
@@ -251,6 +252,8 @@ footer img {
   margin-right: 3px;
 }
 
+=======
+>>>>>>> 688fff061ff2a7eb50cbc50ed0f6425639561e67
 .etiquetas {
   list-style: none;
   text-align: right;

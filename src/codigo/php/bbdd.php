@@ -215,7 +215,7 @@ function actualizarDescripcion($datos) {
 }
 
 function etiquetasFrecuentes() {
-  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 10")->fetchAll();
+  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 15")->fetchAll();
 }
 function preguntaResuelta($idRespuesta, $estado){
   return realizarConsulta("UPDATE respuesta set resuelve = :estado where idrespuesta = :respuesta", ["respuesta"=>$idRespuesta, "estado"=>$estado]);

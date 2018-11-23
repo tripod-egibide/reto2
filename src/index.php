@@ -104,7 +104,7 @@
             <?php
         }?>
       </div>
-      <div class="margen"></div>
+      <div class="margen"><?php include "./partefija/margen.php" ?></div>
       <?php include "./partefija/footer.php" ?>
     </div>
   </body>

@@ -6,7 +6,6 @@ function abrirConexion(){
   $contrasenna = "x2354057F";
   return $conexion = new PDO($bd, $usuario, $contrasenna);
 }
-
 function realizarConsulta($query, $datos){
   $conexion = abrirConexion();
   $consulta = $conexion->prepare($query);
@@ -14,23 +13,18 @@ function realizarConsulta($query, $datos){
   $conexion = null;
   return $consulta;
 }
-
 //funciones especificas:
-
 function ultimaPregunta(){
   //devuelve la mayor ID de pregunta, que como es autoincremental siempre sera la mas reciente
   //ojo, que es en forma de string
   return abrirConexion()->query("SELECT max(idpregunta) from pregunta")->fetch()[0];
 }
-
 function encontrarUsuario($datos) {
   return realizarConsulta("SELECT idusuario from usuario where usuario=:usuario or email=:email", $datos);
 }
-
 function insertarUsuario($datos) {
   return realizarConsulta("INSERT into usuario values (NULL, :usuario, :email, :contrasenna, NULL, DEFAULT)", $datos);
 }
-
 function verificarLogin($email, $contrasenna) {
   $resultado = realizarConsulta("SELECT idusuario, contrasenna from usuario where email=:email", ["email" => $email])->fetch();
   if (password_verify($contrasenna, $resultado["contrasenna"])) {
@@ -39,13 +33,11 @@ function verificarLogin($email, $contrasenna) {
     return false;
   }
 }
-
 function ultimaRespuesta(){
     //devuelve la mayor ID de pregunta, que como es autoincremental siempre sera la mas reciente
     //ojo, que es en forma de string
     return abrirConexion()->query("SELECT max(idrespuesta) from respuesta")->fetch()[0];
 }
-
 function insertarPregunta($datos){
     //obtiene el ultimo registro
     $r = ultimaPregunta();
@@ -64,7 +56,6 @@ function insertarPregunta($datos){
       return null;
   }
 }
-
 function insertarEtiqueta($etiquetas, $idPregunta){
     $cont = false;
     foreach($etiquetas as $etiqueta){
@@ -140,13 +131,11 @@ function busquedaPreguntas($where, $parametros=NULL) {
     (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos
     from pregunta as p, usuario as u $where
     order by p.idpregunta desc", $parametros)->fetchAll();
-
     //aqui annadimos las etiquetas correspondientes a cada una de las preguntas
     $annadirEtiquetas = function($pregunta) {
       $pregunta["etiquetas"] = cargarEtiquetas($pregunta[0]);
       return $pregunta;
     };
-
     return array_map($annadirEtiquetas, $preguntas);
 }
 
@@ -157,7 +146,6 @@ function cargarIndex($pagina) {
     "maxima" => $ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0,
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
-
   return busquedaPreguntas("p.idpregunta between :minima and :maxima", $rango);
 }
 

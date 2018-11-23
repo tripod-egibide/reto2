@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tripod</title>
+    <title>Stack Underflow</title>
     <?php
     include "../codigo/php/estilos.php";
     include "../codigo/php/bbdd.php";
@@ -29,7 +29,6 @@
         <div id="formulario">
             <!--manda la información del formulario -->
             <form action="/codigo/php/controller.php" method="post">
-                <!-- ANNADIR AQUI PARA LA AMPLIACION DEL MODIFICAR -->
                 <input type="text" id="comando" name="comando" value="publicarPregunta" hidden>
                 <!--muestra un formulario predisennado de un html -->
                 <?php

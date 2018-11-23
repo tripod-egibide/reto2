@@ -7,7 +7,6 @@
     <title>Stack Underflow</title>
     <?php include "./codigo/php/estilos.php" ?>
   </head>
-
   <body>
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
@@ -32,15 +31,12 @@
           } else {
             $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
           }
-
         } else if (isset($_GET["busqueda"])) {
           $datos = busquedaPorTexto(explode(",", $_GET["busqueda"]));
         } else {
           $datos = cargarIndex($pagina);
           $mostrarPaginas = true;
         }
-
-
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">

@@ -21,7 +21,6 @@ $(document).ready(function(){
     catch(error){
         alert(error);
     }
-
 });
 // permite votar al usuario
 function habilitarVotos(){
@@ -34,21 +33,17 @@ function habilitarVotos(){
         votarPositivo($("#pregunta").attr("data-idpregunta"), "voto_pregunta");
         $(this).addClass("votado");
         $("#pnegativo").removeClass("votado");
-
     });
-
     $("#pnegativo").click(function (){
         votarNegativo($("#pregunta").attr("data-idpregunta"), "voto_pregunta");
         $(this).addClass("votado");
         $("#ppositivo").removeClass("votado");
     });
-
     $(".respuestaPositivo").click(function (){
         votarPositivo($(this).parent().attr("data-idrespuesta"), "voto_respuesta", $(this).parent().children('.votosContador'));
         $(this).addClass("votado");
         $(this).parent().children('.respuestaNegativo').removeClass("votado");
     });
-
     $(".respuestaNegativo").click(function (){
         votarNegativo($(this).parent().attr("data-idrespuesta"), "voto_respuesta",$(this).parent().children('.votosContador'));
         $(this).addClass("votado");
@@ -63,11 +58,9 @@ function deshabilitarVotos(){
 function votarPositivo(iddato, dato, campo){
     enviar( iddato, dato, 1, campo);
 }
-
 function votarNegativo(iddato, dato, campo){
     enviar( iddato, dato, 0, campo);
 }
-
 //responde la respuesta
 function resuelto(idRespuesta, estado){
     var est = (estado == "No resuelta") ? 0 : 1;
@@ -86,8 +79,6 @@ function resuelto(idRespuesta, estado){
 
     });
 }
-
-
 //funcion de envio de votos
 function enviar(idPregunta, tipoVoto, voto, campo){
     var datos = {"idPreguntaRespuesta" : idPregunta, "comando" : tipoVoto, "voto" : voto };

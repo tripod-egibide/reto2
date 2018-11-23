@@ -58,19 +58,18 @@ if (isset($_GET["id"])) {
 
                 <p class="cuerpo"><?= $pregunta["texto"] ?></p>
                 <div id="piePregunta">
-        <ul id="etiquetas">
-          <?php
-          foreach ($etiquetas as $etiqueta) {
-              ?>
-              <li class=etiqueta><a
-                          href="/index.php?etiquetas=<?= strtolower($etiquetas["etiqueta"]) ?>">#<?= $etiqueta["etiqueta"] ?></a></li>
-              <?php
-          }
-          ?>
-        </ul>
+                <ul id="etiquetas">
+                  <?php
+                  foreach ($etiquetas as $etiqueta) {
+                      ?>
+                      <li class=etiqueta><a
+                                  href="/index.php?etiquetas=<?= strtolower($etiquetas["etiqueta"]) ?>">#<?= $etiqueta["etiqueta"] ?></a></li>
+                      <?php
+                  }
+                  ?>
+                </ul>
                 </div>
             </div>
-            <hr></hr>
             <?php
             if (isset($_GET['resultado'])) {
                 ?>
@@ -92,7 +91,6 @@ if (isset($_GET["id"])) {
                         ?>
                     </form>
                 </div>
-                <hr>
                 <?php
             }
             while ($respuesta = $respuestas->fetch()) {
@@ -131,7 +129,6 @@ if (isset($_GET["id"])) {
                     }
                     ?>
                 </div>
-                <hr>
                 <?php
             }
             ?>

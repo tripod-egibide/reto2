@@ -19,12 +19,13 @@
     padding: 10px;
     border: 1px solid #888;
     border-radius: 0.5em;
-    width: 80%;
+    width: 25em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: modal;
     -webkit-animation-duration: 0.4s;
     animation-name: modal;
     animation-duration: 0.4s;
+    position: relative;
     /*justify-content: space-between;*/
 }
 
@@ -46,9 +47,9 @@ h1 {
 }
 
 .cerrarModal {
-    position: fixed;
-    top: 110px;
-    right: 100px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
     color: #888;
     font-size: 28px;
     font-weight: bold;

@@ -16,10 +16,21 @@ session_start();
         case "voto_respuesta":
             echo voto($comando);
             break;
+        case "resuelta":
+            echo resuelto($_POST['dato'], $_POST['estado']);
+            break;
         default:
             header('Location: /partefija/errores.php?error=404');
             break;
     }
+    //resuelta la pregunta
+function resuelto($idRespuesta, $estado){
+        if(preguntaResuelta($idRespuesta, $estado)){
+            return true;
+        }else{
+            return false;
+        }
+}
     // vota positivo o negativo a una pregunta
     function voto($comando){
         $datoBusqueda = [
@@ -61,7 +72,7 @@ session_start();
     }
     //divide el string de la etiqueta en varias etiquetas tomando como separador la coma ,
     function dividirEtiquetas($listaEtiqueta){
-        $stringFinal = str_replace(' ', ',', $listaEtiqueta);
+        $stringFinal = mb_convert_case(str_replace(' ', ',', $listaEtiqueta), MB_CASE_LOWER, "UTF-8");;
         $arrayPalabras = explode(',', $stringFinal);
         return $arrayPalabras;
     }

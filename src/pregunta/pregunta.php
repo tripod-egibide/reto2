@@ -1,8 +1,8 @@
 <!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
   require "../codigo/php/bbdd.php";
-$_SESSION["id"] = 1;
-  if (isset($_GET["id"])) {
+
+if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $datos = cargarPregunta($id);
     $pregunta = $datos["pregunta"]->fetch(0);
@@ -25,9 +25,17 @@ $_SESSION["id"] = 1;
   <div class="gridContenedor">
   <?php
   include("../partefija/header.php");
+  if(isset($_SESSION["id"])){
+      $idSession =$_SESSION["id"];
+      $sessionTrue = true;
+  }else{
+      $idSession = "";
+      $sessionTrue = false;
+  }
   ?>
   <script type="text/javascript" src="../codigo/js/pregunta/pregunta.js"></script>
-    <div class="post" id="pregunta" data-idpregunta="<?=$id?>" data-idusuario="<?=$_SESSION["id"]?>">
+      <div class="main">
+    <div class="post" id="pregunta" data-idpregunta="<?=$id?>" data-idusuario="<?=$idSession?>">
       <div class="cabeceraPost" id="cabeceraPregunta">
         <h1 class="titulo" id="tituloPregunta">
           <?=$pregunta["titulo"]?>
@@ -41,11 +49,11 @@ $_SESSION["id"] = 1;
       </div>
       <div class="votos">
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='ppositivo'>arrow_drop_up</i>" :  "");
+          echo ($sessionTrue) ? "<i class='material-icons' id='ppositivo'>arrow_drop_up</i>" :  "";
           ?>
         <span id="votoPregunta" class="votosContador"><?php echo $pregunta["positivos"]-$pregunta["negativos"]; ?></span>
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class='material-icons' id='pnegativo'>arrow_drop_down</i>" :  "");
+          echo ($sessionTrue) ? "<i class='material-icons' id='pnegativo'>arrow_drop_down</i>" :  "";
           ?>
       </div>
       <p class="cuerpo"><?=$pregunta["texto"]?></p>
@@ -106,11 +114,11 @@ $_SESSION["id"] = 1;
       </div>
       <div class="votos votoRespuesta" data-idrespuesta="<?=$respuesta['idrespuesta']?>">
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestaPositivo\">arrow_drop_up</i>" :  "");
+          echo ($sessionTrue) ? "<i class=\"material-icons respuestaPositivo\">arrow_drop_up</i>" :  "";
           ?>
         <span class="votosContador" id="respuesta<?=$respuesta["idrespuesta"]?>"><?php echo $respuesta["positivos"]-$respuesta["negativos"] ?></span>
           <?php
-          echo (isset($_SESSION["id"]) ? "<i class=\"material-icons respuestaNegativo\">arrow_drop_down</i>" :  "");
+          echo ($sessionTrue) ? "<i class=\"material-icons respuestaNegativo\">arrow_drop_down</i>" :  "";
           ?>
         <?php
         if ($respuesta["resuelve"]) {
@@ -119,12 +127,24 @@ $_SESSION["id"] = 1;
         ?>
       </div>
       <p class="cuerpo"><?=$respuesta["texto"]?></p>
+        <?php
+        if($pregunta["idusuario"] == $idSession){
+            $texto = ($respuesta["resuelve"] == 0)? "Responde mi pregunta" : "No resuelta";
+            echo "<input class='resuelve' type='submit' value='$texto'>";
+         }
+        ?>
     </div>
+            <hr>
     <?php
     }
+    ?>
+          <div class="navegacion"></div>
+      </div>
+      <div class="margen"></div>
+      <?php
+
     include("../partefija/footer.php");
     ?>
-  </div>
   </body>
 </html>
 <?php

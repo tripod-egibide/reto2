@@ -7,7 +7,6 @@
     include "../codigo/php/estilos.php";
     include "../codigo/php/bbdd.php";
     ?>
-    <script type="text/javascript" src="/codigo/js/publicarPregunta/publicarPregunta.js"></script>
 </head>
 <body>
 <div class="gridContenedor">

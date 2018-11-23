@@ -12,8 +12,8 @@
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
       <div class="main">
-        <a class="iraPublicarPregunta" href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
+        echo isset($_SESSION["id"])? "<a class='iraPublicarPregunta' href='/pregunta/publicarPregunta.php'>Publicar Pregunta</a>":"";
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET

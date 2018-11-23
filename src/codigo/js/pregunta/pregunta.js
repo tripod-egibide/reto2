@@ -4,7 +4,7 @@ $(document).ready(function(){
         var tiempo = setInterval(
             function(){
                 if($("#comando").val() == ("ok")){
-                    location.href="/index.php";
+                    location.href="/";
                 }else{
                     clearInterval(tiempo);
                 }
@@ -25,6 +25,11 @@ $(document).ready(function(){
 });
 // permite votar al usuario
 function habilitarVotos(){
+    $(".resuelve").click(function (){
+        resuelto($(this).parent().children('.votoRespuesta').attr("data-idrespuesta"), $(this).val());
+        var estado = ($(this).val() == "No resuelta") ? "Responde mi pregunta" : "No resuelta";
+        $(this).parent().children('.resuelve').attr("value", estado);
+    });
     $("#ppositivo").click(function (){
         votarPositivo($("#pregunta").attr("data-idpregunta"), "voto_pregunta");
         $(this).addClass("votado");
@@ -63,7 +68,24 @@ function votarNegativo(iddato, dato, campo){
     enviar( iddato, dato, 0, campo);
 }
 
-//votos a las respuestas
+//responde la respuesta
+function resuelto(idRespuesta, estado){
+    var est = (estado == "No resuelta") ? 0 : 1;
+    $.ajax({
+        //hacemos un post al php correspondiente, que solo devuelve un mensaje si a habido un error
+        type: "post",
+        url: window.root + "/codigo/php/controller.php",
+        data: {comando:"resuelta", dato:idRespuesta, estado:est},
+        success: (r) => {
+            if (r != 1) {
+                //si hay un mensaje, lo mostramos por pantalla y vaciamos los campos de contrasenna
+                throw "error al marcar como respondido";
+
+            }
+        }
+
+    });
+}
 
 
 //funcion de envio de votos

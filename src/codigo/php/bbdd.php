@@ -1,9 +1,9 @@
 <?php
 //funciones universales:
 function abrirConexion(){
-  $bd = "mysql:host=localhost;dbname=reto2;charset=utf8";
-  $usuario = "root";
-  $contrasenna = "";
+  $bd = "mysql:host=e101240-mysql.services.easyname.eu;dbname=u159695db1;charset=utf8";
+  $usuario = "u159695db1";
+  $contrasenna = "x2354057F";
   return $conexion = new PDO($bd, $usuario, $contrasenna);
 }
 
@@ -54,9 +54,11 @@ function insertarPregunta($datos){
     //si no devuelve nada, es que ha fallado
       return null;
       //compara si se ha introducido
-  }else if(ultimaPregunta()> $r){
-      // si introducido ok, en caso contrario null
-      return "ok";
+  }
+    // si introducido devuelve ultima pregunta, en caso contrario null
+  $nr=ultimaPregunta();
+  if($nr> $r){
+      return $nr;
   }
   else{
       return null;
@@ -66,7 +68,6 @@ function insertarPregunta($datos){
 function insertarEtiqueta($etiquetas, $idPregunta){
     $cont = false;
     foreach($etiquetas as $etiqueta){
-        $etiqueta = mb_convert_case($etiqueta, MB_CASE_LOWER, "UTF-8");
         if($etiqueta != ""){
             $idEtiqueta = consultarEtiqueta($etiqueta);
             if($idEtiqueta == null){
@@ -89,7 +90,6 @@ function insertarEtiqueta($etiquetas, $idPregunta){
     }
     return $cont;
 }
-
 function insertarRespuesta($datos){
     //obtiene el último registro
     $r = ultimaRespuesta();
@@ -107,7 +107,7 @@ function insertarRespuesta($datos){
 }
 
 function consultarEtiqueta($etiqueta){
-  return realizarConsulta("SELECT idetiqueta FROM ETIQUETA WHERE etiqueta = :etiqueta;", ["etiqueta" => $etiqueta])->fetch()[0];
+  return realizarConsulta("SELECT idetiqueta FROM etiqueta WHERE etiqueta = :etiqueta;", ["etiqueta" => $etiqueta])->fetch()[0];
 }
 
 function cargarEtiquetas($idPregunta) {
@@ -223,5 +223,8 @@ function verAvatar($id) {
 
 function etiquetasFrecuentes() {
   return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 10")->fetchAll();
+}
+function preguntaResuelta($idRespuesta, $estado){
+  return realizarConsulta("UPDATE respuesta set resuelve = :estado where idrespuesta = :respuesta", ["respuesta"=>$idRespuesta, "estado"=>$estado]);
 }
 ?>

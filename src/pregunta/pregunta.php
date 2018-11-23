@@ -146,7 +146,7 @@ if (isset($_GET["id"])) {
 
         include("../partefija/footer.php");
         ?>
-    </div>>
+    </div>
     </body>
     </html>
     <?php

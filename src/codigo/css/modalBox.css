@@ -12,7 +12,7 @@
 }
 
 .modalContenido {
-    display: flex;
+    /*display: flex;*/
     /*position: relative;*/
     background-color: #fefefe;
     margin: auto;
@@ -25,13 +25,19 @@
     -webkit-animation-duration: 0.4s;
     animation-name: modal;
     animation-duration: 0.4s;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
+}
+
+h1 {
+    width: 100%;
+    padding-left: 10%;
 }
 
 .modalContenido form{
     width: 100%;
     padding: 10%;
-    border-left: 1px solid #d64;
+    padding-top: 0;
+    align-self: flex-end;
 }
 .modalContenido input, button{
     width: 100%;
@@ -40,6 +46,9 @@
 }
 
 .cerrarModal {
+    position: fixed;
+    top: 110px;
+    right: 100px;
     color: #888;
     font-size: 28px;
     font-weight: bold;

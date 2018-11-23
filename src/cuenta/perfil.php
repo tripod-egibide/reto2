@@ -6,7 +6,12 @@ if (isset($_GET["id"])) {
   if (isset($_SESSION["id"])) {
     $duenno = $_SESSION["id"] == $_GET["id"];
   }
-  $usuario = cargarUsuario(isset($_GET["id"]));
+  $usuario = cargarUsuario($_GET["id"]);
+
+  if (isset($_POST["descripcion"])) {
+    actualizarDescripcion(["id" => $_GET["id"], "descripcion" => $_POST["descripcion"]]);
+    header('Location: '.$_SERVER['REQUEST_URI']);
+  }
 
   if (isset($_FILES["avatar"])) {
     $uploadfile = "/imagenes/avatar/" . basename($_FILES['avatar']['name']);
@@ -30,7 +35,7 @@ if (isset($_GET["id"])) {
     <div class="gridContenedor">
       <?php include "../partefija/header.php"; ?>
       <main class="main">
-        <h1>
+        <h1 class="usuario">
           <?=$usuario["usuario"]?>
         </h1>
         <div class="info">
@@ -39,8 +44,9 @@ if (isset($_GET["id"])) {
               <img src="<?=$usuario["url_avatar"]?>" alt="" id="granAvatar">
               <?php if ($duenno) { ?>
                 <form class="subirAvatar" action="perfil.php?id=<?=$_GET["id"]?>" method="post" enctype="multipart/form-data">
-                  <input type="file" name="avatar" accept="image/*"><br>
-                  <input type="submit" value="Cambiar avatar">
+					<!-- Añadir el onchange en el script -->
+                  <input type="file" name="avatar" accept="image/*" onchange="submit()"><br>
+                  <!-- <input type="submit" value="Cambiar avatar"> -->
                 </form>
               <?php } ?>
             </div>
@@ -62,23 +68,29 @@ if (isset($_GET["id"])) {
             </div>
           </div>
           <div class="datos">
-          <label>Email:</label> <a href="mailto:<?=$usuario["email"]?>"><?=$usuario["email"]?></a><br>
+			  <div class="email">
+				  <label><i class="material-icons">email</i></label>
+				  <a href="mailto:<?=$usuario["email"]?>"><?=$usuario["email"]?></a><br>
+			  </div>
           <?php if ($duenno) {
             ?>
-            <form action="" method="post">
-              <label for="descripcion">Descripci&oacute;n:</label><br>
-              <textarea name="descripcion" rows="16" cols="40" id="descripcion" placeholder="Nueva desripci&oacute;n..."></textarea>
-              <input type="submit" name="" value="Actualizar">
-            </form>
+			<div class="desc">
+				<form action="perfil.php?id=<?=$_GET["id"]?>" method="post">
+				  <label for="descripcion">Descripci&oacute;n:</label><br>
+				  <textarea name="descripcion" rows="16" cols="40" id="descripcion" maxlength=1000 placeholder="Nueva desripci&oacute;n..."><?=$usuario["descripcion"]?></textarea>
+				  <input type="submit" name="" value="Actualizar">
+				</form>
+			</div>
             <?php
               } else {
               ?>
-            <p><?=$usuario["descripcion"]?></p>
+            <p class="desc"><?=$usuario["descripcion"]?></p>
             <?php } ?>
           </div>
         </div>
         <div class="listaPreguntas">
           <span>Ultimas preguntas: </span><br>
+		  <div class="fondoCCC">
           <?php
           $preguntas = preguntasDeUsuario($_GET["id"]);
           foreach ($preguntas as $pregunta) {
@@ -87,6 +99,7 @@ if (isset($_GET["id"])) {
             <?php
           }
           ?>
+		  </div>
         </div>
       </main>
       <div class="margen">

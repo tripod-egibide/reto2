@@ -1,0 +1,84 @@
+/*Index*/
+.iraPublicarPregunta {
+    text-decoration: none;
+    color: white;
+    background-color: #d64;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 50px;
+}
+
+.bPublicar {
+    width: 100%;
+    text-align: right;
+    margin: 15px 0 15px;
+}
+
+.pregunta * {
+    text-decoration: none;
+}
+
+.pregunta {
+    padding: 5px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+.votosRespuesta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    flex-basis: 5em;
+    align-items: center;
+    margin-right: 5px;
+}
+
+.votos {
+    justify-self: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cabeceraTitulo {
+    width: 100%;
+    padding-left: 5px;
+    display: flex;
+}
+
+.titulo {
+    background-color: #ec9;
+    padding: 10px;
+    color: #333;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.check {
+    color: green;
+    /* border: 1px solid green;
+    border-radius: 100%; */
+    font-size: 200%;
+}
+
+.autor, .imagenAutor {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    clear: both;
+}
+
+.autor {
+    margin-top: 5px;
+}
+
+.fecha {
+    margin-right: 3px;
+}

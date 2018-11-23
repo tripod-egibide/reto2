@@ -8,5 +8,20 @@
 
 .material-icons:hover {
     cursor:pointer;
-    cursor: hand
+}
+
+.titulo {
+    background-color: #ec9;
+    padding: 10px;
+    color: #333;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.autor, .imagenAutor {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    clear: both;
 }

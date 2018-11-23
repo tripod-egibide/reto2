@@ -25,7 +25,7 @@ $(document).ready(function(){
 // permite votar al usuario
 function habilitarVotos(){
     $(".resuelve").click(function (){
-        resuelto($(this).parent().children('.votoRespuesta').attr("data-idrespuesta"), $(this).val());
+        resuelto($(this).parent().children('.cabeceraPost').children('.votoRespuesta').attr("data-idrespuesta"), $(this).val());
         var estado = ($(this).val() == "No resuelta") ? "Responde mi pregunta" : "No resuelta";
         $(this).parent().children('.resuelve').attr("value", estado);
     });
@@ -64,6 +64,7 @@ function votarNegativo(iddato, dato, campo){
 //responde la respuesta
 function resuelto(idRespuesta, estado){
     var est = (estado == "No resuelta") ? 0 : 1;
+
     $.ajax({
         //hacemos un post al php correspondiente, que solo devuelve un mensaje si a habido un error
         type: "post",

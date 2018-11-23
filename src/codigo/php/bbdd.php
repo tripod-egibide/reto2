@@ -1,9 +1,9 @@
 <?php
 //funciones universales:
 function abrirConexion(){
-  $bd = "mysql:host=localhost;dbname=reto2;charset=utf8";
-  $usuario = "root";
-  $contrasenna = "";
+  $bd = "mysql:host=e101240-mysql.services.easyname.eu;dbname=u159695db1;charset=utf8";
+  $usuario = "u159695db1";
+  $contrasenna = "x2354057F";
   return $conexion = new PDO($bd, $usuario, $contrasenna);
 }
 function realizarConsulta($query, $datos){
@@ -215,7 +215,7 @@ function actualizarDescripcion($datos) {
 }
 
 function etiquetasFrecuentes() {
-  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 15")->fetchAll();
+  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia desc limit 15")->fetchAll();
 }
 function preguntaResuelta($idRespuesta, $estado){
   return realizarConsulta("UPDATE respuesta set resuelve = :estado where idrespuesta = :respuesta", ["respuesta"=>$idRespuesta, "estado"=>$estado]);

@@ -35,36 +35,29 @@ if (isset($_GET["id"])) {
         <div class="main">
             <div class="post" id="pregunta" data-idpregunta="<?= $id ?>" data-idusuario="<?= $idSession ?>">
                 <div class="cabeceraPost" id="cabeceraPregunta">
-                    <h1 class="titulo" id="tituloPregunta">
-                        <?= $pregunta["titulo"] ?>
-                    </h1>
-                    <div class="autor">
-                    <!-- TODO: dar formato a la fecha o hacer un "escrito hace 3 dias y una hora" -->
-                    <span class="fecha"><?= $pregunta["fecha_creacion"] ?></span>
-                    <!-- TODO: enlazar esto al perfil del usuario correspondiente -->
-                    <span><a href="../cuenta/perfil.php?id=<?= $pregunta["idusuario"] ?>">
-          <?= $pregunta["usuario"] ?> <img class="avatar" src="<?= $pregunta["url_avatar"] ?>">
-        </a></span>
-                    </div>
+                  <div class="votos">
+                      <?php
+                      echo ($sessionTrue) ? "<i class='material-icons' id='ppositivo'>arrow_drop_up</i>" : "";
+                      ?>
+                      <span id="votoPregunta"
+                            class="votosContador"><?php echo $pregunta["positivos"] - $pregunta["negativos"]; ?></span>
+                      <?php
+                      echo ($sessionTrue) ? "<i class='material-icons' id='pnegativo'>arrow_drop_down</i>" : "";
+                      ?>
+                  </div>
+                  <h1 class="titulo" id="tituloPregunta">
+                      <?= $pregunta["titulo"] ?>
+                  </h1>
                 </div>
-                <div class="votos">
-                    <?php
-                    echo ($sessionTrue) ? "<i class='material-icons' id='ppositivo'>arrow_drop_up</i>" : "";
-                    ?>
-                    <span id="votoPregunta"
-                          class="votosContador"><?php echo $pregunta["positivos"] - $pregunta["negativos"]; ?></span>
-                    <?php
-                    echo ($sessionTrue) ? "<i class='material-icons' id='pnegativo'>arrow_drop_down</i>" : "";
-                    ?>
+                <div class="autor">
+                  <span class="fecha">el <?=$pregunta["fecha_creacion"]?> por</span>
+                  <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
+                    <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
+                  </a>
                 </div>
+
                 <p class="cuerpo"><?= $pregunta["texto"] ?></p>
                 <div id="piePregunta">
-        <span id="contadorRespuestas">
-        <?php
-        $contadoRespuestas = $respuestas->rowCount();
-        echo ($contadoRespuestas == 1) ? "1 respuesta." : $contadoRespuestas . " respuestas.";
-        ?>
-            </span>
         <ul id="etiquetas">
           <?php
           foreach ($etiquetas as $etiqueta) {
@@ -99,34 +92,36 @@ if (isset($_GET["id"])) {
                         ?>
                     </form>
                 </div>
+                <hr>
                 <?php
             }
             while ($respuesta = $respuestas->fetch()) {
                 ?>
                 <div class="post respuesta">
                     <div class="cabeceraPost">
+                      <div class="votos votoRespuesta" data-idrespuesta="<?= $respuesta['idrespuesta'] ?>">
+                          <?php
+                          echo ($sessionTrue) ? "<i class=\"material-icons respuestaPositivo\">arrow_drop_up</i>" : "";
+                          ?>
+                          <span class="votosContador" id="respuesta<?= $respuesta["idrespuesta"] ?>"><?php echo $respuesta["positivos"] - $respuesta["negativos"] ?></span>
+                          <?php
+                          echo ($sessionTrue) ? "<i class=\"material-icons respuestaNegativo\">arrow_drop_down</i>" : "";
+                          ?>
+                      </div>
                         <h2 class="titulo">
                             <?= $respuesta["titulo"] ?>
+                            <?php
+                            if ($respuesta["resuelve"]) {
+                                echo '<i class="material-icons check">check</i>';
+                            }
+                            ?>
                         </h2>
-                        <span class="fecha"><?= $respuesta["fecha_creacion"] ?></span>
-                        <span class="creador"><a
-                                    href="../cuenta/perfil.php?id=<?= $respuesta["idusuario"] ?>"><?= $respuesta["usuario"] ?></a></span>
-                        <img class="avatar" src="<?= $respuesta["url_avatar"] ?>">
                     </div>
-                    <div class="votos votoRespuesta" data-idrespuesta="<?= $respuesta['idrespuesta'] ?>">
-                        <?php
-                        echo ($sessionTrue) ? "<i class=\"material-icons respuestaPositivo\">arrow_drop_up</i>" : "";
-                        ?>
-                        <span class="votosContador"
-                              id="respuesta<?= $respuesta["idrespuesta"] ?>"><?php echo $respuesta["positivos"] - $respuesta["negativos"] ?></span>
-                        <?php
-                        echo ($sessionTrue) ? "<i class=\"material-icons respuestaNegativo\">arrow_drop_down</i>" : "";
-                        ?>
-                        <?php
-                        if ($respuesta["resuelve"]) {
-                            echo '<i class="material-icons">check_circle</i>';
-                        }
-                        ?>
+                    <div class="autor">
+                      <span class="fecha">el <?=$pregunta["fecha_creacion"]?> por</span>
+                      <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
+                        <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
+                      </a>
                     </div>
                     <p class="cuerpo"><?= $respuesta["texto"] ?></p>
                     <?php

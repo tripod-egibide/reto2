@@ -7,13 +7,12 @@
     <title>Stack Underflow</title>
     <?php include "./codigo/php/estilos.php" ?>
   </head>
-
   <body>
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
       <div class="main">
-        <a class="iraPublicarPregunta" href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
+        echo isset($_SESSION["id"])? "<a class='iraPublicarPregunta' href='/pregunta/publicarPregunta.php'>Publicar Pregunta</a>":"";
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
@@ -32,15 +31,12 @@
           } else {
             $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
           }
-
         } else if (isset($_GET["busqueda"])) {
           $datos = busquedaPorTexto(explode(",", $_GET["busqueda"]));
         } else {
           $datos = cargarIndex($pagina);
           $mostrarPaginas = true;
         }
-
-
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">

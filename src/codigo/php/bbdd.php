@@ -6,7 +6,6 @@ function abrirConexion(){
   $contrasenna = "";
   return $conexion = new PDO($bd, $usuario, $contrasenna);
 }
-
 function realizarConsulta($query, $datos){
   $conexion = abrirConexion();
   $consulta = $conexion->prepare($query);
@@ -14,24 +13,19 @@ function realizarConsulta($query, $datos){
   $conexion = null;
   return $consulta;
 }
-
 //funciones especificas:
-
 function ultimaPregunta(){
   //devuelve la mayor ID de pregunta, que como es autoincremental siempre sera la mas reciente
   //ojo, que es en forma de string
   return abrirConexion()->query("SELECT max(idpregunta) from pregunta")->fetch()[0];
 }
-
 function encontrarUsuario($datos) {
   return realizarConsulta("SELECT idusuario from usuario where usuario=:usuario or email=:email", $datos);
 }
-
 function insertarUsuario($datos) {
   realizarConsulta("INSERT into usuario values (NULL, :usuario, :email, :contrasenna, NULL, DEFAULT)", $datos);
   return abrirConexion()->query("SELECT max(idusuario) from usuario")->fetch()[0];
 }
-
 function verificarLogin($email, $contrasenna) {
   $resultado = realizarConsulta("SELECT idusuario, contrasenna from usuario where email=:email", ["email" => $email])->fetch();
   if (password_verify($contrasenna, $resultado["contrasenna"])) {
@@ -40,13 +34,11 @@ function verificarLogin($email, $contrasenna) {
     return false;
   }
 }
-
 function ultimaRespuesta(){
     //devuelve la mayor ID de pregunta, que como es autoincremental siempre sera la mas reciente
     //ojo, que es en forma de string
     return abrirConexion()->query("SELECT max(idrespuesta) from respuesta")->fetch()[0];
 }
-
 function insertarPregunta($datos){
     //obtiene el ultimo registro
     $r = ultimaPregunta();
@@ -55,19 +47,19 @@ function insertarPregunta($datos){
     //si no devuelve nada, es que ha fallado
       return null;
       //compara si se ha introducido
-  }else if(ultimaPregunta()> $r){
-      // si introducido ok, en caso contrario null
-      return "ok";
+  }
+    // si introducido devuelve ultima pregunta, en caso contrario null
+  $nr=ultimaPregunta();
+  if($nr> $r){
+      return $nr;
   }
   else{
       return null;
   }
 }
-
 function insertarEtiqueta($etiquetas, $idPregunta){
     $cont = false;
     foreach($etiquetas as $etiqueta){
-        $etiqueta = mb_convert_case($etiqueta, MB_CASE_LOWER, "UTF-8");
         if($etiqueta != ""){
             $idEtiqueta = consultarEtiqueta($etiqueta);
             if($idEtiqueta == null){
@@ -90,7 +82,6 @@ function insertarEtiqueta($etiquetas, $idPregunta){
     }
     return $cont;
 }
-
 function insertarRespuesta($datos){
     //obtiene el último registro
     $r = ultimaRespuesta();
@@ -108,7 +99,7 @@ function insertarRespuesta($datos){
 }
 
 function consultarEtiqueta($etiqueta){
-  return realizarConsulta("SELECT idetiqueta FROM ETIQUETA WHERE etiqueta = :etiqueta;", ["etiqueta" => $etiqueta])->fetch()[0];
+  return realizarConsulta("SELECT idetiqueta FROM etiqueta WHERE etiqueta = :etiqueta;", ["etiqueta" => $etiqueta])->fetch()[0];
 }
 
 function cargarEtiquetas($idPregunta) {
@@ -141,13 +132,11 @@ function busquedaPreguntas($where, $parametros=NULL) {
     (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo=1) - (select count(*) from voto_pregunta where idpregunta=p.idpregunta and positivo!=1) as votos
     from pregunta as p, usuario as u $where
     order by p.idpregunta desc", $parametros)->fetchAll();
-
     //aqui annadimos las etiquetas correspondientes a cada una de las preguntas
     $annadirEtiquetas = function($pregunta) {
       $pregunta["etiquetas"] = cargarEtiquetas($pregunta[0]);
       return $pregunta;
     };
-
     return array_map($annadirEtiquetas, $preguntas);
 }
 
@@ -158,7 +147,6 @@ function cargarIndex($pagina) {
     "maxima" => ($ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0),
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
-
   return busquedaPreguntas("p.idpregunta between :minima and :maxima", $rango);
 }
 
@@ -184,20 +172,20 @@ function busquedaPorTexto($texto) {
 }
 
 //busca e inserta o actualiza el voto de una pregunta
-function buscarVoto($base, $dato){
-    return realizarConsulta("SELECT idusuario FROM $base WHERE idusuario = :usuario and idpregunta = :pregunta;", $dato)->fetch()[0];
+function buscarVoto($base, $dato, $tipoVoto){
+    return realizarConsulta("SELECT idusuario FROM $base WHERE idusuario = :usuario and $tipoVoto = :idPreguntaRespuesta;", $dato)->fetch()[0];
 }
 //no hay necesidad de un return, ya que consultarVotosPregunta realiza una actualización de los votos contra la bbdd
 //el motivo de realizar una nueva consulta es por si otro usuario votase antes de que el actual pudiese votar, ya que la página no se recarga por voto de cada usuario
 //así obtendría un resultado de votos más exacto.
-function insertarVoto($base, $dato){
-    realizarConsulta("INSERT INTO $base VALUES(:usuario, :pregunta, :voto) ;", $dato);
+function insertarVoto($base, $dato, $tipoVoto){
+    realizarConsulta("INSERT INTO $base VALUES(:usuario, :idPreguntaRespuesta, :voto) ;", $dato);
 }
-function actualizarVoto($base, $dato){
-    realizarConsulta("UPDATE $base SET positivo = :voto WHERE idusuario = :usuario AND idpregunta = :pregunta;", $dato);
+function actualizarVoto($base, $dato, $tipoVoto){
+    realizarConsulta("UPDATE $base SET positivo = :voto WHERE idusuario = :usuario AND $tipoVoto = :idPreguntaRespuesta;", $dato);
 }
-function consultarVotos($base, $dato){
-    return realizarConsulta("SELECT SUM(REPLACE(positivo, '0', '-1')) FROM $base WHERE idpregunta = :pregunta;", ["pregunta"=>$dato])->fetch()[0];
+function consultarVotos($base, $dato, $tipoVoto){
+    return realizarConsulta("SELECT SUM(REPLACE(positivo, '0', '-1')) FROM $base WHERE $tipoVoto = :idPreguntaRespuesta;", ["idPreguntaRespuesta"=>$dato])->fetch()[0];
 }
 
 function cargarUsuario($id) {
@@ -227,6 +215,9 @@ function actualizarDescripcion($datos) {
 }
 
 function etiquetasFrecuentes() {
-  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 10")->fetchAll();
+  return abrirConexion()->query("SELECT etiqueta, (SELECT count(*) from pregunta_tiene_etiqueta where idetiqueta = e.idetiqueta) as frecuencia from etiqueta as e order by frecuencia limit 15")->fetchAll();
+}
+function preguntaResuelta($idRespuesta, $estado){
+  return realizarConsulta("UPDATE respuesta set resuelve = :estado where idrespuesta = :respuesta", ["respuesta"=>$idRespuesta, "estado"=>$estado]);
 }
 ?>

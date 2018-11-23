@@ -7,13 +7,12 @@
     <title>Stack Underflow</title>
     <?php include "./codigo/php/estilos.php" ?>
   </head>
-
   <body>
     <div class="gridContenedor">
       <?php include "./partefija/header.php" ?>
       <div class="main">
-        <a class="iraPublicarPregunta" href="http://localhost/pregunta/publicarPregunta.php">Publicar Pregunta</a>
         <?php
+        echo isset($_SESSION["id"])? "<div class='bPublicar'><a class='iraPublicarPregunta' href='/pregunta/publicarPregunta.php'>Publicar Pregunta</a></div>":"";
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
@@ -32,15 +31,12 @@
           } else {
             $datos = busquedaPorEtiquetas(explode(",", $_GET["etiquetas"]));
           }
-
         } else if (isset($_GET["busqueda"])) {
           $datos = busquedaPorTexto(explode(",", $_GET["busqueda"]));
         } else {
           $datos = cargarIndex($pagina);
           $mostrarPaginas = true;
         }
-
-
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">
@@ -60,18 +56,20 @@
 				  ?>
 				</span>
 			</div>
-              <div class="titulo">
-                  <?php
-                  if ($pregunta["resuelto"]) {
-                      echo '<i class="material-icons check">check_circle</i>';
-                  }
-                  ?>
-                  <a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
+                <?php
+                if ($pregunta["resuelto"]) {
+                    echo '<i class="material-icons check">check_circle</i>';
+                }
+                ?>
+              <div class="cabeceraTitulo">
+
+                  <a class="titulo" href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
               </div>
               <div class="autor">
                   <span class="fecha">el <?=$pregunta["fecha_creacion"]?></span>
                   <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                  por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>"></a>
+                    por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
+                  </a>
               </div>
             </div>
             <ul class="etiquetas">
@@ -108,7 +106,7 @@
             <?php
         }?>
       </div>
-      <div class="margen"></div>
+      <div class="margen"><?php include "./partefija/margen.php" ?></div>
       <?php include "./partefija/footer.php" ?>
     </div>
   </body>

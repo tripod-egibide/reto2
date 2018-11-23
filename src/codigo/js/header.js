@@ -8,7 +8,7 @@ function interruptorMenu() {
 }
 $("#botonMenu").on("click", interruptorMenu);
 
-$("#botonLogout").on("click", (data) => {
+$("#botonLogout, #botonLogoutMovil").on("click", (data) => {
   $.post("/codigo/php/cuenta/signout.php");
   $.ajax({
       type: "POST",

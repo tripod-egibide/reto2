@@ -1,4 +1,3 @@
-<!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
 require "../codigo/php/bbdd.php";
 if (isset($_GET["id"])) {
@@ -143,10 +142,9 @@ if (isset($_GET["id"])) {
         </div>
         <div class="margen"></div>
         <?php
-
         include("../partefija/footer.php");
         ?>
-    </div>>
+    </div>
     </body>
     </html>
     <?php

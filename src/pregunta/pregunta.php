@@ -1,4 +1,3 @@
-<!-- por ahora todo esto ha sido programado a ciegas, hay que comprobar TOOODOOOO -->
 <?php
   require "../codigo/php/bbdd.php";
 $_SESSION["id"] = 1;
@@ -115,7 +114,7 @@ $_SESSION["id"] = 1;
           ?>
         <?php
         if ($respuesta["resuelve"]) {
-          echo '<i class="material-icons">check</i>';
+          echo '<i class="material-icons check">check_circle</i>';
         }
         ?>
       </div>

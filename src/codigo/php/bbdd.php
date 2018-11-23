@@ -28,7 +28,8 @@ function encontrarUsuario($datos) {
 }
 
 function insertarUsuario($datos) {
-  return realizarConsulta("INSERT into usuario values (NULL, :usuario, :email, :contrasenna, NULL, DEFAULT)", $datos);
+  realizarConsulta("INSERT into usuario values (NULL, :usuario, :email, :contrasenna, NULL, DEFAULT)", $datos);
+  return abrirConexion()->query("SELECT max(idusuario) from usuario")->fetch()[0];
 }
 
 function verificarLogin($email, $contrasenna) {
@@ -154,7 +155,7 @@ function cargarIndex($pagina) {
   $ultima = ultimaPregunta();
   //esto determina el rango de IDs que cargara la select, que luego se mostraran en pantalla, en funcion de la pagina que queremos
   $rango = [
-    "maxima" => $ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0,
+    "maxima" => ($ultima-($pagina * 10) >= 0 ? $ultima-($pagina * 10) : 0),
     "minima" => ($ultima-(($pagina + 1) * 10)+1) >= 0 ? $ultima-(($pagina + 1) * 10)+1 : 0
   ];
 

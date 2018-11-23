@@ -16,7 +16,8 @@ if (isset($_POST)) {
         "email" => $_POST["email"],
         "contrasenna" => password_hash($_POST["contra"], PASSWORD_DEFAULT)
       ];
-      insertarUsuario($datos);
+      session_start();
+      $_SESSION["id"] = insertarUsuario($datos);
     }
     else {
       echo "Las contrase&ntilde;as no coinciden.";

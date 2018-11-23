@@ -119,6 +119,17 @@ header {
   height: auto;
 }
 
+#avatarHeader .avatar {
+  height: 60px;
+  width: 60px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.votado {
+  color: #d64;
+}
+
 /*footer*/
 footer {
   display: flex;
@@ -163,11 +174,11 @@ footer img {
   padding: 5px;
 }
 
-.votosRespuesta{
-	display: flex;
-	justify-content: space-between;
-	width: 25%;
-	float: left;
+.votosRespuesta {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+  float: left;
 }
 
 .titulo {
@@ -176,13 +187,15 @@ footer img {
   background-color: #ec9;
   padding: 10px;
 }
-.titulo i {
-	color: green;
-	border: 1px solid green;
-	border-radius: 100%;
+
+.check {
+  color: green;
+  /* border: 1px solid green;
+  border-radius: 100%; */
+  font-size: 200%;
 }
 
-.autor, .fecha{
+.autor, .fecha {
   text-align: right;
 }
 
@@ -191,10 +204,12 @@ footer img {
   padding: 0;
   margin: 0;
 }
+
 .etiqueta {
   display: inline-block;
   margin: 5px 0;
 }
+
 .etiqueta a {
   background-color: #ec9;
   /*border: 1px solid #333;*/
@@ -217,9 +232,9 @@ footer img {
   #barraBusqueda, #barraBusqueda input {
     width: 100%;
   }
-  
-  .votosRespuesta{
-	  flex-wrap: wrap;
+
+  .votosRespuesta {
+    flex-wrap: wrap;
   }
 }
 

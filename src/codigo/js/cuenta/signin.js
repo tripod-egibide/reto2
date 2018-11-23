@@ -8,7 +8,7 @@ $("#login").submit(() => {
     success: (r) => {
       if (r != 1) {
         //si hay un mensaje, lo mostramos por pantalla y vaciamos los campos de contrasenna
-        $("#resultado").html(r);
+        $("#resultadoSignIn").html(r);
         $("#contraLogin").val("");
 
       } else {

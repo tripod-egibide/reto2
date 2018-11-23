@@ -12,7 +12,7 @@
       <?php include "./partefija/header.php" ?>
       <div class="main">
         <?php
-        echo isset($_SESSION["id"])? "<a class='iraPublicarPregunta' href='/pregunta/publicarPregunta.php'>Publicar Pregunta</a>":"";
+        echo isset($_SESSION["id"])? "<div class='bPublicar'><a class='iraPublicarPregunta' href='/pregunta/publicarPregunta.php'>Publicar Pregunta</a></div>":"";
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
@@ -41,33 +41,38 @@
           ?>
           <div class="pregunta">
             <div class="info">
-			<div class="votosRespuesta">
-				<span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
-				<span class="votos">
-				  <?php
-				  echo '<span>'.$pregunta["votos"].'</span>';
-				  if ($pregunta["votos"] > 0) {
-					echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
-				  } else if ($pregunta["votos"] < 0) {
-					echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
-				  } else {
-					echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
-				  }
-				  ?>
-				</span>
-			</div>
-              <div class="titulo">
+              <div class="cabeceraTitulo">
+          			<div class="votosRespuesta">
+                  <i class="material-icons check">
                   <?php
                   if ($pregunta["resuelto"]) {
-                      echo '<i class="material-icons check">check_circle</i>';
+                    echo 'check_circle';
                   }
                   ?>
-                  <a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
+                  </i>
+          				<span class="votos">
+          				  <?php
+          				  if ($pregunta["votos"] > 0) {
+          					echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
+          				  } else if ($pregunta["votos"] < 0) {
+          					echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
+          				  } else {
+          					echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
+          				  }
+                    echo '<span>'.$pregunta["votos"].'</span>';
+          				  ?>
+                  </span>
+          			</div>
+                <a class="titulo" href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>">
+                  <?=$pregunta["titulo"]?>
+                  <span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
+                </a>
               </div>
               <div class="autor">
-                  <span class="fecha">el <?=$pregunta["fecha_creacion"]?></span>
+                  <span class="fecha">el <?=$pregunta["fecha_creacion"]?> por</span>
                   <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                  por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>"></a>
+                    <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
+                  </a>
               </div>
             </div>
             <ul class="etiquetas">
@@ -104,7 +109,7 @@
             <?php
         }?>
       </div>
-      <div class="margen"></div>
+      <div class="margen"><?php include "./partefija/margen.php" ?></div>
       <?php include "./partefija/footer.php" ?>
     </div>
   </body>

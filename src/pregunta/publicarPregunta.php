@@ -40,6 +40,9 @@
             }
         ?>
     </div>
+    <div class="margen">
+      <?php include "../partefija/margen.php"; ?>
+    </div>
     <!--carga el footer desde un html -->
     <?php
     include "../partefija/footer.php";

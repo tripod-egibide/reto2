@@ -44,7 +44,6 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
 	<?php
 	}
 	?>
-    <a href="/doc/Manual%20del%20Usuario.pdf" id="ayudaMovil" target="_blank"><i class="material-icons">help_outline</i></a>
 </div>
 <!-- Login -->
 <div id="modalLogin" class="modal">

@@ -122,7 +122,7 @@ if (isset($_GET["id"])) {
                         ?>
                         <?php
                         if ($respuesta["resuelve"]) {
-                            echo '<i class="material-icons">check</i>';
+                            echo '<i class="material-icons">check_circle</i>';
                         }
                         ?>
                     </div>
@@ -140,9 +140,9 @@ if (isset($_GET["id"])) {
             ?>
             <div class="navegacion"></div>
         </div>
-        <div class="margen"></div>
+        <div class="margen"><?php include "../partefija/margen.php"; ?></div>
         <?php
-        include("../partefija/footer.php");
+        include "../partefija/footer.php";
         ?>
     </div>
     </body>

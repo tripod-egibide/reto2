@@ -1,6 +1,3 @@
-// TODO: verificacion de datos
-
-
 //al hacer submit
 $("#signin").submit(() => {
   $.ajax({
@@ -12,7 +9,7 @@ $("#signin").submit(() => {
     success: (r) => {
       if (r) {
         //si hay un mensaje, lo mostramos por pantalla y vaciamos los campos de contrasenna
-        $("#resultado").html(r);
+        $("#resultadoSignUp").html(r);
         $(".contra").val("");
       } else {
         //si no, vamos al index

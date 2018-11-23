@@ -59,7 +59,7 @@
               <div class="titulo">
                   <?php
                   if ($pregunta["resuelto"]) {
-                      echo '<i class="material-icons">check</i>';
+                      echo '<i class="material-icons check">check_circle</i>';
                   }
                   ?>
                   <a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>

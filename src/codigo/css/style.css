@@ -238,13 +238,8 @@ footer img {
 
 .autor, .imagenAutor {
   display: flex;
-<<<<<<< HEAD
   justify-content: flex-end;
   align-items: center;
-=======
-  justify-content: right;
-  align-items: center;=
->>>>>>> 9b321d4bef81817abd448ca25842eacefb1d557c
   clear: both;
 }
 

@@ -12,7 +12,7 @@
       <?php include "./partefija/header.php" ?>
       <div class="main">
         <?php
-        echo isset($_SESSION["id"])? "<a class='iraPublicarPregunta' href='/pregunta/publicarPregunta.php'>Publicar Pregunta</a>":"";
+        echo isset($_SESSION["id"])? "<div class='bPublicar'><a class='iraPublicarPregunta' href='/pregunta/publicarPregunta.php'>Publicar Pregunta</a></div>":"";
         $pagina = isset($_GET["pagina"]) ? $_GET["pagina"] : 0;
         $mostrarPaginas = false;
         //cargamos datos diferentes dependiendo de los datos que podemos tener en _GET
@@ -56,18 +56,20 @@
 				  ?>
 				</span>
 			</div>
-              <div class="titulo">
-                  <?php
-                  if ($pregunta["resuelto"]) {
-                      echo '<i class="material-icons check">check_circle</i>';
-                  }
-                  ?>
-                  <a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
+                <?php
+                if ($pregunta["resuelto"]) {
+                    echo '<i class="material-icons check">check_circle</i>';
+                }
+                ?>
+              <div class="cabeceraTitulo">
+
+                  <a class="titulo" href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
               </div>
               <div class="autor">
                   <span class="fecha">el <?=$pregunta["fecha_creacion"]?></span>
                   <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                  por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>"></a>
+                    por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
+                  </a>
               </div>
             </div>
             <ul class="etiquetas">

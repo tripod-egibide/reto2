@@ -31,8 +31,19 @@ $raiz = $_SERVER['DOCUMENT_ROOT'];
   <a href="#" id="botonMenu"><i class="material-icons">menu</i></a>
 </header>
 <div id="menuMovil">
+	<?php
+	if (!isset($_SESSION["id"])) {
+	?>
     <a href="#" id="botonLoginMovil">Sign in</a>
     <a href="#" id="botonSigninMovil">Sign up</a>
+	<?php
+	}
+	if (isset($_SESSION["id"])) {
+	?>
+	<a href="#" id="botonLogoutMovil">Log out</a>
+	<?php
+	}
+	?>
     <a href="/doc/Manual%20del%20Usuario.pdf" id="ayudaMovil" target="_blank"><i class="material-icons">help_outline</i></a>
 </div>
 <!-- Login -->

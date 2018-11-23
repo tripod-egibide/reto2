@@ -34,8 +34,8 @@ html {
   border-right: 1px solid #d64;
 }
 
-#botonLogin, #botonSignin, #botonMenu,
-#ayudaMovil, #botonLoginMovil, #botonSigninMovil {
+#botonLogin, #botonSignin, #botonLogout, #botonMenu,
+#ayudaMovil, #botonLoginMovil, #botonLogoutMovil, #botonSigninMovil {
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
@@ -163,26 +163,45 @@ footer img {
   padding: 5px;
 }
 
+.votosRespuesta{
+	display: flex;
+	justify-content: space-between;
+	width: 25%;
+	float: left;
+}
+
 .titulo {
+  width: 75%;
+  float: right;
   background-color: #ec9;
-  padding: 4px;
+  padding: 10px;
+}
+.titulo i {
+	color: green;
+	border: 1px solid green;
+	border-radius: 100%;
+}
+
+.autor, .fecha{
+  text-align: right;
 }
 
 .etiquetas {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
-
 .etiqueta {
   display: inline-block;
+  margin: 5px 0;
 }
-
 .etiqueta a {
   background-color: #ec9;
-  border: 1px solid #333;
+  /*border: 1px solid #333;*/
   color: #d64;
   padding: 4px;
   margin: 2px;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 /*Responsividad*/
@@ -191,17 +210,21 @@ footer img {
     display: flex;
   }
 
-  #botonLogin, #botonSignin {
+  #botonLogin, #botonSignin, #botonLogout {
     display: none;
   }
 
   #barraBusqueda, #barraBusqueda input {
     width: 100%;
   }
+  
+  .votosRespuesta{
+	  flex-wrap: wrap;
+  }
 }
 
 @media only screen and (min-width: 601px) {
-  #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonMenu {
+  #ayudaMovil, #botonLoginMovil, #botonSigninMovil, #botonLogoutMovil, #botonMenu {
     display: none;
   }
 

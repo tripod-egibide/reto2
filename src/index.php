@@ -44,30 +44,35 @@
         foreach ($datos as $pregunta) {
           ?>
           <div class="pregunta">
-            <?php
-            if ($pregunta["resuelto"]) {
-              echo '<i class="material-icons">check</i>';
-            }
-            ?>
-            <span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
-            <span class="votos">
-              <?php
-              echo $pregunta["votos"];
-              if ($pregunta["votos"] > 0) {
-                echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
-              } else if ($pregunta["votos"] < 0) {
-                echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
-              } else {
-                echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
-              }
-              ?>
-            </span>
             <div class="info">
-              <div class="titulo"><a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a></div>
-              <span class="autor"><a href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
-              </a></span>
-              <span class="fecha"><?=$pregunta["fecha_creacion"]?></span>
+			<div class="votosRespuesta">
+				<span class="respuestas"><?php echo ($pregunta["respuestas"] == 1) ? "1 respuesta." : $pregunta["respuestas"] . " respuestas." ?></span>
+				<span class="votos">
+				  <?php
+				  echo '<span>'.$pregunta["votos"].'</span>';
+				  if ($pregunta["votos"] > 0) {
+					echo '<i class="material-icons thumb" id="thumbUp">thumb_up</i>';
+				  } else if ($pregunta["votos"] < 0) {
+					echo '<i class="material-icons thumb" id="thumbDown">thumb_down</i>';
+				  } else {
+					echo '<i class="material-icons thumb" id="thumbsUpDown">thumbs_up_down</i>';
+				  }
+				  ?>
+				</span>
+			</div>
+              <div class="titulo">
+                  <?php
+                  if ($pregunta["resuelto"]) {
+                      echo '<i class="material-icons">check</i>';
+                  }
+                  ?>
+                  <a href="pregunta/pregunta.php?id=<?=$pregunta["idpregunta"]?>"><?=$pregunta["titulo"]?></a>
+              </div>
+              <div class="autor">
+                  <span class="fecha">el <?=$pregunta["fecha_creacion"]?></span>
+                  <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
+                  por <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>"></a>
+              </div>
             </div>
             <ul class="etiquetas">
               <?php
@@ -79,6 +84,7 @@
               ?>
             </ul>
           </div>
+		  <hr>
           <?php
         }
         if ($mostrarPaginas) {

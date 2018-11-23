@@ -38,12 +38,14 @@ if (isset($_GET["id"])) {
                     <h1 class="titulo" id="tituloPregunta">
                         <?= $pregunta["titulo"] ?>
                     </h1>
+                    <div class="autor">
                     <!-- TODO: dar formato a la fecha o hacer un "escrito hace 3 dias y una hora" -->
                     <span class="fecha"><?= $pregunta["fecha_creacion"] ?></span>
                     <!-- TODO: enlazar esto al perfil del usuario correspondiente -->
-                    <span class="autor"><a href="../cuenta/perfil.php?id=<?= $pregunta["idusuario"] ?>">
+                    <span><a href="../cuenta/perfil.php?id=<?= $pregunta["idusuario"] ?>">
           <?= $pregunta["usuario"] ?> <img class="avatar" src="<?= $pregunta["url_avatar"] ?>">
         </a></span>
+                    </div>
                 </div>
                 <div class="votos">
                     <?php
@@ -134,7 +136,7 @@ if (isset($_GET["id"])) {
                     }
                     ?>
                 </div>
-                <hr></hr>
+                <hr>
                 <?php
             }
             ?>

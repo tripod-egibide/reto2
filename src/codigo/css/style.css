@@ -182,12 +182,14 @@ footer img {
 	border-radius: 100%;
 }
 
-.autor, .fecha{
+.autor{
   text-align: right;
+  clear: both;
 }
 
 .etiquetas {
   list-style: none;
+  text-align: right;
   padding: 0;
   margin: 0;
 }

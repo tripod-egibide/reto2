@@ -1,12 +1,58 @@
-#campoEtiqueta{
-    visibility: hidden;
+#campoEtiqueta {
+  visibility: hidden;
 }
 
-#tituloFormulario{
-    font-size: 1.5em;
+#tituloFormulario {
+  font-size: 1.5em;
 }
 
 .material-icons:hover {
-    cursor:pointer;
-    cursor: hand
+  cursor: pointer;
+}
+
+.titulo {
+  padding: 10px;
+  color: #333;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  background-color: #ec9;
+  border-left: 1px solid #d64;
+}
+
+.cabeceraPost {
+  display: flex;
+  align-items: center;
+}
+
+.autor, .imagenAutor {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  clear: both;
+}
+
+.votos {
+  justify-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cuerpo {
+  background-color: #ccc;
+}
+
+.respuesta {
+  margin-top: 1em;
+}
+
+.post {
+  border-bottom: 1px solid #ccc;
+}
+
+.votoRespuesta, #votoPregunta {
+  margin-right: 5px
 }

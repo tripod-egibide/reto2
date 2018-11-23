@@ -197,23 +197,6 @@ footer img {
   align-self: flex-end;
 }
 
-.votosRespuesta {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  flex-shrink: 0;
-  flex-basis: 5em;
-  align-items: center;
-  margin-right: 5px;
-}
-
-.votos {
-  justify-self: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .cabeceraTitulo {
   width: 100%;
   padding-left: 5px;

@@ -12,26 +12,33 @@
 }
 
 .modalContenido {
-    display: flex;
+    /*display: flex;*/
     /*position: relative;*/
     background-color: #fefefe;
     margin: auto;
     padding: 10px;
     border: 1px solid #888;
     border-radius: 0.5em;
-    width: 80%;
+    width: 25em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     -webkit-animation-name: modal;
     -webkit-animation-duration: 0.4s;
     animation-name: modal;
     animation-duration: 0.4s;
-    justify-content: space-between;
+    position: relative;
+    /*justify-content: space-between;*/
+}
+
+h1 {
+    width: 100%;
+    padding-left: 10%;
 }
 
 .modalContenido form{
     width: 100%;
     padding: 10%;
-    border-left: 1px solid #d64;
+    padding-top: 0;
+    align-self: flex-end;
 }
 .modalContenido input, button{
     width: 100%;
@@ -40,6 +47,9 @@
 }
 
 .cerrarModal {
+    position: absolute;
+    top: 5px;
+    right: 5px;
     color: #888;
     font-size: 28px;
     font-weight: bold;

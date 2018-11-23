@@ -25,7 +25,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `reto2`.`usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `reto2`.`usuario` (
-  `idusuario` INT(11) NOT NULL AUTO_INCREMENT,
+  `idusuario` INT(15) NOT NULL AUTO_INCREMENT,
   `usuario` VARCHAR(12) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `contrasenna` VARCHAR(255) NOT NULL,

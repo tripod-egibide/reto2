@@ -85,7 +85,7 @@
               ?>
             </ul>
           </div>
-		  <hr>
+		      <hr>
           <?php
         }
         if ($mostrarPaginas) {

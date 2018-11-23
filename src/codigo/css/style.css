@@ -191,12 +191,6 @@ footer img {
   padding: 5px;
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-}
-
 .cabeceraTitulo {
   width: 100%;
   padding-left: 5px;

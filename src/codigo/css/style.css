@@ -162,8 +162,8 @@ footer img {
   width: 32px;
 }
 
-.thumb {
-  cursor: pointer;
+.thumb, .check {
+  cursor: default;
 }
 
 /*Index*/
@@ -202,7 +202,7 @@ footer img {
   justify-content: space-between;
   flex-wrap: wrap;
   flex-shrink: 0;
-  flex-basis: 10%;
+  flex-basis: 5em;
   align-items: center;
   margin-right: 5px;
 }

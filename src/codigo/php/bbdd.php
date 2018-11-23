@@ -1,9 +1,9 @@
 <?php
 //funciones universales:
 function abrirConexion(){
-  $bd = "mysql:host=e101240-mysql.services.easyname.eu;dbname=u159695db1;charset=utf8";
-  $usuario = "u159695db1";
-  $contrasenna = "x2354057F";
+  $bd = "mysql:host=localhost;dbname=reto2;charset=utf8";
+  $usuario = "root";
+  $contrasenna = "";
   return $conexion = new PDO($bd, $usuario, $contrasenna);
 }
 function realizarConsulta($query, $datos){

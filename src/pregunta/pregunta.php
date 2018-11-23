@@ -122,7 +122,7 @@ if (isset($_GET["id"])) {
                         ?>
                         <?php
                         if ($respuesta["resuelve"]) {
-                            echo '<i class="material-icons">check</i>';
+                            echo '<i class="material-icons">check_circle</i>';
                         }
                         ?>
                     </div>

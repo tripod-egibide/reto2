@@ -114,9 +114,9 @@ if (isset($_GET["id"])) {
                         </h2>
                     </div>
                     <div class="autor">
-                      <span class="fecha">el <?=$pregunta["fecha_creacion"]?> por</span>
-                      <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$pregunta["idusuario"]?>">
-                        <?=$pregunta["usuario"]?> <img class="avatar" src="<?=$pregunta["url_avatar"]?>">
+                      <span class="fecha">el <?=$respuesta["fecha_creacion"]?> por</span>
+                      <a class="imagenAutor" href="/cuenta/perfil.php?id=<?=$respuesta["idusuario"]?>">
+                        <?=$respuesta["usuario"]?> <img class="avatar" src="<?=$respuesta["url_avatar"]?>">
                       </a>
                     </div>
                     <p class="cuerpo"><?= $respuesta["texto"] ?></p>
